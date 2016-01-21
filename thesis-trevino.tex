@@ -1,0 +1,2213 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[latin2]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[pdftex]{graphicx}
+\usepackage{rotating}
+\usepackage[all]{xy}
+\usepackage[amsmath]{maxiplot}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{flashmovie}
+
+
+
+\theoremstyle{definition} \newtheorem{defi}{Definici\'on}
+\theoremstyle{definition} \newtheorem{teo}{Teorema}
+\theoremstyle{definition} \newtheorem{cor}{Corolario}
+\author{Francisco Trevi\~no 203304950}
+\title{Geometr\'ia din\'amica: energ\'ia t\'ermica}
+\begin{document}
+\maketitle
+\begin{abstract}
+Proponemos una exploraci\'on al enfoque geom\'etrico de la termodin\'amica, con fundamento en la formulaci\'on axiom\'atica desarrollada por Constantin Carath\'eodory (1873-1950), con el objetivo pr\'actico de ligar esta teor\'ia con aplicaciones en fuentes de energ\'ia renovables, an\'alisis de sistemas din\'amicos resultantes y un acercamiento hacia algunas l\'ineas de investigaci\'on en los territorios de la geometr\'ia y formas diferenciales.
+\end{abstract}
+
+\tableofcontents
+\section{Panorama}
+\begin{quote}
+The strength of mathematics multiplies, like the giant Antaeus, when it makes contact with reality, the ground upon which it was grown. Constantin Carath\'eodory.
+\end{quote}
+\paragraph{}
+La segunda ley de la termodin\'amica es una de las leyes que representan la perfecci\'on en f\'isica, a nivel macrosc\'opico. Cualquier violaci\'on a esta ley resolver\'ia las necesidades y, por ende, los problemas energ\'eticos mundiales de un solo tajo.
+\subparagraph{}
+Los acercamientos m\'as importantes a la segunda ley de la termodin\'amica difieren en aspectos muy ``sutiles'', adem\'as por tratarse de una ley emp\'irica o fenomenol\'ogica, existen varias formas de establecerla y son equivalentes:
+\begin{itemize}
+\item Clausius: no hay proceso posible, cuyo \'unico resultado sea que se transfiera calor desde un cuerpo hacia otro m\'as caliente.
+\item Kelvin (Planck): no hay proceso posible, cuyo \'unico resultado sea que un cuerpo se enfr\'ie y realice trabajo.
+\item Carath\'eodory: en un entorno arbitrariamente cercano a cualquier estado termodin\'amico, existen estados que no pueden alcanzarse, a partir de un estado inicial, mediante procesos adiab\'aticos.
+\end{itemize}
+\subparagraph{}
+Aunque la segunda ley de la termodin\'amica sea una ley emp\'irica, su formulaci\'on sistem\'atica mediante axiomas nos ayuda a entender y exhibir claramente, mediante la l\'ogica formal, los hechos b\'asicos que forman el tejido de su teor\'ia f\'isica. Hacia el final del siglo XIX algunos cient\'ificos pensaban que la meta final de la f\'isica te\'orica era la axiomatizaci\'on perfecta de las teor\'ias, esto debido en parte a la influencia del gran matem\'atico David Hilbert.
+\subparagraph{}
+La termodin\'amica como teor\'ia f\'isica era un buen candidato para tal axiomatizaci\'on, donde el modelo ideal era la geometr\'ia Euclideana. De hecho, la termodin\'amica es \'unica incluso en el terreno de la f\'isica cl\'asica por su elevada construcci\'on l\'ogica sobre unas cuantas leyes b\'asicas: la abstracci\'on de nuestra experiencia asumida como axiomas. En su estructura simple, se asemeja a la geometr\'ia. Entre varios intentos de axiomatizaci\'on a la termodin\'amica el m\'as exitoso se debe a Constantin Carath\'eodory.
+\subparagraph{}
+Podemos hacer una analog\'ia entre la forma en que Carath\'eodory trabaja en el \emph{terreno de la termodin\'amica} y el trabajo de Albert Einstein en el \emph{campo gravitacional,} dentro del mismo periodo $1905-1917$; una especie de geometrizaci\'on de la f\'isica. Cabe destacar que el resultado de tales investigaciones no es una derivaci\'on matem\'atica de las leyes de la f\'isica, sino una formulaci\'on matem\'atica, dado que las leyes de la f\'isica no pueden derivarse matem\'aticamente \cite{LP}; de hecho, como veremos m\'as adelante, la base f\'isica de la segunda ley de la termodin\'amica es la imposibilidad de alcanzar f\'isicamente ciertos procesos.
+\paragraph{}
+El estudio geom\'etrico de la termodin\'amica se inici\'o con la reformulaci\'on de Gibbs a la teor\'ia en t\'erminos de estados de equilibrio y no de procesos. La superficie generada por el conjunto de estados de equilibrio de cierto sistema fue el primer objeto de estudio de Gibbs, proyectando de esta manera, la moderna teor\'ia de variedades a trav\'es de la geometr\'ia diferencial \cite{gt}.  Carath\'eodory describe completamente a un sistema termodin\'amico mediante un \emph{espacio de estados}, $\Gamma$, representado como un subconjunto de una \emph{variedad n-dimensional} dentro de la cual, las \emph{variables de estado} sirven de coordenadas. Se asume que $\Gamma$ est\'a equipado con una topolog\'ia Euclideana, aunque las propiedades m\'etricas del espacio no juegan un papel importante en la teor\'ia y no hay una preferencia por un sistema de coordenadas en particular. Sin embargo, las coordenadas no son arbitrarias completamente, Carath\'eodory hace una distinci\'on entre coordenadas \emph{t\'ermicas} y coordenadas de \emph{deformaci\'on}. El \emph{estado} del sistema termodin\'amico se define por ambos tipos de coordenadas, mientras que la \emph{forma}\footnote{Gestalt} de un sistema queda definida s\'olo por las coordenadas de deformaci\'on. En general, las coordenadas de deformaci\'on son importantes en la descripci\'on de un sistema fuera del equilibrio, mientras que las coordenadas t\'ermicas se definen \'unicamente para estados de equilibrio; se asume que mediante procesos adiab\'aticos se puede obtener cualquier forma final deseada a partir de todo estado inicial.\\
+La idea general es desarrollar la teor\'ia de tal manera que la segunda ley de la termodin\'amica nos proporcione una estructura matem\'atica caracter\'istica al espacio de estados. De esta manera, Carath\'eodory construye un espacio de estados abstracto tal que el enunciado emp\'irico de la segunda ley se convierte en una propiedad topol\'ogica local. As\'i, el concepto de \emph{accesibilidad o equivalencia adiab\'atica} analiza los procesos entre distintos estados de equilibrio \cite{UJ}.
+\subparagraph{}
+Cuando el n\'umero de propiedades termodin\'amicas, que definen un sistema excede a tres, la representaci\'on geom\'etrica del sistema presenta cierta dificultad, dado que requerimos un espacio de m\'as de tres dimensiones. Aunque no es necesario representar tal espacio f\'isicamente, s\'i podemos analizarlo con las herramientas del lenguaje de la geometr\'ia como referencia \cite{tc}; conceptos tales como formas diferenciales, variedades, hipersuperficies, son herramientas que permiten estudiar anal\'iticamente tales condiciones de sistema.
+\begin{figure}
+\centering
+\begin{picture}(200,100)
+\put(100,50){\vector(1,0){100}}
+\put(100,50){\vector(0,1){100}}
+\put(100,50){\vector(-1,-1){50}}
+\put(96,110){\turnbox{90}{Energ\'ia}}
+\put(158,40){Volumen}
+\put(53,10){\turnbox{45} {\reflectbox {Entrop\'ia}} }
+\end{picture}
+\caption{Marco de referencia para estados de equilibrio.}
+\end{figure}
+\subparagraph{}
+La ciencia de la termodin\'amica proporciona relaciones entre propiedades de sistemas \'unicamente, no sus valores absolutos. Con el fin de obtener valores puntuales, es necesario adoptar modelos microsc\'opicos como la teor\'ia cin\'etica de gases y la teor\'ia cu\'antica para realizar algunas correcciones a ese nivel. La termodin\'amica es una herramienta muy poderosa para indicar propiedades generales de sistemas, incluso si no controlamos la f\'isica involucrada a nivel microsc\'opico. Otro gran logro de la termodin\'amica es que logra cuantificar los enunciados de la segunda ley, mediante el recurso de una cantidad mensurable: la \emph{entrop\'ia}. Nociones tales como ``ruido'' y entrop\'ia pueden entenderse y satisfacer los principios de conservaci\'on de energ\'ia, incluyendo la teor\'ia de motores brownianos, si son abordados desde la perspectiva de la mec\'anica estad\'istica.
+\subparagraph{}
+El lenguaje de \emph{formas diferenciales} es muy flexible, permite combinar la primera y segunda leyes de la termodin\'amica en un solo enunciado de forma natural.  Las formas diferenciales fueron desarrolladas, por Pfaff y otros, entre otras razones, para dar sentido a las ideas de Gibbs sobre termodin\'amica \cite{gt}.
+\subparagraph{}
+Constantin Carath\'eodory construye la segunda ley de la termodin\'amica en t\'erminos de propiedades puramente locales de una \emph{relaci\'on de equivalencia}. La desventaja de tal formulaci\'on, puramente local, es la dificultad de derivar una \emph{funci\'on de entrop\'ia c\'oncava definida globalmente}, dado que la entrop\'ia de un sistema termodin\'amico es una funci\'on creciente o constante en el caso ideal. Para lograr esta concavidad primero es necesario que el espacio de estados $\Gamma$, sobre el cual se define la entrop\'ia, $S$, sea un \emph{conjunto convexo}, por lo tanto la elecci\'on del sistema de coordenadas es determinante.
+\subparagraph{}
+Carath\'eodory introduce las nociones de temperatura y entrop\'ia en t\'erminos de soluciones de sistemas de ecuaciones diferenciales de Pfaff. De hecho \'el remplaz\'o las expresiones tradicionales de la segunda ley mediante la aseveraci\'on de su principio. La base del principio es un teorema matem\'atico que establece que una forma Pfaffiana $dQ$ posee un factor integrante, $\tau,$ (esto es, un campo escalar que al multiplicar $\tau dQ=d\sigma,$ donde $d\sigma$ es una diferencial total o exacta y por lo tanto integrable) si y s\'olo si existe en cualquier vecindad de un punto $P$ al menos un punto $P^{\prime}$ que no puede alcanzarse desde $P$ a lo largo cualquier curva en la superficie determinada por la condici\'on $dQ=0.$ Si no existe un factor integrante $\tau$ para $dQ$ el sistema se denomina \emph{no-holon\'omico} \cite{KR}; por lo tanto si para un sistema existe al menos un punto inaccesible bajo la condici\'on $dQ=0,$ entonces el sistema es \emph{holon\'omico}, i.e. existe un factor integrante para $dQ$. Un proceso es irreversible en el sentido termodin\'amico, si y s\'olo si la \emph{1-forma} $dQ,$ no admite un factor integrante, i.e. el sistema es no-holon\'omico.
+\begin{quote}
+Cualquier cambio de estado de un sistema luego del cual el valor de la entrop\'ia sufra una variaci\'on, es irreversible. Carath\'eodory.
+\end{quote}
+\subparagraph{}
+Un proceso es irreversible si el estado inicial del proceso no puede alcanzarse a partir del estado final \emph{sin} que sucedan otros cambios o se realice trabajo sobre el sistema; i.e. ``sin compensaci\'on''. Luego definiremos un tipo particular de procesos, ``cuasi-est\'aticos'', su relaci\'on con los procesos irreversibles ser\'a evidente.
+\paragraph{}
+Se pueden distinguir, en general, dos aproximaciones formales a la termodin\'amica. Por un lado encontramos el acercamiento \'a la Carath\'eodory, basado en la integrabilidad de la forma Pfaffiana $dQ$, la cual representa el desarrollo de la l\'inea de pensamiento iniciada por Clausius y Kelvin (William Thomson). Por otro lado est\'a el acercamiento debido a Gibbs, en el cual la entrop\'ia se postula como un \emph{mapa o funci\'on c\'oncava extensiva} de las propiedades extensivas del sistema \cite{CG}.
+\subparagraph{}
+El marco te\'orico desarrollado por Carath\'eodory, en su acercamiento a la termodin\'amica, explica este resultado al postular la integrabilidad de la \emph{forma Pfaffiana} $dQ$ que representa el ``calor'' infinitesimal, que es una cantidad derivada de la primera ley de la termodin\'amica no una propiedad, intercambiado reversiblemente. La integrabilidad de $dQ$ significa que existe un factor integrante $\tau$ y una funci\'on $\sigma$, llamada entrop\'ia emp\'irica, tales que $dQ=\frac{1}{\tau} d\sigma,$ donde $d\sigma$ es una diferencial total, integrable \cite{bh}.
+\subparagraph{}
+Recientemente se ha desarrollado el formalismo de la \emph{geometro-termodin\'amica}\footnote{GTD: Geometrothermodynamics} \cite{gtd}, con el fin de incorporar otras herramientas matem\'aticas, como el concepto de invariantes de Legendre, a la descripci\'on geom\'etrica de la termodin\'amica.
+\section{Herramental}
+\begin{quote}
+One geometry cannot be more true than another; it can only be more convenient. Poincar\'e.
+\end{quote}
+\paragraph{}
+Tomaremos un par de conceptos y definiciones del libro de Arnold Sommerfeld \cite{AS}, en su tratamiento axiom\'atico de la termodin\'amica, que se ha constituido como una base s\'olida y fundamental en el estudio de la f\'isica a trav\'es de sus ya cl\'asicos libros.
+\begin{defi}
+Existe una propiedad, par\'ametro de estado: \emph{temperatura}. La igualdad de temperatura es una condici\'on necesaria para el equilibrio t\'ermico entre dos sistemas o entre dos partes de un sistema.
+\end{defi}
+Debemos considerar el nuevo concepto de temperatura como una cuarta dimensi\'on, adicionalmente a las cantidades mec\'anicas de \emph{longitud, masa y tiempo.}
+\begin{defi}
+\emph{Sistema mec\'anico} es una colecci\'on de puntos o cuerpos materiales que pueden describirse especificando geom\'etricamente v\'inculos, enlaces o fuerzas que se pueden definir; para describir el estado de un \emph{sistema termodin\'amico} es necesario especificar adicionalmente las temperaturas de sus componentes y los detalles de la energ\'ia transferida entre ellos.
+\end{defi}
+\paragraph{}
+En el an\'alisis de sistemas termodin\'amicos encontraremos relaciones matem\'aticas que involucran algunas funciones y diferenciales de funciones. En t\'erminos f\'isicos esto es, propiedades intensivas y extensivas respectivamente. M\'as adelante, cuando definamos el trabajo mec\'anico, veremos un criterio para decidir si una propiedad de un sistema termodin\'amico es intensiva o extensiva en t\'erminos matem\'aticos.
+\subparagraph{}
+Para dar una definici\'on matem\'atica del concepto de ``propiedad termodin\'amica'' o ``funci\'on, par\'ametro de estado'' es necesario considerar su diferencial. Sea $T$ una funci\'on continua y suave $C^2,$ i.e. tiene derivadas parciales de segundo orden y adem\'as estas son continuas, de las variables independientes $x, y,$ (dos propiedades medibles de un sistema tales como su presi\'on, volumen, magnetizaci\'on, etc.), entonces expresamos
+\begin{equation} \label{perfect2}
+dT=Xdx+Ydy; \qquad X= \frac{\partial T}{\partial x}, \qquad Y= \frac{\partial T}{\partial y}.
+\end{equation}
+Luego tenemos
+\begin{equation}\label{mixed}
+\frac{\partial X}{\partial y}=\frac{\partial Y}{\partial x},
+\end{equation}
+que es la condici\'on necesaria y suficiente para que \eqref{perfect2} sea una \emph{diferencial perfecta o total}, es decir integrable. Gracias a los teoremas de existencia y unicidad de soluciones de la teor\'ia de ecuaciones diferenciales ordinarias, una ecuaci\'on de la forma \eqref{perfect2} siempre puede integrarse mediante un factor integrante. Esta condici\'on es equivalente a establecer a $T$ como una \emph{propiedad termodin\'amica}. La misma condici\'on puede escribirse en forma integral:
+\begin{equation}\label{stotal}
+\oint dT=0,
+\end{equation}
+para cualquier curva cerrada en el plano$-xy,$ esto es, que la funci\'on $T$ es independiente de la trayectoria de integraci\'on.
+\paragraph{}
+En el caso general, para $n$ dimensiones, las condiciones necesarias y suficientes para que una expresi\'on
+$$\sum_ky_k(x_1,x_2,\dots,x_n)dx_k$$
+de $n$ variables sea \emph{la} diferencial total $df$ de una funci\'on $f(x_1,x_2,\dots,x_n)$ son
+\begin{equation}\label{conditform}
+\frac{\partial y_k}{\partial x_i} = \frac{\partial y_i}{\partial x_k}, \qquad (i,k=1,2,\dots,n).
+\end{equation}
+\subparagraph{}
+La expresi\'on algebraica que nos da las condiciones necesarias de integraci\'on, la anulaci\'on del rotacional, en t\'erminos del n\'umero de variables independientes $n$ para una ecuaci\'on diferencial parcial en la forma \eqref{conditform} es
+\begin{equation}
+\left(
+\begin{matrix}
+n\\
+2
+\end{matrix}
+\right)
+=
+\frac{n\left(n-1\right)}{2},
+\end{equation}
+\begin{figure}[!t]
+\abovecaptionskip 18 mm
+\begin{displaymath}
+\xymatrix
+{
+\bullet \ar@{-}[r] & \bullet\\
+}
+\qquad
+\xymatrix
+{
+\bullet \ar@{-}[d] \ar@{-}[dr]\\
+\bullet \ar@{-}[r] & \bullet\\
+}
+\qquad
+\xymatrix
+{
+\bullet \ar@{-}[r] \ar@{-}[d] & \bullet \ar@{-}[d]\\ 
+\bullet \ar@{-}[r] \ar@/^3.5pc/[ur]& \bullet \ar@{-}[ul] \\
+}
+\qquad
+\xymatrix
+{
+&\bullet&\\ 
+\bullet \ar@{-}[ur] \ar@{-}[d] & & \bullet \ar@{-}[ul] \ar@{-}[d] \ar@/_5pc/[ll]\\ 
+\bullet \ar@{-}[rr] \ar@{-}[uur] \ar@{-}[urr] & & \bullet \ar@/^7pc/[ull] \ar@/_6pc/[uul]\\
+}
+\end{displaymath}
+\caption{Diagramas \`a la Maxwell; condiciones necesarias de integraci\'on: los puntos representan las variables independientes, las l\'ineas las condiciones necesarias de integraci\'on.}
+\label{maxdia}
+\end{figure}
+James Clerk Maxwell propon\'ia lo anterior geom\'etricamente como se muestra en la figura \ref{maxdia}.
+\subparagraph{}
+Estas condiciones son consecuencia de las relaciones
+\begin{equation}
+\frac{\partial f}{\partial x_k} = y_k, \qquad \frac{\partial y_k}{\partial x_i} = \frac{\partial^2 f}{\partial x_i\partial x_k}= \frac{\partial^2 f}{\partial x_k\partial x_i} = \frac{\partial y_i}{\partial x_k}.
+\end{equation}
+\begin{teo}
+Sea $\sigma$ una superficie bilateral en un subespacio vectorial de $\mathbf{R}^3,$ con una curva orientada $s$ como su frontera, ambas suaves y continuas. Para cada elemento de superficie $d\sigma,$ construyamos un vector unitario normal $\hat{n}$ apuntando en la direcci\'on que se forma al seguir la regla de la mano derecha con la orientaci\'on de $s$, entonces la \emph{circulaci\'on} de un campo vectorial $\vec A$ alrededor de $s$ es igual al flujo del \emph{rotacional} de $\vec A$, $\vec \nabla \times \vec A,$ sobre $\sigma;$
+\begin{equation}\label{Stokes}
+\int_{\sigma}  \vec \nabla \times \vec A \cdot \hat{n} d\sigma = \oint_s \vec A \cdot d\vec r,
+\end{equation}
+esta ecuaci\'on es el \emph{teorema de Stokes} presentado y demostrado por Arnold Sommerfeld \cite{AS2}.
+\end{teo}
+\subparagraph{}
+En general la demostraci\'on del teorema de Stokes se realiza mediante argumentos geom\'etricos, por ejemplo \cite{AR}, \cite{HI}. Un esbozo de la prueba mediante argumentos geom\'etricos consiste en dividir la superficie $\sigma$ que queremos analizar en elementos de \'area infinitesimales, luego tomamos la circulaci\'on, i.e. la integral de l\'inea, de cada uno de los elementos de \'area que conforman la superficie total. Luego a partir de la definici\'on de la suma o integral de Riemann, sumamos las contribuciones individuales de cada elemento infinitesimal. Por construcci\'on geom\'etrica podemos ver que las contribuciones se anulan unas con otras dado que los elementos infinitesimales comparten las aristas y por lo tanto la integral sobre cada l\'inea frontera infinitesimal se cancela porque se toman en sentido contrario, excepto aquellas que conforman el borde, i.e. la curva frontera $s$ de nuestra superficie total $\sigma.$ Al final del proceso las contribuciones que sobreviven son s\'olo los bordes de las \'areas infinitesimales que forman la curva orientada $s.$ Este an\'alisis geom\'etrico y la definici\'on del rotacional en t\'erminos integrales implican la validez del teorema de Stokes.
+\subparagraph{}
+Para ligar el teorema de Stokes con la funci\'on $dT$ definida en \eqref{perfect2} tomaremos este ejemplo. Sea el campo vectorial $\vec A$ y un vector unitario $\hat n$ normal a una superficie $\sigma$
+\begin{equation}
+\vec A = Pdx+Qdy+Rdz, \qquad \hat n =\hat i\cos \alpha +\hat j \cos \beta +\hat k \cos \gamma,
+\end{equation}
+donde $\alpha, \beta, \gamma$ son los \'angulos directores, i.e. los \'angulos que el vector normal unitario $\hat n$ forma con los ejes coordenados $x,y,z$ respectivamente. El teorema de Stokes toma la forma
+\begin{align}
+&\oint_s\left(Pdx+Qdy+Rdz\right) = \\
+&\int_\sigma\left(\left(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\right)\cos\alpha+\left(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\right)\cos\beta+\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)\cos\gamma\right)d\sigma.
+\end{align}
+Para darle la misma forma diferencial, $1-forma,$ que \eqref{perfect2} tomemos un \'area plana $S$ en el plano$-xy,$ por lo tanto $dz=0,$ $\cos \alpha = \cos \beta = 0,$ $\cos \gamma = 1,$ $d\sigma = dxdy,$ lo que implica
+\begin{equation}
+\oint_s\left(Pdx+Qdy\right)=\int_S\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dxdy,
+\end{equation}
+esta expresi\'on tiene la misma forma que nuestra funci\'on \eqref{perfect2}.
+\paragraph{}
+En t\'erminos de flujo de fluidos, el teorema de Stokes establece que, la circulaci\'on alrededor de la \emph{curva} frontera $C$ es igual al flujo del vector \emph{v\'ortice} a trav\'es de una superficie arbitraria $\sigma$ subtendida por la curva $C$ \cite{AS2}.
+\subparagraph{}
+La integral sobre la curva frontera se anula si la superficie integral en el teorema de Stokes se refiere a una superficie \emph{cerrada}
+$$\oint  \vec \nabla \times \vec A \cdot \hat{n} d\sigma = 0$$
+porque si la superficie es cerrada, esto es los puntos final e inicial en una trayectoria coinciden, podemos ir reduciendo la trayectoria de integraci\'on, un curva cerrada, tanto como queramos hasta llegar a un punto, donde la trayectoria se hace cero. Suponemos aqu\'i que se trata de una superficie simplemente conexa, sin huecos. En particular, si el campo vectorial $\vec A$ es el gradiente de una funci\'on escalar, digamos $\vec A = \vec \nabla U,$ entonces la expresi\'on diferencial
+$$A_s ds = A_x dx + A_y dy + A_z dz$$
+es la diferencial total $dU$. En este caso
+$$\oint A_s ds = 0$$
+para cualquier curva frontera, dada la definici\'on del rotacional de un campo vectorial en forma integral
+\begin{equation}
+\hat{n} \cdot \vec \nabla \times \vec A=\lim_{ds \rightarrow 0}\frac{1}{ds}\oint_{dC}\vec A\cdot d\vec r
+\end{equation}
+donde $ds$ es un elemento peque\~no de \'area perpendicular al vector unitario $\hat{n},$ $dC$ es la curva cerrada que forma la frontera de $ds,$ $dC$ y $\hat{n}$ est\'an orientados en el sentido de la regla de la mano derecha.
+\subparagraph{}
+El primer miembro de \eqref{Stokes} entonces debe anularse para cualquier superficie $\sigma$ y cualquier direcci\'on normal $n$. En particular
+$$\vec \nabla \times \vec \nabla U = 0$$
+siempre se cumple.
+\subparagraph{}
+La ecuaci\'on $\vec \nabla \times \vec A = 0,$ escrita en coordenadas rectangulares, es equivalente a las \emph{tres condiciones} para que la expresi\'on 
+\begin{equation}
+\vec A \cdot d \vec r = A_x dx + A_y dy + A_z dz
+\end{equation}
+sea una diferencial total.
+\subparagraph{}
+Como $\vec \nabla \times \vec A$ se anula debido a la ecuaci\'on \eqref{mixed}, concluimos que \eqref{stotal} es equivalente a la afirmaci\'on de que $T$ es una propiedad termodin\'amica.
+Cuando tenemos dos variables independientes siempre es posible transformar la expresi\'on \eqref{perfect2} en una diferencial total al dividirla por alg\'un denominador $\tau(x,y)$, incluso si este no era un \emph{factor integrante} originalmente \cite{AS}.
+\paragraph{}
+Para ecuaciones con tres variables independientes, $\vec A \cdot d\vec r = X dx + Y dy + Z dz$, en general no es posible transformarlas en una diferencial perfecta, integrable. Las condiciones necesarias y suficientes de integrabilidad para una ecuaci\'on de este tipo, expresadas en forma vectorial son
+\begin{equation}\label{condit}
+\vec A_0 \cdot \vec \nabla \times \vec A_0 = 0,
+\end{equation}
+esto es, que el vector debe ser normal a su rotacional, porque si suponemos nuestro campo vectorial $\vec A,$ como el producto de un campo escalar $\lambda$ y un campo vectorial $\vec A_0,$
+$$\vec A = \lambda \vec A_0,$$
+entonces $\vec \nabla \times \vec A$ toma la forma
+\begin{equation}\label{normalcurl}
+\vec \nabla \times \vec A = \lambda \vec \nabla \times \vec A_0 + \vec \nabla \lambda \times \vec A_0
+\end{equation}
+ahora si multiplicamos $\vec A_0$ por \eqref{normalcurl} obtenemos
+\begin{equation}\label{rl}
+\vec A_0 \cdot \vec \nabla \times \vec A = \vec A_0 \cdot \lambda \vec \nabla \times \vec A_0 + \vec A_0 \cdot \vec \nabla \lambda \times \vec A_0,
+\end{equation}
+llamemos al vector $\vec \nabla \lambda$ como $\vec B$ y apliquemos al segundo t\'ermino del lado derecho de \eqref{rl} la identidad vectorial
+\begin{equation}
+\vec A \cdot (\vec B \times \vec C) = \vec B \cdot (\vec C \times \vec A)
+\end{equation}
+obtenemos por la definici\'on del producto vectorial
+\begin{equation}
+\vec B \cdot \vec A_0 \times \vec A_0 = 0;
+\end{equation}
+reduciendo \eqref{normalcurl} con este resultado tenemos
+\begin{equation}
+\vec A_0 \cdot \vec \nabla \times \vec A = \vec A_0 \cdot \lambda \vec \nabla \times \vec A_0 = 0,
+\end{equation}
+como $\lambda$ es una funci\'on escalar arbitraria, tenemos
+\begin{equation}
+\vec A_0 \cdot \vec \nabla \times \vec A_0 = 0,
+\end{equation}
+de esta manera, expresando al campo vectorial $\vec A$ como el producto $\lambda \vec A_0$, la condici\'on $\vec \nabla \times \vec A =0,$ es posible si y solo si \eqref{condit} se cumple. Mostraremos algunos ejemplos en el ap\'endice \ref{exem}.
+\subparagraph{}
+As\'i concluimos que para que una variable $T$ sea considerada como una propiedad, $dT$ debe ser una diferencial perfecta, es decir, $\oint dT = 0$ en t\'erminos integrales. 
+\paragraph{}
+En general, las condiciones \eqref{mixed} no se satisfacen, ser\'ia an\'alogo a pedir que el campo vectorial en cuesti\'on fuera irrotacional, i.e. para un campo vectorial $\vec A,$ tendr\'iamos $\vec \nabla \times \vec A = \vec 0;$ la condici\'on \eqref{mixed} es la componente $z$ (en la direcci\'on del vector unitario de base $\hat k$) del rotacional en $\mathbf{R}^3.$ En un subespacio vectorial de $\mathbf{R}^3,$ las condiciones \emph{siempre} se cumplen si, en el lenguaje de an\'alisis vectorial, podemos expresar a la funci\'on $\vec A$ como el \emph{gradiente} de una funci\'on escalar, $\vec \nabla \phi$, o \emph{funci\'on potencial}, as\'i podemos concluir que si $\vec \nabla \times \vec A = 0$ en cierta regi\'on, entonces $\vec A$ es el gradiente de una funci\'on escalar $\phi$ en tal regi\'on. Dicha aseveraci\'on en sentido contrario se cumple bajo la condici\'on de que la funci\'on potencial $\phi$ tenga segundas derivadas parciales continuas. Cuando una funci\'on potencial $\phi$ existe, entonces el \emph{campo $\vec A$ es conservativo}, dado que la integral de l\'inea alrededor de cualquier trayectoria cerrada se anula, \cite{HI}, \cite{BU},
+$$\vec \nabla \times \vec A = 0, \quad \Leftrightarrow \quad \vec A = \vec \nabla \phi,$$
+$$\Rightarrow \quad \oint \vec A \cdot d \vec r = 0.$$
+\subparagraph{}
+En termodin\'amica buscamos diferenciales totales. Cuando encontramos ecuaciones de la forma \eqref{perfect2}, el problema consiste en determinar si tales funciones dependen solamente de los puntos inicial y final, esto es, si $dT$ es una diferencial exacta o que es \emph{independiente de la trayectoria;} en tal caso el requerimiento de $T$ es exactamente an\'alogo a la condici\'on irrotacional de $T$ \cite{AR}.
+\paragraph{}
+Para analizar el caso de un campo vectorial $\vec T$ en un subespacio vectorial $\mathbf{R}^3,$ tomamos una expresi\'on Pfaffiana en tres variables, esto es
+\begin{equation}\label{trediff}
+dT=Xdx+Ydy+Zdz,\quad X=\frac{\partial T}{\partial x},\quad Y=\frac{\partial T}{\partial y},\quad Z=\frac{\partial T}{\partial z};
+\end{equation}
+de tal manera que tenemos las tres condiciones necesarias y suficientes para que $dT$ sea una diferencial perfecta
+\begin{equation}\label{ncurlcond}
+\frac{\partial X}{\partial y}=\frac{\partial Y}{\partial x},\quad\frac{\partial Y}{\partial z}=\frac{\partial Z}{\partial y},\quad\frac{\partial Z}{\partial x}=\frac{\partial X}{\partial z}.
+\end{equation}
+\section{Territorio}
+\begin{quote}
+Nous devons donc conclure que les deux principes de l'augmentation de l'entropie et de la moindre action, entendu au ses Hamiltonien, sont inconciliables. Poincar\'e.
+\end{quote}
+\paragraph{}
+Constantin Carath\'eodory fue un poderoso analista que entendi\'o la importancia de la simplicidad y elegancia naturales de las matem\'aticas. Su formulaci\'on matem\'atica de la termodin\'amica atrajo la atenci\'on de f\'isicos muy importantes pero qued\'o de alguna forma fuera de la corriente te\'orica principal. \'El estaba interesado en la manera tan \'intima en que la f\'isica se relaciona con las matem\'aticas a nivel b\'asico. Su estudio sobre los fundamentos axiom\'aticos de la termodi\'amica, fue el \'unico trabajo que resolvi\'o mentalmente, de principio a fin, antes de plasmarlo en papel \cite{MG}. El acercamiento a la segunda ley de la termodin\'amica, desarrollado de esta forma, es el ``\'unico f\'isicamente correcto, adem\'as logra la m\'axima simplicidad l\'ogica, reduciendo al m\'inimo el n\'umero de variables indefinibles'' \cite{CK}.
+\begin{quote}
+Es posible derivar la teor\'ia termodin\'amica completa, sin asumir la existencia de ``calor''\footnote{W\"{a}rme}, i.e. de una cantidad f\'isica que difiere de las cantidades mec\'anicas habituales. Constantin Carath\'eodory \cite{MG}.
+\end{quote}
+\subparagraph{}
+La termodin\'amica cl\'asica se limita a estados de equilibrio de sistemas y a procesos que ocurren muy lentamente. No aparece ninguna cantidad con la dimensi\'on del tiempo; el tiempo entra en consideraci\'on, si acaso, via los conceptos de ``antes y despu\'es''. Por lo tanto, en el caso de procesos que ocurren r\'apidamente, s\'olo se discuten los estados inicial y final del sistema. La termodin\'amica no considera la naturaleza del ``calor'', este problema se trata en la teor\'ia cin\'etica de los gases \cite{PW}. En nuestro an\'alisis consideraremos sistemas adiab\'aticos, en lugar de procesos c\'iclicos, i.e. procesos en los cuales el sistema inicia y termina en el mismo estado termodin\'amico.
+\subsection{Las leyes de la termodin\'amica}
+Seguiremos puntualmente la presentaci\'on realizada por Subrahmanyan Chandrasekhar \cite{CK} de la formulaci\'on axiom\'atica de Constantin Carath\'eodory \cite{CC} porque, no s\'olo es una de las pocas exposiciones completas del trabajo de Carath\'eodory en relaci\'on a la termodin\'amica, sino que desarrolla rigurosamente el contenido matem\'atico de la teor\'ia sin perder de vista nunca el significado f\'isico de cada uno de los pasos apoy\'andose, adem\'as, en argumentos geom\'etricos como otra herramienta que permite pasar del an\'alisis a la aplicaci\'on l\'ogicamente.
+\paragraph{}
+Consideramos \'unicamente sistemas termodin\'amicos simples, i.e. gases y l\'iquidos sin interacci\'on qu\'imica. Un fluido homog\'eneo es el ejemplo m\'as simple de sistema termodin\'amico, incluyendo el caso particular de gases y vapores.\\
+En la explicaci\'on puramente mec\'anica de cuerpos en equilibrio, el estado interno de un sistema con masa conocida se determina si conocemos su volumen espec\'ifico, $V.$ Pero en general esto no es cierto, dado que es posible cambiar la presi\'on ejercida por un gas sin alterar su volumen espec\'ifico.\\
+Un fluido posee un solo \emph{grado de libertad} mec\'anico, su volumen, que es una propiedad extensiva, y un solo grado de libertad t\'ermico, su temperatura, que es una propiedad intensiva.
+\subparagraph{}
+\begin{defi}
+Las variables termodin\'amicas son cantidades macrosc\'opicas mensurables que caracterizan a un sistema.
+\end{defi}
+Para especificar completamente el estado interno de un sistema termodin\'amico, se introducen la presi\'on, $p$, y el volumen espec\'ifico, $V$, como variables independientes; se les suele llamar, respectivamente, fuerza y desplazamiento generalizados.\\
+En general se considera a la presi\'on como funci\'on de la temperatura y el volumen, a este tipo de relaci\'on la llamaremos ecuaci\'on de estado o ecuaci\'on caracter\'istica
+\begin{equation}
+p=f(T,V).
+\end{equation}
+Asumimos que es posible aislar sistemas individuales de sus alrededores por medio de \emph{recipientes} y que un sistema puede dividirse internamente mediante alg\'un tipo de pared que evita la mezcla de sus componentes. Se consideran dos tipos de partici\'on:
+\begin{itemize}
+\item Paredes adiab\'aticas: si a un cuerpo en equilibrio se le confina en un recipiente adiab\'atico, en ausencia de campos de fuerzas externas, entonces la \'unica manera de cambiar el estado interno del cuerpo es mediante desplazamientos de alguna parte de las paredes del recipiente. La \'unica manera de cambiar el estado interno de un cuerpo contenido en un recipiente adiab\'atico es aplic\'andole una cantidad finita de trabajo externo.
+\item Particiones diat\'ermicas: si un recipiente adiab\'atico contiene dos cuerpos en equilibrio separados internamente por una pared diat\'ermica, entonces existe una relaci\'on definida entre los par\'ametros $p_1,V_1,p_2,V_2$, que establecen el estado de cada uno de los cuerpos; esta relaci\'on depende s\'olo de la naturaleza de los cuerpos. En t\'erminos funcionales
+\begin{equation}\label{1}
+F(p_1, V_1, p_2, V_2)=0.
+\end{equation}
+Llamaremos a esta expresi\'on de contacto t\'ermico la ``condici\'on de equilibrio''; la pared entre los cuerpos se introduce solamente para simbolizar la imposibilidad de intercambio material \cite{MB}.
+\end{itemize}
+\subparagraph{Condiciones para el equilibrio t\'ermico.}
+Dos cuerpos est\'an en contacto t\'ermico si ambos se encuentran en el mismo contenedor adiab\'atico separados por una pared diat\'ermica. La condici\'on para el equilibrio t\'ermico se expresa como la ecuaci\'on \eqref{1}, la cual nos indica que existe una relaci\'on definida entre las variables $p_1, V_1, p_2, V_2;$ esto es, el equilibrio entre estas variables no se cumple para valores arbitrarios de ellas.\\
+Un gas ideal es el estado l\'imite o ideal al cual un gas real tiende cuando se expande indefinidamente, las leyes que aplican a los gases ideales son la ley de Boyle, la ley de Charles y la ley de Avogadro, las cuales establecen relaciones funcionales de estado, $p=f(T,V).$\\
+La comprobaci\'on emp\'irica de la condici\'on de equilibrio para un par de gases ideales en contacto t\'ermico, es que siempre cumplen que:
+\begin{equation*}
+p_1V_1-p_2V_2=0.
+\end{equation*}
+
+\paragraph{Temperatura emp\'irica.}
+Si dos cuerpos se encuentran respectivamente en equilibrio t\'ermico con un tercero, entonces los dos cuerpos originales tambi\'en estar\'an en equilibrio t\'ermico si se les pone en contacto (t\'ermico).\\
+Si $(p_1, V_1), (p_2, V_2), (\bar{p}_1, \bar{V}_1), (\bar{p}_2, \bar{V}_2)$ definen dos estados distintos de dos sistemas diferentes, no necesariamente de dos cuerpos diferentes, y tanto $(p_1, V_1)$ como $(p_2, V_2)$ est\'an en equilibrio t\'ermico con $(\bar{p}_1, \bar{V}_1)$, y si adem\'as $(p_1, V_1)$ est\'a en equilibrio t\'ermico con $(\bar{p}_2, \bar{V}_2)$, entonces siempre se cumple que $(p_2, V_2)$ estar\'a en equilibrio t\'ermico con $(\bar{p}_2, \bar{V}_2)$.\\ Por la condici\'on de equilibrio \eqref{1}, lo anterior puede expresarse matem\'aticamente\footnote{Esta ley tiene un fuerte patr\'on en com\'un con el primer axioma de la geometr\'ia Euclideana, esto es, ``cosas iguales a la misma cosa son iguales entre ellas'' \cite{LP}.}:
+
+\begin{equation}
+F(p_1, V_1, \bar{p}_1, \bar{V}_1)=0, \qquad F(p_2, V_2, \bar{p}_1, \bar{V}_1)=0, \qquad F(p_1, V_1, \bar{p}_2, \bar{V}_2)=0,
+\end{equation}
+implican la validez de
+\begin{equation}
+F(p_2, V_2, \bar{p}_2, \bar{V}_2)=0.
+\end{equation}
+Pero esto es posible si, y s\'olo si, la relaci\'on $F(p, V, \bar{p}, \bar{V})=0$ tiene la forma
+\begin{equation}\label{4}
+t(p,V)-\bar{t}(\bar{p},\bar{V})=0.
+\end{equation}
+\begin{figure}[!ht]
+\begin{displaymath}
+\centering
+\xymatrix
+{
+A \ar@/_3.5pc/[dr]_e \ar[r]^e \ar@{.}[d] & a \ar@{.}[d] \\
+B \ar[ur]^e \ar[r]^e & b \\
+}
+\end{displaymath}
+\caption{Diagrama \`a la Maxwell; A y B (a y b) denotan los estados inicial y final del sistema 1 (2); el \'indice $e$ denota equilibrio t\'ermico.}
+\end{figure}
+En la ecuaci\'on \eqref{4}, $t$ y $\bar{t}$ no son \'unicas; por la condici\'on de equilibrio \eqref{1}, la ecuaci\'on \eqref{4} tambi\'en puede expresarse como
+\begin{equation}\tag{\eqref{4}'}
+T[t(p,V)]=T[\bar{t}(\bar{p},\bar{V})],
+\end{equation}
+donde $T(x)$ puede ser una funci\'on arbitraria definida para $x$.
+
+\subparagraph{}
+La condici\'on de equilibrio \eqref{1}, puede tomar una multiplicidad de valores expresados de la forma \eqref{4}. Los valores $t(p,V)$ y $\bar{t}(\bar{p},\bar{V})$, definen en una escala arbitraria, la \emph{temperatura emp\'irica} de los dos cuerpos; si los dos cuerpos est\'an tanto en contacto t\'ermico como en equilibrio, entonces la igualdad de las temperaturas emp\'iricas siempre se cumple. Si
+\begin{equation}\label{5}
+t=t(p,V) \qquad \bar{t}=\bar{t}(\bar{p},\bar{V}),
+\end{equation}
+entonces, en equilibrio
+\begin{equation}
+t=\bar{t}.
+\end{equation}
+En t\'erminos geom\'etricos las ecuaciones \eqref{5} definen en los planos $(p,V)$ y $(\bar{p},\bar{V})$, respectivamente, una familia de \emph{curvas uni-param\'etricas} llamadas ``isotermas'', las curvas con un valor constante, $\theta$ digamos, son independientes de la escala de temperatura \cite{MB}. Las ecuaciones \eqref{5} son las llamadas ``ecuaciones de estado''.
+\subparagraph{}
+Si se define la escala de temperatura emp\'irica, entonces siempre es posible escoger dos de las tres variables $p$, $V$, y $t$ como las variables independientes que definen el estado de un sistema. De la misma manera, dos funciones independientes de las variables $p$, $V$, y $t$ son suficientes para especificar completamente el estado del sistema.
+\subsection{La primera ley de la termodin\'amica}
+Introducimos el concepto de \emph{energ\'ia} axiom\'aticamente y sin referencia alguna a la mec\'anica, i.e. el espacio de trabajo natural cuando se trata con sistemas que involucran posiciones y velocidades \cite{MC}, sin consideraciones a nivel microsc\'opico que corresponden a la mec\'anica estad\'istica:
+\begin{defi}
+Todo sistema termodin\'amico posee una propiedad caracter\'istica o par\'ametro de estado, su \emph{energ\'ia}. En un sistema aislado, se conserva la cantidad de energ\'ia total.
+\end{defi}
+\paragraph{}
+En t\'erminos experimentales el trabajo sistem\'atico de James Prescott Joule establece que a fin de llevar un cuerpo, o sistema de cuerpos, adiab\'aticamente desde un estado inicial prescrito hasta otro estado final prescrito, i.e. desde un estado de equilibrio a otro estado de equilibrio, se debe realizar la misma cantidad constante de trabajo mec\'anico o el\'ectrico, el cual es independiente de la manera en que se efect\'ue el cambio y s\'olo depende de los estados inicial y final prescritos.
+\subparagraph{}
+Especifiquemos el estado inicial del sistema con $p_0, V_0,\dots,$ y el estado final con $p_1, V_1,\dots$ y sea $W$ el trabajo suministrado para llevar a cabo el cambio adiab\'aticamente. Entonces, de acuerdo a la primera ley, si mantenemos el estado inicial fijo, $W$ s\'olo depende del estado final
+$$W=U-U_0,$$
+donde $U,$ el s\'imbolo de Clausius $U$ para identificar la \emph{energ\'ia interna} del sistema, es una funci\'on de los par\'ametros que determinan el estado del sistema; $p$ y $V$ para un solo cuerpo.
+\subparagraph{}
+\begin{defi}
+La unidad de ``calor'' es el trabajo mec\'anico necesario para cambiar la temperatura emp\'irica, $t,$ de un volumen unitario, constante, de agua entre dos valores definidos, de esta manera obtenemos el equivalente mec\'anico del ``calor''.
+\end{defi}
+As\'i, la medici\'on de la cantidad de ``calor'' que se introduce a un sistema de alguna manera, se reduce al registro de la temperatura, no se mide la \emph{cantidad de ``calor'' contenida en el sistema.} Se ha encontrado experimentalmente, gracias a Joule por ejemplo, que durante todos los procesos que involucran fricci\'on la cantidad de trabajo utilizado, $dW,$ involucra una proporci\'on definida a la cantidad de ``calor'' generado, $dQ,$ independiente a las condiciones en las que se lleve a cabo el experimento. Joule ha dado numerosas pruebas experimentales encontrando una relaci\'on cuantitativa bien definida
+\begin{equation}\label{mecheat}
+dW=JdQ,
+\end{equation}
+donde $J$ es el equivalente mec\'anico del ``calor'' con un valor num\'erico definido para cada sistema m\'etrico en particular.
+\subparagraph{}
+El trabajo mec\'anico aplicado a un sistema simple, por ejemplo un fluido en un contenedor cerrado con volumen $V$ a presi\'on $p,$  al modificar el volumen inicial del sistema est\'a dado por
+\begin{align}
+dW=-pdV,\\
+\end{align}
+por lo tanto $dW$ no es una diferencial perfecta, porque si lo fuese, entonces a partir de la definici\'on funcional del trabajo mec\'anico $W=W(p,V)$ para este caso en particular tendr\'iamos
+\begin{equation}
+dW = \frac{\partial W}{\partial p}dp + \frac{\partial W}{\partial V}dV;
+\end{equation}
+de aqu\'i inferimos que
+\begin{equation}
+\frac{\partial W}{\partial p}=0, \qquad \frac{\partial W}{\partial V} = -p
+\end{equation}
+pero esto implica necesariamente que
+\begin{equation}
+\frac{\partial^2 W}{\partial p\partial V}\neq\frac{\partial^2 W}{\partial V\partial p},
+\end{equation}
+entonces concluimos que $dW$ no es una diferencial perfecta. Si lo expresamos en t\'erminos integrales 
+$$\oint dW \neq 0,$$
+para un sistema sujeto a un ciclo, esto es, cuando el sistema se logra regresar al estado inicial despu\'es de recorrer cierta trayectoria arbitraria. Por lo tanto podemos afirmar que $W$ no es una propiedad de estado. De la misma forma, si nos referimos a \eqref{mecheat}, podemos asegurar que no existe una propiedad $Q$, un contenido caracter\'istico de ``calor'' que describa simplemente el estado instant\'aneo de un sistema.
+\subparagraph{Energ\'ia interna de un sistema de cuerpos.}
+Si en un proceso no adiab\'atico se registra un cambio, $U-U_0,$ en la energ\'ia interna del sistema y se ha realizado una cantidad de trabajo $W$ en el sistema, entonces 
+\begin{equation}\label{firstlaw}
+Q=(U-U_0)-W.
+\end{equation}
+De esta manera la noci\'on de \emph{cantidad de ``calor''} no tiene significado independiente de la primera ley de la termodin\'amica. $(U-U_0)$ es una cantidad f\'isica que puede medirse experimentalmente mediante m\'etodos mec\'anicos \cite{MB}, mientras que $Q$ es una noci\'on derivada de la relaci\'on entre el trabajo y la energ\'ia interna. La ecuaci\'on \eqref{firstlaw} es la definici\'on de ``calor'' en t\'erminos de cantidades puramente mec\'anicas.
+\subparagraph{}
+La energ\'ia interna de un sistema de cuerpos es aditiva si los cuerpos est\'an aislados adiab\'aticamente uno de otro, esto es, la energ\'ia del sistema es igual a la suma de las energ\'ias de los cuerpos individuales:
+$$U = U_1 + U_2 + \dots + U_n.$$
+\subparagraph{}
+Despu\'es de este an\'alisis, concluimos que la energ\'ia interma de un sistema termodin\'amico, $U_n,$ es una funci\'on de estado, y de acuerdo con la primera ley, \emph{es} una diferencial exacta.
+\subparagraph{}
+En general, cuando dos o m\'as cuerpos se ponen en contacto, la energ\'ia no es aditiva; sin embargo, esta desviaci\'on debe ser proporcional a la superficie de contacto o \'area com\'un a los cuerpos que conforman al sistema, as\'i para grandes vol\'umenes, la desviaci\'on de la ley aditiva de la energ\'ia es despreciable.\\
+Tenemos dos casos l\'imite o extremos: la superficie de contacto es nula o infinita. Esto es, un sistema de cuerpos aislados entre s\'i en el cual no hay superficie de contacto o un sistema de cuerpos, subespacios infinitos, (es decir, suficientemente grandes en t\'erminos de ingenier\'ia) entre los cuales la superficie de contacto com\'un es infinita; a partir de esta idea se deriva el concepto de \emph{horizonte,} desarrollado por Stephen Hawking que relaciona la segunda ley de la termodin\'amica con el \'area del sistema en cuesti\'on. En estos casos extremos, la energ\'ia es aditiva.
+\paragraph{Procesos.}
+Al formular la primera ley asumimos que el trabajo realizado puede, en principio, medirse. En la pr\'actica esto nos limita a s\'olo dos procedimientos esencialmente distintos para los cuales podemos medir el trabajo realizado.
+\begin{itemize}
+\item Procesos estacionarios: Los experimentos de Joule son un ejemplo de este tipo de procesos, porque podemos calcular el trabajo suministrado al sistema, en particular como el producto de la torca aplicada a unas aspas que revuelven agua dentro de un contenedor a velocidad constante multiplicada por la tasa de trabajo de las aspas girando. Esto provoca un sistema estacionario de corrientes en las cuales las aspas reciben una fricci\'on constante del fluido de trabajo.
+\item Procesos cuasi-est\'aticos: son procesos infinitamente lentos, as\'i el sistema se encuentra en estado de equilibrio en cualquier momento del proceso. El cambio de estado del sistema y sus pasos intermedios son reversibles. Por ejemplo la compresi\'on infinitamente lenta de un gas, desde un volumen $V_0,$ hasta $V_1,$ en un recipiente que a su vez est\'a inmerso dentro de un contenedor infinitamente grande de tal forma que la temperatura permanece constante. No hay otro cambio mas que el trabajo que se aplica al sistema durante este proceso. El proceso puede ocurrir tambi\'en en sentido contrario, desde $V_1$ hasta $V_0,$ bajo una expansi\'on infinitamente lenta del gas.
+\end{itemize}
+Se refiere a los procesos cuasi-est\'aticos como ``reversibles'', porque en general es posible conducirlos en sentido contrario. Aunque de hecho, los procesos reversibles no son procesos en absoluto, m\'as bien son secuencias de estados de equilibrio. Durante estos procesos, la capacidad del sistema para realizar trabajo se utiliza completamente y no se disipa energ\'ia alguna. El criterio para decidir si un proceso es reversible o no, es que si el proceso se deja correr y luego regresar al estado inicial, no debe registrarse ning\'un cambio duradero en los alrededores del sistema. Los cambios de estado, cuasi-est\'aticos adiab\'aticos, de un sistema simple son reversibles \cite{CC}.
+\paragraph{}
+Cabe mencionar otros tipos de procesos. Si un proceso ocurre r\'apidamente, s\'olo es posible controlarlo si es cerrado respecto a sus alrededores. Por ejemplo la expansi\'on libre de un gas en un recipiente con una partici\'on vac\'ia en principio, despu\'es del proceso el gas ocupa todo el volumen del recipiente y el proceso no es reversible.\\
+Los cambios de estado isot\'ermicos ocurren cuando durante un proceso la temperatura del sistema permanece constante; $dt=0.$\\
+Un proceso o cambio de estado isoenerg\'etico es aquel durante el cual la energ\'ia interna del sistema no cambia. Los cambios de estado de sistemas completamente aislados son isoenerg\'eticos; $dU=0.$
+\paragraph{Cambios cuasi-est\'aticos adiab\'aticos infinitesimales.}
+Si tenemos un cuerpo inmerso en un recipiente adiab\'atico y le aplicamos cuasi-est\'aticamente una cantidad \emph{infinitesimal} de trabajo mec\'anico, $dW,$ entonces diremos que hemos realizado un ``cambio adiab\'atico infinitesimal cuasi-est\'atico''. Si durante tal cambio el volumen del sistema cambia, $dV,$ entonces tendremos
+\begin{equation}\label{workhomo}
+dW = -p dV,
+\end{equation}
+donde $p$ es la presi\'on de equilibrio. Entonces, de acuerdo a la primera ley de la termodin\'amica,
+\begin{equation}\label{adiab1}
+dQ = dU + p dV = 0.
+\end{equation}
+Tambi\'en podemos expresar la primera ley estableciendo que la energ\'ia interna $U_n$ del estado $n$ es una funci\'on de estado; en t\'erminos matem\'aticos $U_n$ es una funci\'on independiente de la trayectoria de integraci\'on.
+\subparagraph{}
+Existen otras definiciones de trabajo. Para un sistema homog\'eneo tenemos la definici\'on \eqref{workhomo}, si especificamos un sistema mediante su tensi\'on superficial $\sigma$ y su superficie $A,$ el trabajo realizado por el sistema durante un cambio de estado es
+\begin{equation}
+dW = -\sigma dA.
+\end{equation}
+An\'alogamente si el sistema se caracteriza mediante la magnetizaci\'on $M$ y la intensidad del campo magn\'etico $H,$ entonces el trabajo realizado por el sistema durante un cambio de estado es
+\begin{equation}
+dW = \vec M\cdot d\vec H.
+\end{equation}
+\subparagraph{}
+La convenci\'on de signos para la definici\'on de trabajo mec\'anico se considera positivo si el trabajo realizado por el sistema ha producido un cambio de estado positivo, un cambio positivo de las variables. Las cantidades $p, \sigma, \vec M$ son llamadas propiedaes intensivas $(y_i)$ porque aparecen como factores en las expresiones para el trabajo mec\'anico. A las cantidades $V, A, H$ se les llama propiedades extensivas $(x_i)$ porque aparecen como diferenciales. Podemos expresar el trabajo mec\'anico en general como
+\begin{equation}
+dW = \sum_{k=1}^{n-1} y_k (x_1,x_2,\dots,x_n) dx_k
+\end{equation}
+\subparagraph{}
+Para un sistema de dos cuerpos contenidos en el mismo recipiente adiab\'atico y separados uno del otro por una pared diat\'ermica, tenemos, dado que tanto $Q$ como $U$ son aditivas,
+\begin{align}\label{adiab2}
+dQ &= dQ_1 + dQ_2 \nonumber \\ &= dU_1 + dU_2 + p_1 dV_1 + p_2 dV_2 = 0.
+\end{align}
+Los cambios adiab\'aticos cuasi-est\'aticos finitos son secuencias continuas de estados en equilibrio y por lo tanto se representan como curvas en el espacio fase que satisfacen en cada punto ecuaciones de la forma \eqref{adiab1} o \eqref{adiab2}, estas ecuaciones reciben el nombre de ``ecuaciones de las adiab\'aticas''. Para un sistema de un solo cuerpo, el espacio fase se representa por el plano $p,V.$
+\subparagraph{}
+Es un hecho elemental la imposibilidad de recuperar completamente el trabajo aplicado a un sistema invirtiendo el proceso mediante el cual se transfiere al sistema de un estado de equilibrio a otro, incluso para estados de equilibrio arbitrariamente cercanos. Por lo tanto podemos decir  que existen estados inaccesibles adiab\'aticamente en la vecindad de un estado en particular \cite{MB}.
+
+\paragraph{}
+Si consideramos $U$ como funci\'on de $V$ y $t,$ su diferencial total es
+\begin{equation}
+dU = \frac{\partial{U}}{\partial{V}}dV + \frac{\partial{U}}{\partial{t}}dt.
+\end{equation}
+Ahora \eqref{adiab1} tomar\'a la forma
+\begin{equation}\label{adiabatic1}
+dQ = \left(\frac{\partial{U}}{\partial{V}} + p\right) dV + \left(\frac{\partial{U}}{\partial{t}}\right)dt = 0.
+\end{equation}
+La ecuaci\'on \eqref{adiab2} tiene inter\'es s\'olo cuando los dos cuerpos est\'an en contacto t\'ermico. De donde el sistema puede describirse por tres variables independientes, $V_1, V_2$ y $t,$ la temperatura emp\'irica com\'un:
+\begin{equation}
+t(p_1, V_1) = \bar{t}(p_2, V_2) = t.
+\end{equation}
+Entonces podemos escribir la ecuaci\'on \eqref{adiab2} como
+\begin{equation}\label{adiabatic2}
+dQ = \left(\frac{\partial{U_1}}{\partial{V_1}} + p_1\right)dV_1 + \left(\frac{\partial{U_2}}{\partial{V_2}} + p_2\right)dV_2 + \left(\frac{\partial{U_1}}{\partial{t}} + \frac{\partial{U_2}}{\partial{t}} \right)dt = 0.
+\end{equation}
+Las ecuaciones \eqref{adiabatic1} y \eqref{adiabatic2} son las ecuaciones de las adiab\'aticas. Este tipo de ecuaciones \eqref{adiabatic1} y \eqref{adiabatic2}, se conocen como ``ecuaciones diferenciales Pfaffianas''. 
+\paragraph{Teor\'ia de ecuaciones diferenciales Pfaffianas.}
+Las ecuaciones Pfaffianas son la expresi\'on matem\'atica de las experiencias t\'ermicas elementales, las leyes de la termodin\'amica est\'an conectadas con las propiedades de este tipo ecuaciones. Primero consideraremos expresiones Pfaffianas en dos variables $x, y,$ que nos representan un fluido simple por ejemplo con variables $V,t$ \cite{MB}:
+\begin{equation}\label{pfaff2}
+dQ = X(x,y) dx + Y(x,y) dy,
+\end{equation}
+la cual tiene la misma forma que la ecuaci\'on \eqref{adiabatic1}. La integral de $dQ$ entre dos puntos $P_1$ y $P_2$ en general depende de la trayectoria de integraci\'on. Por lo tanto $\int_1 ^2 dQ$ en general no puede escribirse como $Q(x_2, y_2)-Q(x_1, y_1),$ dicho de otra forma, $dQ$ no es integrable. Esto implica que en general $dQ$ no es una diferencial total,
+\begin{equation}
+dQ=\frac{\partial Q}{\partial x_1}dx_1+\cdots+\frac{\partial Q}{\partial x_n}dx_n,
+\end{equation}
+ de la funci\'on $Q(x, \dots,x_n).$ Si $dQ$ fuera una diferencial perfecta, deber\'iamos tener $dQ = d\sigma,$ donde $\sigma$ es una funci\'on de las variables $x,\dots,x_n;$ as\'i para el caso de dos variables independientes deber\'iamos tener
+\begin{equation}\label{pfaffsigma}
+d\sigma = \frac{\partial{\sigma}}{\partial{x}}dx + \frac{\partial{\sigma}}{\partial{y}}dy.
+\end{equation}
+Al comparar \eqref{pfaff2} y \eqref{pfaffsigma}, tenemos las igualdades \eqref{perfect2} y \eqref{mixed}, que son las condiciones necesarias y suficientes para que $dQ$ sea una diferencial perfecta. Las condiciones \eqref{mixed} entre los coeficientes de cualquier expresi\'on Pfaffiana no se cumplen necesariamente.
+\subparagraph{}
+Gracias a la teor\'ia de ecuaciones diferenciales ordinarias, afirmamos que una ecuaci\'on diferencial ordinaria en dos variables siempre puede resolverse. A partir de \eqref{pfaff2}, la soluci\'on de una ecuaci\'on Pfaffiana en dos variables es 
+\begin{equation}\label{pfaffclean}
+dQ = X dx + Y dy = 0,
+\end{equation}
+de donde
+\begin{equation}\label{slope}
+\frac{dy}{dx} = -\frac{X}{Y}.
+\end{equation}
+El lado derecho de la ecuaci\'on \eqref{slope} es una funci\'on conocida de $x$ y $y,$ y por lo tanto la ecuaci\'on Pfaffiana \eqref{pfaffclean} establece una direcci\'on bien definida en cada punto del dominio de la funci\'on en el plano $(x, y).$ La soluci\'on de la funci\'on consiste simplemente en dibujar un \emph{sistema de curvas} en el plano $(x, y)$ tal que en cada punto, la tangente a la curva en ese punto tenga la misma direcci\'on que la especificada por \eqref{pfaffclean}. Por lo tanto, la soluci\'on de la ecuaci\'on \eqref{pfaffclean} define una \emph{familia de curvas uni-param\'etricas} en el plano $xy.$
+\subparagraph{}
+Una interpretaci\'on f\'isica de esta propiedad geom\'etrica de la ecuaci\'on \eqref{slope} es que dado un campo de fuerzas en cierta regi\'on del espacio, podr\'iamos medir con un aparato la direcci\'on e intensidad del campo de fuerzas en dicha regi\'on y a partir de tales mediciones construir el modelo matem\'atico que luego nos permitir\'ia analizar el sistema completamente.
+\subparagraph{}
+Entonces la soluci\'on de \eqref{pfaffclean} puede escribirse como $\sigma(x, y) = c$ para alguna constante $c.$ Luego
+\begin{equation}\label{slopein}
+\frac{\partial \sigma}{dx} + \frac{\partial \sigma}{dy}\frac{dy}{dx} = 0.
+\end{equation}
+A partir de \eqref{slope} y \eqref{slopein} encontramos una relaci\'on de equivalencia basada en la l\'ogica de sistemas en equilibrio,
+\begin{align}
+f=X\frac{\partial \sigma}{\partial y}, &\qquad f=Y\frac{\partial \sigma}{\partial x},\\
+\Leftrightarrow f&=\frac{XY}{\tau};
+\end{align}
+ahora lo aplicamos a \eqref{slopein}
+\begin{equation}\label{factor1}
+Y\frac{\partial \sigma}{\partial x} = X \frac{\partial \sigma}{\partial y} = \frac{XY}{\tau},
+\end{equation}
+donde $\tau(x, y)$ es un factor que depende de $x$ y $y.$ La ecuaci\'on \eqref{factor1} puede escribirse tambi\'en como
+\begin{equation}\label{factor2}
+X = \tau \frac{\partial \sigma}{\partial x}; \qquad  Y = \tau \frac{\partial \sigma}{\partial y}.
+\end{equation}
+Si insertamos \eqref{factor2} en \eqref{pfaff2}, tenemos
+\begin{align}
+dQ = \tau \left( \frac{\partial{\sigma}}{\partial{x}}dx + \frac{\partial{\sigma}}{\partial{y}}dy \right) = \tau d\sigma, 
+\end{align}
+reacomodando
+\begin{align}
+\frac{dQ}{\tau} = d\sigma;
+\end{align}
+esto es, si dividimos la expresi\'on Pfaffiana \eqref{pfaff2} entre $\tau$, obtendremos una diferencial perfecta \eqref{pfaffsigma}. As\'i, a un factor $\tau,$ con esta propiedad se le llama factor o denominador integrante, $\frac{1}{\tau}$. Por lo tanto, una expresi\'on diferencial Pfaffiana en dos variables, siempre admite un factor integrante. Dicho de otra manera, demostrar que la existencia de un denominador integrante para una expresi\'on Pfaffiana en dos variables es un caso particular trivial \cite{MB}, tomando en cuenta los teoremas de existencia de soluciones para ecuaciones diferenciales ordinarias de los cuales tenemos varios, el teorema de existencia de Carath\'eodory, el m\'etodo iterativo de aproximaciones sucesivas de Picard, el teorema de Cauchy, el teorema de Peano. En fin, podemos decir que la existencia de soluciones es el teorema fundamental de la teor\'ia de ecuaciones diferenciales ordinarias \cite{CE}. Este resultado es fundamental en termodin\'amica para la formulaci\'on matem\'atica de la primera ley.
+\subparagraph{}
+Cabe destacar aqu\'i la belleza y elegancia del trabajo de Constantin Carath\'eodory, el ejemplo aqu\'i mostrado es brutal porque uno de sus logros m\'as importantes es haber demostrado c\'omo la f\'isica de los sistemas termodin\'amicos puede analizarse completamente mediante las herramientas matem\'aticas cl\'asicas. Carath\'eodory demuestra c\'omo la existencia de la propiedad termodin\'amica entrop\'ia es una consecuencia l\'ogica de las propiedades de las ecuaciones Pfaffianas. En el caso de dos variables independientes, el teorema de existencia y unicidad de soluciones para ecuaciones diferenciales ordinarias nos asegura la existencia de la soluci\'on al problema, sin embargo, Carath\'eodory tambi\'en demostr\'o el teorema cl\'asico de existencia y unicidad con condiciones a\'un m\'as ``groseras'', menos r\'igidas, para este problema en particular. Es decir, propone la soluci\'on a un problema y adem\'as demuestra a\'un m\'as f\'acilmente su existencia. 
+\subparagraph{}
+Demostraremos la existencia de un factor integrante para cualquier ecuaci\'on diferencial ordinaria siguiendo a Wolfang Pauli \cite{PW}. Pfaff ha demostrado que una forma diferencial $$\sum_k y_kdx_k$$ puede transformarse a su forma normal $$\sum_{\nu=1}^mX_{2\nu}dX_{2\nu-1} + kdX_{2m+1},$$ donde $2m\le n$ para $n$ par, o $2m+1\le n$ para $n$ impar. Si tenemos una forma diferencial $dh=y_1dx_1+y_2dx_2$ de dos variables, tenemos dos posibilidades
+\begin{itemize}
+\item si $dh$ es una diferencial exacta, entonces su forma normal es $$dh=dX;$$
+\item si $dh$ no es una diferencial exacta, entonces obtenemos al aplicarle su forma normal
+\begin{align}
+dh=y_1dx_1+y_2dx_2=X_2dX_1\\
+\frac{dh}{X_2}=\frac{y_1dx_1+y_2dx_2}{X_2}=dX_1.
+\end{align}
+entonces $\frac{dh}{X_2}=dX_1$ es una diferencial exacta, lo que significa que $\frac{1}{X_2}$ es un factor integrante. Por lo tanto, para una ecuaci\'on diferencial en dos variables, siempre existe un factor integrante.
+\end{itemize}
+\paragraph{}
+Si remplazamos $\sigma$ por otra funci\'on de $\sigma,$ digamos $S[\sigma(x, y)],$ entonces $S = constante$ representar\'a de nuevo las soluciones de la ecuaci\'on diferencial. En ese caso
+\begin{align}
+dS &= \frac{dS}{d\sigma}d\sigma = \frac{dS}{d\sigma}\frac{dQ}{\tau},\\
+&= \frac{1}{T(x, y)}  dQ,\\
+T(&x, y) = \tau(x, y)\frac{d\sigma}{dS}.
+\end{align}
+De lo anterior concluimos que $T$ es tambi\'en un factor integrante. Es as\'i que, si una expresi\'on Pfaffiana admite un factor integrante, debe admitir una infinidad de ellos. Este resultado aplica tambi\'en para expresiones Pfaffianas en cualquier n\'umero de variables.
+\subparagraph{}
+Ahora consideraremos expresiones Pfaffianas en tres variables, la generalizaci\'on a m\'as de tres variables es inmediata. Consideremos la expresi\'on Pfaffiana
+\begin{equation}\label{pfaffclean3}
+dQ = X dx + Y dy + Z dz,
+\end{equation}
+en la cual $X, Y, Z,$ son funciones de las variables $x,y,z.$ Nuestra ecuaci\'on termodin\'amica \eqref{adiabatic2} tiene esta forma. La raz\'on $dx:dy:dz$ define una direcci\'on en un subespacio vectorial de $\mathbf{R}^3,$ porque si pensamos en un vector $d\vec r = dx\hat \imath + dy\hat \jmath + dz\hat k,$ entonces $d\vec r$ nos define una direcci\'on en $\mathbf{R}^3,$ por lo tanto cualquier tupla de n\'umeros reales $(a,b,c),$ que satisfaga la misma raz\'on que define a $d\vec r$ en $\mathbf{R}^3,$ define tambi\'en la misma direcci\'on, aunque la magnitud del vector definido por la tupla $(a,b,c)$ pueda ser diferente que $|d\vec r|.$ La ecuaci\'on $dQ = 0,$ correspondiente a \eqref{pfaffclean3}, especifica que $dx, dy, dz$ deben satisfacer una ecuaci\'on lineal en cada punto del espacio, y por ende determina cierto \emph{plano tangencial} en cada punto del espacio $(x, y, z).$ De esta manera, cada derivada o cociente, $\frac{dy}{dx},\frac{dy}{dz},\frac{dz}{dx},$ nos representa una pendiente del vector de direcciones, que para este caso es un vector de $\mathbf{R}^3,$ adem\'as estamos considerando estados en equilibrio, as\'i que los cocientes existen, adem\'as son continuos y definidos. Una soluci\'on de la ecuaci\'on Pfaffiana, $dQ = 0,$ que pasa por un punto dado $(x, y, z),$ debe residir en el plano tangencial correspondiente a dicho punto; pero su direcci\'on en el plano tangencial en arbitraria.
+\subparagraph{}
+En general, $dQ$ no ser\'a una diferencial perfecta. En el caso de que lo fuera tendr\'iamos la igualdad, $dQ = d\sigma$, donde $\sigma$ es alguna funci\'on de $x, y, z,$ tal que
+\begin{equation}\label{pfaffsigma3}
+dQ = d\sigma(x, y, z)  = \frac{\partial{\sigma}}{\partial{x}}dx + \frac{\partial{\sigma}}{\partial{y}}dy + \frac{\partial{\sigma}}{\partial{z}}dz.
+\end{equation}
+De tal forma, al comparar \eqref{pfaffsigma3} con \eqref{pfaffclean3} tenemos las siguientes relaciones,
+\begin{align}
+&X = \frac{\partial \sigma}{\partial x}, &\quad &Y = \frac{\partial \sigma}{\partial y}, &\quad &Z = \frac{\partial \sigma}{\partial z};\\
+&\frac{\partial Y}{\partial z} = \frac{\partial Z}{\partial y}, &\quad &\frac{\partial Z}{\partial x} = \frac{\partial X}{\partial z}, &\quad &\frac{\partial X}{\partial y} = \frac{\partial Y}{\partial x}\label{conditions}.
+\end{align}
+Las relaciones \eqref{conditions} nos son necesariamente v\'alidas para funciones arbitrarias $X, Y, Z.$
+\paragraph{}
+Podr\'iamos preguntar cu\'ando una expresi\'on Pfaffiana acepta factores integrantes, es decir, cu\'ando es posible determinar una funci\'on $\tau(x, y, z)$ tal que
+\begin{equation}\label{integrante}
+\frac{dQ}{\tau(x, y, z)} = d\sigma = \frac{\partial{\sigma}}{\partial{x}}dx + \frac{\partial{\sigma}}{\partial{y}}dy + \frac{\partial{\sigma}}{\partial{z}}dz.
+\end{equation}
+Si pudi\'eramos determinar un factor integrante $\tau(x, y, z),$ entonces toda soluci\'on de la ecuaci\'on diferencial $dQ =0$ ser\'ia tambi\'en soluci\'on de $d\sigma = 0;$ o la soluci\'on podr\'ia escribirse en la forma $\sigma(x, y, z) = constante;$ esto es, las soluciones pueden ser cualquier curva arbitraria que resida en cualquier \emph{superficie uni-param\'etrica} de la familia $\sigma(x, y, z) = constante.$ Es importante notar que en general no es posible encontrar factores o denominadores integrantes para expresiones Pfaffianas de m\'as de tres variables, e.g. dos fluidos en contacto t\'ermico \cite{MB}, excepto bajo algunas circunstancias muy especiales; podemos verificarlo mediante algunos ejemplos. Es necesario apreciar esto, porque precisamente estas circunstancias especiales las encontramos en termodin\'amica.
+\paragraph{}
+La existencia de factores integrantes para expresiones Pfaffianas de m\'as de dos variables no es un caso trivial. Lo probaremos mediante el siguiente ejemplo, tomado del libro de Max Born \cite{MB}. Consideremos la ecuaci\'on
+\begin{equation}
+dQ=-ydx+xdy+kdz=0,
+\end{equation}
+donde $k$ es una constante. Si esta expresi\'on Pfaffiana admitiera algun denominador integrante $\tau$ entonces
+\begin{equation}
+\frac{dQ}{\tau}=-\frac{y}{\tau}dx+\frac{x}{\tau}dy+\frac{k}{\tau}dz=d\sigma
+\end{equation}
+es una diferencial perfecta. Por lo tanto deber\'iamos tener
+\begin{equation}
+\frac{\partial \sigma}{\partial x}=-\frac{y}{\tau};\quad\frac{\partial \sigma}{\partial y}=\frac{x}{\tau};\quad \frac{\partial \sigma}{\partial z}=\frac{k}{\tau}.
+\end{equation}
+Entonces tenemos
+\begin{equation}
+\frac{\partial}{\partial y}\left(\frac{y}{\tau}\right)=-\frac{1}{\tau}+\frac{y}{\tau^2}\frac{\tau}{y}=\frac{\partial}{\partial x}\left(\frac{x}{\tau}\right)=\frac{1}{\tau}-\frac{x}{\tau^2}\frac{\partial \tau}{\partial x},
+\end{equation}
+podemos expresarlo
+\begin{equation}\label{nofac1}
+2\tau=x\frac{\partial \tau}{\partial x}+y\frac{\partial \tau}{\partial y}.
+\end{equation}
+Continuamos el procedimiento para el siguiente par de variables
+\begin{equation}
+\frac{\partial}{\partial z}\left(-\frac{y}{\tau}\right)=\frac{y}{\tau^2}\frac{\partial \tau}{\partial z}=\frac{\partial}{\partial x}\left(\frac{k}{\tau}\right)=-\frac{k}{\tau}=-\frac{k}{\tau^2}\frac{\partial \tau}{\partial x},
+\end{equation}
+de esta expresi\'on obtenemos
+\begin{equation}\label{nofac2}
+\frac{\partial \tau}{\partial x}=-\frac{y}{k}\frac{\partial \tau}{\partial z}.
+\end{equation}
+De la misma manera para el \'ultimo par de variables
+\begin{equation}
+\frac{\partial}{\partial y}\left(\frac{k}{\tau}\right)=-\frac{k}{\tau^2}\frac{\partial \tau}{\partial y}=\frac{\partial}{\partial z}\left(\frac{x}{\tau}\right)=-\frac{x}{\tau^2}\frac{\partial \tau}{\partial z},
+\end{equation}
+de la misma manera tambi\'en obtenemos
+\begin{equation}\label{nofac3}
+\frac{\partial \tau}{\partial y}=\frac{x}{k}\frac{\partial \tau}{\partial z}.
+\end{equation}
+A partir de las relaciones anteriores \eqref{nofac1}, \eqref{nofac2} y \eqref{nofac3} s\'olo tenemos la \'unica posibilidad para el factor integrante es $\tau \equiv 0$ lo cual contradice nuestra hip\'otesis.
+\section{Teorema de Carath\'eodory}
+\paragraph{}
+Hasta ahora hemos visto que las expresiones diferenciales Pfaffianas se agrupan en dos clases, aquellas que aceptan factores integrantes y aquellas otras que no los aceptan, integrables y no integrables.
+\paragraph{}
+Consideremos una ecuaci\'on Pfaffiana en dos variables, \eqref{pfaff2}. Entonces por cada punto del plano $(x, y)$ pasa s\'olo una \emph{curva} de la familia $\sigma(x, y) = c,$ i.e. una soluci\'on de la ecuaci\'on Pfaffiana por el teorema de existencia y unicidad de soluciones de ecuaciones diferenciales ordinarias. Por lo tanto a partir de alg\'un punto $P$ en el plano, no podemos conectar todos los puntos en la vecindad del punto $P$ mediante curvas que satisfagan la ecuaci\'on Pfaffiana. Es decir que no todos los puntos en la vecindad de un punto dado son \emph{accesibles} desde el punto en cuesti\'on mediante trayectorias adiab\'aticas, $dQ\equiv0.$
+\paragraph{}
+Ahora consideremos una expresi\'on Pfaffiana en tres variables, \eqref{pfaffclean3}. Si admite un factor integrante, la situaci\'on es la misma que en el plano; todas las soluciones residen en una u otra familia de \emph{superficies} $\sigma(x, y, z) = c,$ as\'i que no podemos acceder a todos los puntos en la vecindad o entorno de un punto en particular mediante curvas adiab\'aticas. Solamente ser\'an accesibles los puntos que residan en una superficie perteneciente a la familia $\sigma(x, y, z) = c,$ que pase por el punto que se est\'e considerando. Para cada punto existe una superficie adiab\'atica y para cada superficie adiab\'atica existe un conjunto convexo de puntos. Todo punto del subespacio analizado pertenece a una, y solamente una, superficie adiab\'atica.
+\paragraph{}
+El teorema de Carath\'eodory afirma que, si en el entorno arbitrariamente peque\~no de un punto, existen puntos inaccesibles a este a lo largo de las curvas soluciones de la ecuaci\'on Pfaffiana, entonces la expresi\'on Pfaffiana admite un factor integrante. La prueba se esboza a continuaci\'on \cite{CK}.
+\paragraph{Prueba.}
+Supongamos que las soluciones a la ecuaci\'on Pfaffiana, \eqref{pfaffclean3}, son funciones razonablemente bien comportadas, continuas y suaves. Entonces todos los puntos que son accesibles a un punto dado, $P_0$, a lo largo de curvas que sean soluciones de la ecuaci\'on Pfaffiana y que est\'an en su vecindad inmediata, deben formar, junto con $P_0,$ un dominio continuo de puntos; por lo tanto tenemos tres posibilidades: todos los puntos accesibles en la vecindad inmediata de $P_0$ o bien forman un \emph{volumen} que contiene a $P_0,$ o un elemento \emph{superficial} que contiene a $P_0,$ o un elemento \emph{lineal} que pasa por $P_0.$ La primera posibilidad queda excluida porque todos los puntos en una vecindad suficientemente cercana a $P_0$ ser\'ian entonces accesibles a $P_0;$ esto contradice nuestra hip\'otesis de que en la vecindad de un punto, sin importar cuan cerca, siempre existen puntos inaccesibles a este. La \'ultima posibilidad tambi\'en se excluye porque $dQ = X dx + Y dy Z dz = 0,$ ya define un elemento superficial infinitesimal que contiene solamente puntos accesibles a $P_0,$ de hecho, si consideramos $dx,dy,dz,$ como diferencias finitas $(x-x_0,y-y_0,z-z_0)$, $dQ$ nos representa la ecuaci\'on ``normal'' de un plano Euclidiano, con vector normal $\vec N = (X,Y,Z).$ Por lo tanto, los puntos accesibles a $P_0$ y que se encuentran en su vecindad deben forman un elemento superficial, $dF_0.$ Aplicando el mismo razonamiento a los puntos en la frontera de este elemento superficial, vamos construyendo una superficie continua en cierta regi\'on del espacio. Para un punto que no est\'a contenido en la superficie $F_0,$ podemos construir otra superficie $F_1$ que s\'i lo contenga y que una otro conjunto de puntos que puedan conectarse mediante las curvas definidas por la ecuaci\'on Pfaffiana \eqref{adiabatic2}, i.e. curvas adiab\'aticas. De esta manera podemos cubrir completamente una regi\'on del espacio mediante superficies adiab\'aticas que no se intersecan y satisfacen la ecuaci\'on Pfaffiana \eqref{adiabatic2}, de tal forma que solamente los puntos contenidos en cada superficie son accesibles entre ellos mismos y no desde alg\'un punto en otra superficie.
+\subparagraph{}
+Estas superficies forman entonces una \emph{familia uni-param\'etrica de superficies,} $\sigma(x, y, z) = constante,$ tal que $d\sigma = 0$ implica $dQ = 0.$ Por ende, debemos tener
+\begin{equation}\label{calortau}
+dQ = \tau(x, y, z)d\sigma(x, y, z),
+\end{equation}
+donde, por la igualdad de los polinomios, \eqref{pfaffclean3} y \eqref{pfaffsigma3},
+\begin{equation}
+\tau = \frac{X}{\frac{\partial \sigma}{\partial x}} = \frac{Y}{\frac{\partial \sigma}{\partial y}} = \frac{Z}{\frac{\partial \sigma}{\partial z}}.
+\end{equation}
+Todo este desarrollo nos ha permitido probar el teorema de Carath\'eodory:
+\paragraph{}
+\begin{teo}
+Si una expresi\'on Pfaffiana
+\begin{equation}\label{calor}
+dQ = Xdx + Ydy + Zdz
+\end{equation}
+tiene la propiedad de que en cualquier entorno arbitrariamente peque\~no de un punto $P,$ existen puntos inaccesibles, esto es, puntos que no pueden conectarse a $P$ mediante curvas que satisfagan la ecuaci\'on $dQ =0,$ entonces la expresi\'on Pfaffiana debe admitir un denominador integrante.
+\end{teo}
+\paragraph{}
+La familia de superficies, $\sigma(x,y,z) = constante,$ puede escribirse tambi\'en como alguna funci\'on $S(\sigma),$ arbitraria en $\sigma,$ por ejemplo $S[\sigma(x,y,z)] = constante,$ as\'i la diferencial total de $S$ es combinada con la definici\'on \eqref{calortau}
+\begin{align}
+dS = \frac{dS}{d\sigma}&d\sigma = \frac{dS}{d\sigma}\frac{dQ}{\tau};\nonumber\\
+dS = \frac{\partial{S}}{\partial{x}}dx &+ \frac{\partial{S}}{\partial{y}}dy + \frac{\partial{S}}{\partial{z}}dz, \nonumber\\
+dQ = T&(x,y,z) dS,\label{entropia}
+\end{align}
+as\'i igualando los polinomios, t\'ermino a t\'ermino, a partir de la definici\'on \eqref{calor}
+\begin{align}
+T = \tau \frac{d\sigma}{dS} = \frac{X}{\frac{\partial{S}}{\partial{x}}} = \frac{Y}{\frac{\partial{S}}{\partial{y}}} = \frac{Z}{\frac{\partial{S}}{\partial{z}}}.
+\end{align}
+\paragraph{}
+El teorema de Carath\'eodory expresa la equivalencia matem\'atica entre la accesibilidad a lo largo de curvas $dQ = 0$ con la existencia de denominadores integrantes $\tau(x,y,z)$ para $Q,$ ahora mostraremos c\'omo adem\'as contiene la esencia de la segunda ley de la termodin\'amica.
+
+\subsection{La segunda ley de la termodin\'amica}
+\paragraph{}
+Los principios a partir de los cuales Kelvin y Clausius derivaron la segunda ley de la termodin\'amica se formulan de tal forma que sea posible cubrir el mayor rango de procesos imposibles de ejecutar:
+\begin{itemize}
+\item Es imposible transformar completamente ``calor'' en trabajo.
+\item Es imposible transferir ``calor'' desde un cuerpo fr\'io hacia uno caliente sin convertir simult\'aneamente cierta cantidad de trabajo en ``calor''. 
+\end{itemize}
+\subparagraph{}
+Entonces podemos decir, en el sentido cl\'asico, que la segunda ley de la termodin\'amica hace una distinci\'on entre el ``calor'' y otras formas de energ\'ia. Para Carath\'eodory esto, ni siquiera es necesario.
+\paragraph{}
+El punto esencial de la teor\'ia de Carath\'eodory es que formula los hechos experimentales de una manera mucho m\'as general, permiti\'endonos, al mismo tiempo, obtener todas las consecuencias matem\'aticas de la segunda ley sin la necesidad de m\'as consideraciones f\'isicas o cantidades definidas de una forma no trivial, i.e. ``calor''. Seg\'un esta deducci\'on, para obtener todo el contenido matem\'atico de la segunda ley, es suficiente que existan ciertos procesos que no sean posibles f\'isicamente. Carath\'eodory establece su principio de la siguiente manera: \emph{existen estados, arbitrariamente cercanos a cualquier estado definido, que no pueden alcanzarse a partir de un estado inicial mediante procesos adiab\'aticos}; por lo tanto la existencia de algunos procesos imposibles es suficiente para derivar la segunda ley \cite{MB}.\\
+Una revisi\'on cuidadosa de los experimentos de Joule muestra la existencia de \'estos procesos imposibles. Tales experimentos consistieron en llevar un sistema, contenido en un recipiente adiab\'atico, desde un estado de equilibrio hasta otro mediante la aplicaci\'on de trabajo externo; de la experiencia elemental podemos asegurar que no es posible recuperar el trabajo aplicado si invertimos el proceso, no importa qu\'e tan cercanos se encuentren los dos estados en cuesti\'on. Entonces podemos decir que existen estados adiab\'aticamente inaccesibles en la vecindad de cualquier estado, este es el principio de Carath\'eodory \cite{MB}.
+\paragraph{}
+Estos hechos experimentales nos pueden mostrar la ``direcci\'on'' del tiempo (aunque esta dimensi\'on no se considera en termodin\'amica) porque podemos predecir anal\'iticamente cu\'ales procesos son posibles en un sistema y c\'uales no lo son.
+\paragraph{}
+A partir del principio de Carath\'eodory se sigue que existen estados en la vecindad de alg\'un otro en particular, que son inaccesibles mediante procesos cuasi-est\'aticos adiab\'aticos. Estos se representan mediante l\'ineas adiab\'aticas que satisfacen la ecuaci\'on Pfaffiana \footnote{El principio de Carath\'eodory en su forma m\'as amplia tambi\'en aplica para procesos adiab\'aticos no est\'aticos} \eqref{adiabatic2}; entonces, por el teorema de Carath\'eodory la expresi\'on diferencial para $dQ$ debe admitir un denominador integrante:
+\begin{equation}\label{facin}
+dQ=\tau d\sigma.
+\end{equation}
+Para una sustancia simple caracterizada por dos par\'ametros $V,t,$ el principio de Carath\'eodory no implica nada nuevo porque una expresi\'on Pfaffiana en dos variables, como ya hemos demostrado siguiendo a W. Pauli y gracias a los m\'ultiples teoremas de la teor\'ia de ecuaciones diferenciales ordinarias, siempre admite denominadores integrantes.
+\paragraph{}
+Sin embargo, al considerar sistemas compuestos por dos cuerpos contenidos en un recipiente adiab\'atico y en contacto t\'ermico, el principio de Carath\'eodory asevera algo nuevo en cuanto a que ahora podemos afirmar que $dQ=dQ_1+dQ_2$ siempre puede escribirse en la forma
+\begin{equation}
+dQ=dQ_1+dQ_2=\tau (V_1,V_2,t)d\sigma(V_1,V_2,t).
+\end{equation}
+As\'i tenemos para cada uno de los dos cuerpos
+\begin{align}
+dQ_1&=\tau_1 (V_1,t_1)d\sigma_1(V_1,t_1),\nonumber\\
+dQ_2&=\tau_2 (V_2,t_2)d\sigma_2(V_2,t_2).
+\end{align}
+Si los dos cuerpos se encuentran en contacto t\'ermico tendremos
+\begin{equation}
+t_1=t_2=t.
+\end{equation}
+Por lo tanto,
+\begin{equation}\label{dosigma}
+\tau d\sigma = \tau_1 d\sigma_1 + \tau_2 d\sigma_2.
+\end{equation}
+Si ahora escogemos $\sigma_1,\sigma_2,t,$ como las nuevas variables independientes en lugar de $V_1,V_2,t,$ podemos tomar a $\tau,\sigma$ como funciones de $\sigma_1,\sigma_2,t;$ entonces \eqref{dosigma} muestra que $\sigma$ depende solamente de $\sigma_1,\sigma_2,$ y no de $t.$ A partir de \eqref{dosigma} y de la definici\'on \eqref{pfaffsigma3} tendremos
+\begin{equation}\label{equal3}
+\frac{\partial \sigma}{\partial \sigma_1}=\frac{\tau_1 (\sigma_1,t)}{\tau (\sigma_1,\sigma_2,t)}; \quad \frac{\partial \sigma}{\partial \sigma_2}=\frac{\tau_2 (\sigma_2,t)}{\tau (\sigma_1,\sigma_2,t)}; \quad \frac{\partial \sigma}{\partial t}=0.
+\end{equation}
+De la ecuaci\'on anterior se sigue que $\sigma$ es independiente de $t;$ por lo tanto, $\sigma$ depende solamente de $\sigma_1$ y $\sigma_2,$ es decir
+\begin{equation}
+\sigma = \sigma (\sigma_1,\sigma_2).
+\end{equation}
+De las primeras dos ecuaciones en \eqref{equal3} se sigue que $\frac{\tau_1}{\tau}$ y $\frac{\tau_2}{\tau}$ son tambi\'en funciones independientes de $t.$ Lo cual nos lleva a,
+\begin{equation}
+\frac{\partial}{\partial t}\left(\frac{\tau_1}{\tau}\right)=0; \qquad \frac{\partial}{\partial t}\left(\frac{\tau_2}{\tau}\right)=0,
+\end{equation}
+de donde podemos inferir derivando y comparando con \eqref{equal3} que
+\begin{equation}\label{equal3inv}
+\frac{1}{\tau_1}\frac{\partial \tau_1}{\partial t}=\frac{1}{\tau_2}\frac{\partial \tau_2}{\partial t}=\frac{1}{\tau}\frac{\partial \tau}{\partial t}.
+\end{equation}
+Ahora $\tau_1$ es una variable del primer fluido \'unicamente, por lo tanto solo depende de $\sigma_1$ y $t;$ lo mismo aplica para $\tau_2$
+\begin{equation}
+\tau_1=\tau_1(\sigma_1,t); \qquad \tau_2=\tau_2(\sigma_2,t).
+\end{equation}
+La primera igualdad \eqref{equal3inv} puede cumplirse solamente si ambas cantidades dependen solo de $t.$ Por lo tanto
+\begin{equation}\label{logs}
+\frac{\partial \log \tau_1}{\partial t}=\frac{\partial \log \tau_2}{\partial t}=\frac{\partial \log \tau}{\partial t}=g(t),
+\end{equation}
+donde $g(t)$ debe ser una funci\'on universal, porque es num\'ericamente igual para diferentes fluidos o sistemas arbitrarios y tambi\'en para el sistema combinado. Es as\'i que hemos sido conducidos a una funci\'on universal de la temperatura emp\'irica $t.$ Esta simple consideraci\'on nos conduce mediante matem\'aticas ordinarias a la existencia de una funci\'on universal de temperatura. El resto solo es cuesti\'on de normalizaci\'on \cite{MB}.
+\paragraph{}
+Integrando \eqref{logs} tenemos,
+\begin{align}
+\log \tau &= \int g(t)dt + \log \Sigma (\sigma_1,\sigma_2)\label{log1},\\ 
+\log \tau_i &= \int g(t)dt + \log \Sigma_i (\sigma_i), \qquad (i=1,2)\label{logi},
+\end{align}
+donde las constantes de integraci\'on $\Sigma$ y $\Sigma_i$ son independientes de $t$ y son funciones solamente de otras variables f\'isicas que caracterizan al sistema. Podemos escribir \eqref{log1} y \eqref{logi} como
+\begin{equation}\label{logis}
+\tau = \Sigma(\sigma_1,\sigma_2) \cdot \exp^{\int g(t)dt}; \qquad \tau_i = \Sigma_i(\sigma_i) \cdot \exp^{\int g(t)dt}. 
+\end{equation}
+As\'i que para cualquier sistema termodin\'amico el denominador integrante consiste de dos factores, un factor que depende de la temperatura y que es el mismo para todas las sustancias, y otro factor que depende de las variables restantes que caracterizan al sistema. Por lo tanto introducimos la \emph{temperatura absoluta,} $T,$ definida por
+\begin{equation}\label{absolutemp}
+T=C\exp^{\int g(t)dt},
+\end{equation}
+donde $C$ es una constante arbitraria determinada de tal manera que dos puntos fijos de referencia, por ejemplo los puntos de fusi\'on y evaporaci\'on del agua, tengan una diferencia de $100$ en la escala absoluta. Debe notarse que $T$ no contiene alguna constante aditiva, esto implica que el cero de la escala absoluta se determina f\'isicamente. A partir de \eqref{facin}, \eqref{logis}, \eqref{absolutemp} tenemos
+\begin{equation}
+dQ = \tau d\sigma = T \frac{\Sigma}{C}d\sigma, \qquad dQ_i = \tau_i d\sigma_i = T \frac{\Sigma_i}{C}d\sigma_i.
+\end{equation}
+Si estamos tratando con un cuerpo sencillo y homog\'eneo, tal que su estado se defina por las variables $t$ y $\sigma_1,$ entonces $\Sigma_1$ depende solamente de $\sigma_1,$ de esta manera podemos introducir la funci\'on $S_1,$ definida como
+\begin{equation}
+S_1 = \frac{1}{C}\int \Sigma_1(\sigma_1)d\sigma_1 + constante.
+\end{equation}
+La funci\'on $S_1$ depende solo de $\sigma_1$ y se determina aparte de la constante aditiva arbitraria. M\'as aun, $S_1$ es constante a lo largo de una adiab\'atica. A la funci\'on $S_1$ definida de esta manera se le llama \emph{entrop\'ia.} Ahora podemos escribir
+\begin{equation}
+dQ_1 = TdS_1.
+\end{equation}
+\paragraph{}
+Si ahora consideramos un sistema compuesto por dos cuerpos en contacto t\'ermico, tendremos para los dos cuerpos por separado
+\begin{align}
+dQ_1 = \tau_1 d\sigma_1 = T \frac{\Sigma_1}{C}d\sigma_1 = TdS_1,\label{thermeq1}\\
+dQ_2 = \tau_2 d\sigma_2 = T \frac{\Sigma_2}{C}d\sigma_2 = TdS_2,\label{thermeq2}
+\end{align}
+y para el sistema combinado
+\begin{align}
+dQ&=\tau d\sigma=T\frac{\Sigma(\sigma_1,\sigma_2)}{C}d\sigma(\sigma_1,\sigma_2),\label{entrop1}\\
+&=dQ_1+dQ_2=T\frac{\Sigma_1(\sigma_1)}{C}d\sigma_1+T\frac{\Sigma_2(\sigma_2)}{C}d\sigma_2.
+\end{align}
+Por lo tanto,
+\begin{equation}\label{combined}
+\Sigma(\sigma_1,\sigma_2)d\sigma = \Sigma_1(\sigma_1)d\sigma_1 + \Sigma_2(\sigma_2)d\sigma_2.
+\end{equation}
+A partir de \eqref{combined} se sigue que
+\begin{equation}
+\Sigma(\sigma_1,\sigma_2)\frac{\partial \sigma}{\partial \sigma_1} =\Sigma_1(\sigma_1); \qquad \Sigma(\sigma_1,\sigma_2)\frac{\partial \sigma}{\partial \sigma_2} =\Sigma_2(\sigma_2).
+\end{equation}
+Por lo tanto,
+\begin{align}
+\frac{\partial \Sigma_1}{\partial \sigma_2}= \frac{\partial \Sigma}{\partial \sigma_2}\frac{\partial \sigma}{\partial \sigma_1}+\Sigma\frac{\partial^2 \sigma}{\partial \sigma_1\partial \sigma_2}=0,\label{mixedpar1}\\
+\frac{\partial \Sigma_2}{\partial \sigma_1}= \frac{\partial \Sigma}{\partial \sigma_1}\frac{\partial \sigma}{\partial \sigma_2}+\Sigma\frac{\partial^2 \sigma}{\partial \sigma_1\partial \sigma_2}=0.\label{mixedpar2}
+\end{align}
+De \eqref{mixedpar1} y \eqref{mixedpar2} inferimos que el determinante funcional
+\begin{equation}
+\frac{\partial \Sigma}{\partial \sigma_1}\frac{\partial \sigma}{\partial \sigma_2}-\frac{\partial \Sigma}{\partial \sigma_2}\frac{\partial \sigma}{\partial \sigma_1}=\frac{\partial(\Sigma,\sigma)}{\partial(\sigma_1,\sigma_2}
+\end{equation}
+es cero, y como consecuencia $\Sigma(\sigma_1,\sigma_2)$ contiene las variables $\sigma_1$ y $\sigma_2$ solamente en la combinaci\'on $\sigma(\sigma_1,\sigma_2),$ dado que $n$ funciones de $n$ variables son independientes cuando su determinante funcional (o Jacobiano) no se anula \cite{LC}.  Por lo tanto, podemos escribir
+\begin{equation}
+ \Sigma(\sigma_1,\sigma_2)=\Sigma(\sigma).
+\end{equation}
+La ecuaci\'on \eqref{entrop1} puede escribirse como
+\begin{equation}
+dQ=\tau d\sigma=TdS,\label{entrointro}
+\end{equation}
+donde
+\begin{equation}
+dS=\frac{\Sigma(\sigma)}{C}d\sigma,
+\end{equation}
+de otra forma
+\begin{equation}\label{entroint}
+S=\frac{1}{C}\int\Sigma(\sigma)d\sigma+\text{constante},
+\end{equation}
+donde $S$ es ahora la entrop\'ia total del sistema. A partir de \eqref{thermeq1}, \eqref{thermeq2} y \eqref{entrointro} tenemos que
+\begin{equation}
+dS=dS_1+dS_2=d(S_1+S_2),
+\end{equation}
+es decir que el cambio en la entrop\'ia de un sistema compuesto por dos cuerpos en contacto t\'ermico, durante un proceso cuasi-est\'atico, es la suma de los cambios de entrop\'ia en los dos cuerpos por separado.
+\subparagraph{}
+Es posible arreglar nuestra definici\'on de entrop\'ia mediante una constante aditiva adecuada de tal forma que
+\begin{equation}
+S=S_1+S_2,
+\end{equation}
+esto es: la entrop\'ia de un sistema es la suma de las entrop\'ias de sus diferentes partes.
+\subparagraph{}
+La ecuaci\'on \eqref{entrointro} contiene el enunciado matem\'atico de la segunda ley de la termodin\'amica, la cual resulta como una consecuencia matem\'atica pura del principio de Carath\'eodory: la diferencial de calor, $dQ,$ para un cambio infinitesimal cuasi-est\'atico, cuando se divide por la temperatura $T,$ es una diferencial perfecta, $dS,$ de la funci\'on de entrop\'ia.
+\subparagraph{}
+Las ecuaciones \eqref{entropia} y \eqref{entrointro} tienen diferencias esenciales. En \eqref{entropia} $T$ y $S$ (y $\tau$ y $\sigma$) son funciones de todas las variables f\'isicas; mientras que en \eqref{entrointro}, $\tau$ y $T$ dependen solamente de la temperatura emp\'irica, $t,$ que es la misma para diferentes partes del sistema; adem\'as $\sigma$ y $S$ dependen solo de las variables ($\sigma_1$ y $\sigma_2$) que no alteran sus valores debido a cambios adiab\'aticos; finalmente, $T$ es una funci\'on universal de $t,$ y $S$ es una funci\'on s\'olo de $\sigma(\sigma_1,\sigma_2).$
+\subparagraph{}
+Ahora mostraremos c\'omo la escala del term\'ometro de gas, $pV=t,$ define una escala de temperatura proporcional a la temperatura absoluta. Usualmente se asume que la relaci\'on $pV=t$ define, adem\'as de un factor constante, la escala absoluta de temperatura lo cual no es l\'ogicamente consistente porque cualquier funci\'on mon\'otona, $t=f(pV),$ puede definirla tambi\'en. De esta manera es imposible identificar la relaci\'on $pV\propto T$ sin apelar a la segunda ley de la termodin\'amica. Para seguir un razonamiento l\'ogico, es necesario conocer la energ\'ia interna, $U,$ como funci\'on del estado del gas. La base experimental es el experimento idealizado de Joule-Kelvin, el cual muestra que cuando un gas se expande adiab\'aticamente sin realizar trabajo externo, el producto $pV$ (esto es, la temperatura del gas, $t=f[pV]$) no cambia. Aqu\'i es necesario apelar a un proceso irreversible en alg\'un momento, como Carath\'eodory lo ha puntualizado, para fijar el cero de la escala de temperatura absoluta. Partiendo del experimento de Joule-Kelvin, se sigue que $U$ es independiente de $V.$ Por lo tanto podemos escribir
+\begin{equation}
+U=U(t);\qquad pV=F(t),
+\end{equation}
+donde $t$ es la temperatura emp\'irica. Para la diferencial de calor en un cambio cuasi-est\'atico, tenemos
+\begin{align}\label{difqcasi}
+dQ=dU+pdV&=\frac{dU}{dt}dt+F(t)\frac{dV}{V}\nonumber\\
+&=F(t)\left[\frac{1}{F(t)}\frac{dU}{dt}dt+d\log V\right].
+\end{align}
+Definamos una cantidad, $\chi,$ mediante la ecuaci\'on
+\begin{equation}
+\log \chi =\int \frac{1}{F(t)}\frac{dU}{dt}dt+\text{constante}.
+\end{equation}
+La ecuaci\'on \eqref{difqcasi} puede rescribirse como
+\begin{equation}\label{logchi}
+dQ=F(t)d\log \chi V.
+\end{equation}
+Por lo tanto, podemos escoger $F(t)$ como el denominador integrante
+\begin{equation}
+\tau=F(t);\qquad \sigma =\log \chi V.
+\end{equation}
+Ahora la ecuaci\'on \eqref{logchi} toma la forma standard
+\begin{equation}\label{facin2}
+dQ=\tau d\sigma.
+\end{equation}
+El factor integrante puede escogerse de muchas otras formas. Si
+\begin{equation}\label{star}
+\sigma^*=\sigma^*(\sigma);\qquad \tau^*=F(t)\frac{d\sigma}{d\sigma^*},
+\end{equation}
+entonces la ecuaci\'on \eqref{facin2} puede escribirse como
+\begin{equation}
+dQ=\tau^*d\sigma^*.
+\end{equation}
+Por lo tanto, no existe alguna raz\'on previa para escoger $\tau=F(t)=pV$ como denominador integrante. Hemos mostrado que
+\begin{equation}\label{univ}
+g(t)=\frac{\partial \log \tau}{\partial t}
+\end{equation}
+es una funci\'on universal, la cual es la misma sin importar la forma en que hayamos definido el denominador integrante. La funci\'on $g(t),$ definida por \eqref{univ}, es \emph{invariante bajo las transformaciones} \eqref{star}. De nuestra definici\'on de temperatura absoluta \eqref{absolutemp}, tenemos
+\begin{equation}
+T=C\exp^{\int g(t)dt}=CF(t)=CpV.
+\end{equation}
+As\'i la escala de temperatura absoluta concuerda con la temperatura en la escala del term\'ometro de gas.
+\subparagraph{}
+A partir de $dQ=TdS,$ encontramos e integramos
+\begin{align}
+dS=&\frac{1}{C}d\log \chi V,\\
+S=\frac{1}{C}\log&\chi V+\text{constante}.
+\end{align}
+Si escribimos $U=c_vT$ y consideramos $c_v$ como una constante, y adem\'as definimos $R=1/C,$ tendremos
+\begin{equation}
+\log \chi =\int \frac{c_v}{RT}dT=\frac{c_v}{R}\log T+\text{constante}.
+\end{equation}
+Por lo tanto, finalmente,
+\begin{equation}\label{entrofin}
+S=S_0+c_v\log T+R\log V,
+\end{equation}
+donde $S_0$ es una constante.
+\subsection{El principio de aumento de entrop\'ia}\label{aumentoentro}
+\paragraph{}
+Hasta ahora hemos considerado \'unicamente cambios de estado cuasi-est\'aticos, aunque en alg\'un punto fue necesario considerar procesos no est\'aticos cuando apelamos al experimento idealizado de Joule-Kelvin. Ahora discutiremos los procesos no est\'aticos de manera m\'as general.
+\subparagraph{}
+Consideraremos, como hasta ahora lo hemos hecho, un sistema cerrado adiab\'aticamente compuesto de dos cuerpos en contacto t\'ermico. El estado de equilibrio de tal sistema puede caracterizarse mediante tres variables independientes, tales como $V_1,V_2,t,$ las mismas variables que hemos utilizado hasta ahora. Ahora escogeremos $V_1,V_2$ y $S$ como las variables independientes. Sean $V^0_1,V^2_0,$ y $S^0$ los valores de las variables f\'isicas en un estado inicial y $V_1,V_2$ y $S$ en un estado final. Ahora aseveramos que $S$ es siempre mayor que $S^0$ o siempre menor que $S^0.$
+\subparagraph{}
+Para mostrar esto, consideraremos que el estado final es alcanzado en dos pasos:
+\begin{enumerate}
+\item Alteramos los vol\'umenes $V^0_1$ y $V^0_2$ mediante un proceso cuasi-est\'atico y adiab\'atico tal que los vol\'umenes al final sean $V_1$ y $V_2.$ De esta manera mantenemos la entrop\'ia constante e igual a $S^0.$\label{paso1}
+\item Luego alteramos el estado del sistema, manteniendo los vol\'umenes fijos, pero cambiamos la entrop\'ia mediante procesos adiab\'aticos mas no est\'aticos, (tales como agitar, frotar, en los cuales $dQ=0$ pero $dQ\neq TdS$) de tal manera que la entrop\'ia cambie de $S^0$ a $S.$\label{paso2}
+\end{enumerate}
+\subparagraph{}
+Si ahora $S$ fuera mayor que $S^0$ en algunos procesos y menor que $S^0$ en otros, entonces deber\'ia ser posible alcanzar todo estado vecino cercano, $(V_1,V_2,S),$ al estado inicial, $(V^0_1,V^0_2,S^0),$ mediante procesos adiab\'aticos; esto ser\'ia que despu\'es de haber alcanzado el estado $(V_1,V_2,S),$ podr\'iamos alcanzar todos los dem\'as estados $(V^{\prime}_1,V^{\prime}_2,S^0),$ mediante procesos tipo $[\ref{paso1}]$. Esto contradice el principio de Carath\'eodory en su forma m\'as general, que postula que en cualquier vecindad, arbitrariamente cercana a un estado, $(V^0_1,V^0_2,S),$ existen estados adiab\'aticamente inaccesibles aun cuando se permitan procesos no est\'aticos. Por consiguiente, mediante procesos $[\ref{paso2}],$ y por lo tanto tambi\'en mediante procesos $[\ref{paso1}]$ y $[\ref{paso2}],$ la entrop\'ia $S^0$ del sistema puede o bien s\'olo aumentar o s\'olo disminuir. Puesto que esto se cumple para todo estado inicial, podemos ver que, debido a la continuidad de la imposibilidad de incremento o disminuci\'on, la entrop\'ia del sistema que hemos considerado tiene que cumplir con s\'olo una de las condiciones, nunca disminuir o nunca aumentar. Lo mismo tiene que cumplirse para dos sistemas independientes por la naturaleza aditiva de la entrop\'ia. As\'i hemos probado que:
+\begin{teo}
+Para todos los cambios posibles, cuasi-est\'aticos o no, que un sistema adiab\'aticamente cerrado puede experimentar, la entrop\'ia, $S,$ nunca debe, ya sea incrementar o disminuir.
+\end{teo}
+\subparagraph{}
+Que la entrop\'ia disminuya o aumente depende del signo de la constante $C$ introducida en nuestra definici\'on de entrop\'ia \eqref{entroint}, que deber\'a escogerse de tal modo que la temperatura absoluta sea positiva. Entonces para determinar el signo del cambio de entrop\'ia es suficiente un sencillo experimento. Mediante la expansi\'on de un gas ideal, $G,$ en el vac\'io, la entrop\'ia $S_G$ del gas aumenta, como puede verse a partir de la ecuaci\'on \eqref{entrofin}; $V$ aumenta y $T$ permanece constante. Ahora consideramos un sistema compuesto de un gas, $G,$ y otro cuerpo, $K.$ Si consideramos tales cambios de estado en los que la entrop\'ia $S_K$ del cuerpo permanece constante y $S_G$ cambia, entonces $S=S_G+S_K$ tiene que aumentar, dado que, como hemos visto, $S_G$ siempre aumenta; por consiguiente, $S$ nunca puede disminuir. Por lo tanto, si consideramos procesos en los cuales la entrop\'ia del gas permanece constante, es claro que, como $S$ s\'olo puede aumentar, $S_K$ s\'olo puede aumentar; esto se cumple tambi\'en cuando $K$ y $G$ se encuentran separados adiab\'aticamente. De esta manera hemos probado el siguiente resultado:
+\begin{teo}\label{teoentro}
+Para un sistema adiab\'aticamente cerrado la entrop\'ia nunca puede disminuir:
+\begin{align}
+S&>S^0,\qquad (\text{proceso no est\'atico}),\\
+S&=S^0,\qquad (\text{proceso est\'atico}).
+\end{align}
+\end{teo}
+\subparagraph{}
+Este razonamiento nos permite concluir que si en alg\'un cambio de estado de un sistema adi\'abaticamente cerrado la entrop\'ia cambia, entonces no se puede aplicar alg\'un cambio adiab\'atico que cambie al sistema del estado final al estado inicial de donde se hab\'ia partido. En este sentido, todo cambio de estado en el cual la entrop\'ia cambie, debe ser irreversible; esto es, \emph{para un sistema adiab\'aticamente cerrado la entrop\'ia debe tender al m\'aximo.}
+\subparagraph{}
+Para formular lo anterior en forma integral tenemos
+\begin{equation}\label{entformint}
+\oint \frac{dQ}{T}\leq 0,
+\end{equation}
+donde la integral se toma sobre un ciclo cerrado de cambios, y asumiendo que durante el ciclo el sistema puede caracterizarse a cada instante mediante un valor \'unico para $T.$ Para probar esto consideremos un ciclo de cambios en el cual la sustancia de trabajo se lleva a trav\'es de los estados $A$ y $B,$ y en el cual, adem\'as, la parte del ciclo desde $A$ hasta $B$ se realiza adiab\'aticamente (pero no necesariamente est\'aticamente) mientras que la parte del ciclo desde $B$ hasta $A$ se lleva a cabo reversiblemente. Para este ciclo de cambios
+\begin{equation}
+\oint \frac{dQ}{T}=\int^B_A\frac{dQ}{T}+\int^A_B\frac{dQ}{T}.
+\end{equation}
+Dado que la parte del ciclo desde $A$ hasta $B$ se ha realizado adiab\'aticamente, tenemos
+\begin{equation}
+\oint \frac{dQ}{T}=\int^A_B\frac{dQ}{T}=S_A-S_B,
+\end{equation}
+que de acuerdo con el teorema \ref{teoentro}, debe ser cero o negativo. As\'i hemos probado \eqref{entformint} para el ciclo especial de cambios considerado. Los mismos argumentos pueden extenderse para probar \eqref{entformint} de manera m\'as general.
+\subparagraph{}
+A partir de todos los argumentos y pruebas anteriores podemos ver que el contenido matem\'atico completo de la segunda ley puede deducirse del principio de Carath\'eodory. Pero aun falta mostrar c\'omo el principio de Carath\'eodory puede conducirnos a la formulaci\'on de Kelvin de la segunda ley. Para esto es necesario dotar al principio de Carath\'eodory de algunos axiomas suplementarios antes de que podamos derivar la formulaci\'on debida a Kelvin o Clausius de la segunda ley. Los argumentos necesarios para establecer esto, van m\'as all\'a del alcance de este trabajo pero pueden consultarse las referencias pertinentes \cite{EA}.
+\subsection{La energ\'ia libre y el potencial termodin\'amico}
+\paragraph{}
+Hemos mostrado en la secci\'on \ref{aumentoentro} que
+\begin{equation}\label{ineqentro}
+\oint \frac{dQ}{T}\leq 0,
+\end{equation}
+donde la integral se toma sobre un ciclo cerrado de cambios. Ahora supongamos que el ciclo cerrado de cambios lleva a la sustancia de trabajo a trav\'es de los estados $A$ y $B,$ y que, adem\'as, la parte del ciclo de $B$ hasta $A$ se realiza a lo largo de una trayectoria reversible. Entonces
+\begin{equation}\label{sumentro}
+\oint \frac{dQ}{T}=\int^B_A\frac{dQ}{T}+\int^A_B\frac{dQ}{T},
+\end{equation}
+o, ya que la trayectoria desde $B$ hasta $A$ es reversible, tenemos, de acuerdo a \eqref{ineqentro} y \eqref{sumentro},
+\begin{equation}\label{ineqsumentro}
+\int^B_A \frac{dQ}{T}\leq S_B-S_A.
+\end{equation}
+La ecuaci\'on \eqref{ineqsumentro} es equivalente a \eqref{ineqentro}.
+\subparagraph{}
+Ahora consideremos un cambio isot\'ermico. Entonces \eqref{ineqsumentro} puede escribirse como
+\begin{equation}
+\int^B_AdQ\leq T(S_B-S_A),
+\end{equation}
+donde $T$ denota la temperatura constante. Por la primera ley de la termodin\'amica ahora tenemos
+\begin{equation}\label{modfirst}
+U_B-U_A+W_{AB}\leq T(S_B-S_A),
+\end{equation}
+donde $W_{AB}$ es el trabajo realizado por el sistema. La ecuaci\'on \eqref{modfirst} puede escribirse alternativamente en la forma
+\begin{equation}\label{difree}
+F_B-F_A+W_{AB}\leq 0,
+\end{equation}
+donde
+\begin{equation}\label{freener}
+F=U-TS.
+\end{equation}
+La funci\'on $F, $ as\'i introducida es la llamada ``energ\'ia libre'' del sistema. De \eqref{difree} se desprende que para un cambio isot\'ermico en el cual no se realiza trabajo la energ\'ia libre no puede aumentar.
+\subparagraph{}
+Otra funci\'on importante es el \emph{potencial termodin\'amico,} que se define como
+\begin{equation}
+G=F+pV=U+pV-TS.
+\end{equation}
+Es claro que si la temperatura y las fuerzas externas se mantienen constantes, $G$ no puede aumentar.
+\subsection{Algunas f\'ormulas termodin\'amicas}
+\paragraph{}
+Hasta ahora nos hemos ocupado de principios generales. Ahora derivaremos algunas f\'ormulas termodin\'amicas que son importantes en la pr\'actica.
+\subparagraph{}
+Consideremos un medio isotr\'opico homog\'eneo, i.e. todas las posiciones y direcciones son f\'isicamente equivalentes y las propiedades del medio son independientes de la posici\'on \cite{MB}. Entonces para un cambio cuasi-est\'atico (en la ecuaci\'on \eqref{adiabatic1} ahora utilizaremos la temperatura absoluta, $T,$ en lugar de la temperatura emp\'irica, $t$)
+\begin{equation}
+dQ = \left[\left(\frac{\partial{U}}{\partial{V}}\right)_T + p\right] dV + \left(\frac{\partial{U}}{\partial{T}}\right)_VdT.
+\end{equation}
+Como $dQ/T$ es una diferencial perfecta, deber\'iamos tener
+\begin{equation}
+\frac{\partial}{\partial T}\left[\frac{1}{T}\left(\frac{\partial U}{\partial V}+p\right)\right] =\frac{\partial}{\partial V}\left(\frac{1}{T}\frac{\partial U}{\partial T}\right),
+\end{equation}
+o, haciendo las diferenciales,
+\begin{equation}
+-\frac{1}{T^2}\left[\left(\frac{\partial{U}}{\partial{V}}\right)_T + p\right]+\frac{1}{T}\left[ \frac{\partial^2U}{\partial T\partial V}+ \left(\frac{\partial p}{\partial T}\right)_V\right]=\frac{1}{T}\frac{\partial^2U}{\partial V\partial T},
+\end{equation}
+y a partir de aqu\'i
+\begin{equation}
+\left(\frac{\partial{U}}{\partial{V}}\right)_T=T\left(\frac{\partial p}{\partial T}\right)_V-p
+\end{equation}
+\subparagraph{}
+Ahora consideremos la energ\'ia libre. Por definici\'on \eqref{freener}
+\begin{equation}
+dF=dU-TdS-SdT,
+\end{equation}
+o, dado que
+\begin{equation}
+dQ=TdS=dU+pdV,
+\end{equation}
+tenemos
+\begin{equation}\label{diffree}
+dF=-SdT-pdV.
+\end{equation}
+De cualquier manera, $dF$ es una diferencial perfecta. Por lo tanto, debemos tener
+\begin{equation}
+\left(\frac{\partial F}{\partial T}\right)_V=-S;\qquad \left(\frac{\partial F}{\partial V}\right)_T=-p.
+\end{equation}
+\subparagraph{}
+Finalmente, consideremos el potencial termodin\'amico, $G.$ Tenemos
+\begin{equation}
+dG=dF+pdV+Vdp,
+\end{equation}
+o, utilizando \eqref{diffree},
+\begin{equation}
+dG=-SdT+Vdp.
+\end{equation}
+Por lo tanto, deber\'iamos tener
+\begin{equation}
+\left(\frac{\partial G}{\partial T}\right)_p=-S;\qquad \left(\frac{\partial G}{\partial p}\right)_T=V.
+\end{equation}
+
+\section{Aplicaciones}
+\paragraph{}
+Las plantas de potencia t\'ermica solar generan electricidad al convertir la radiaci\'on solar disponible. Primero absorben la radiaci\'on solar y luego generan la electricidad; este es el uso m\'as eficiente de la energ\'ia solar. El otro m\'etodo consiste en los sistemas fotovoltaicos que convierten la energ\'ia solar directamente en electricidad, el costo de estos sistemas es bastante alto en t\'erminos econ\'omicos y de recursos, adem\'as su eficiencia es a\'un muy limitada.
+\subparagraph{}
+Los sistemas de recolecci\'on solar de alta temperatura se utilizan para producir electricidad indirectamente mediante el uso de procesos o ciclos termodin\'amicos. De hecho, todas las plantas de potencia actuales, basadas en combustibles f\'osiles y nucleares, trabajan bajo los mismos principios. De esta manera, la tecnolog\'ia de los sistemas de recolecci\'on solar aprovecha el conocimiento ya disponible relacionado con las pantas de potencia convencionales. En el peor escenario de operacion de un sistema solar, puede utilizar combustibles f\'osiles como sistema de emergencia.
+\subparagraph{}
+El potencial de generaci\'on de electricidad t\'ermica solar que es t\'ecnicamente alcanzable es mucho mayor que el consumo mundial de electricidad. A diferencia de las celdas solares fotovoltaicas que son ideales para sistemas descentralizados de baja potencia, las plantas de potencia t\'ermica solar pueden generar electricidad a gran escala $(50 - 250 MW).$ Mediante la integraci\'on de ``almacenamiento t\'ermico'' la potencia de este tipo de plantas puede entregarse al momento de su demanda, incluso durante la noche. Por lo tanto las plantas de potencia t\'ermica solar tienen el potencial de reemplazar a las plantas de potencia basadas en combustibles f\'osiles.
+\subparagraph{}
+Entre el $30-50\%$ de la energ\'ia t\'ermica necesaria en procesos industriales es menor a los $250^\circ C$ y en gener\'al el agua requerida para usos residencial no excede los $90^\circ C,$ por lo tanto la entrega de energ\'ia t\'ermica directamente, sin involucrar procesos de conversi\'on de energ\'ia, es otro aspecto importante para el escenario econ\'omico del desarrollo de los sistemas de energ\'ia solar t\'ermico y sus posibilidades de mercado tanto industrial como residencial.
+\subparagraph{}
+Existen varias tecnolog\'ias dentro de la clasificaci\'on de las plantas de potencia t\'ermica solar, entre ellas, los sistemas de concentraci\'on, los canales de espejos parab\'olicos, reflectores de Fresnel, plantas generadores de torre central, platos solares y plantas no-concentradoras; nosotros exploraremos el caso de plantas de potencia de canales espejos parab\'olicos.
+\subparagraph{}
+En t\'erminos de las necesidades pr\'acticas concernientes a comunidades humanas, tanto urbanas como rurales, la energ\'ia potencial del sol es ilimitada, anualmente se recibe mucho m\'as energ\'ia solar que los requerimientos energ\'eticos mundiales. Adem\'as de ser la energ\'ia ``renovable'' con mayor potencial, su disponibilidad es ``in situ'', anulando as\'i los altos costos de log\'istica y transporte de materiales.
+\subparagraph{}
+La ubicaci\'on ideal de las plantas de potencia t\'ermica solar es el ``cintur\'on solar terrestre'' que es la zona donde el sol brilla m\'as frecuentemente y su radiaci\'on es m\'as intensa. Esta zona se encuentra entre los paralelos 40, norte y sur, aproximadamente. Dicho sea de paso, el territorio mexicano se encuentra precisamente dentro de esta zona.
+\subparagraph{}
+De acuerdo con el consejo mundial de energ\'ia \cite{l2}, las emisiones de gases de efecto invernadero son la causa principal de cambio clim\'atico, de los cuales el $CO_2$ es el que genera mayor impacto. Actualmente, a causa de la generaci\'on de electricidad se produce el $41\%$ de las emisiones de $CO_2$ a nivel global, a\'un cuando $2000$ millones de personas, aproximadamente $30\%$ de la poblaci\'on mundial, viven sin electricidad\footnote{De acuerdo con una declaraci\'on del secretario general de la organizaci\'on de las naciones unidas, Kofi Annan, 2007}. Para hacer a\'un m\'as parad\'ojico el escenario, seg\'un proyecciones del consejo mundial de energ\'ia, la demanda de electricidad global se incrementar\'a entre $70-100\%$ para el a\~no $2050.$ De hecho, se estima que la demanda mundial de combustibles f\'osiles exceder\'a su producci\'on dentro del per\'iodo comprendido entre las pr\'oximas dos d\'ecadas.
+\paragraph{}
+En el escenario internacional pueden encontrarse algunas l\'ineas de acci\'on enfocadas a abordar el tema del futuro energ\'etico sostenible. Por ejemplo la Uni\'on Europea anunci\'o en 2007 sus planes y pol\'iticas para obtener el $20\%$ de sus necesidades energ\'eticas mediante fuentes de energ\'ia renovable a m\'as tardar en el a\~no $2020.$ Si este escenario se cumple, para el a\~no $2100$ el $70\%$ del consumo mundial de energ\'ia ser\'a producida mediante las tecnolog\'ias de energ\'ia solar, t\'ermica y fotovoltaica.
+\paragraph{}
+Para contextualizar la teor\'ia termodin\'amica que hemos desarrollado mostraremos algunos datos energ\'eticos contempor\'aneos, en t\'erminos de disponibilidad y demanda. Consideramos que la tecnolog\'ia solar t\'ermica es una alternativa viable y sensata con amplias posibilidades de aplicaci\'on y rentabilidad econ\'omica adem\'as, dados los siguientes hechos \cite{l2}
+\begin{itemize}
+\item A nivel global, la generaci\'on solar es la fuente energ\'etica con mayor crecimiento en los \'ultimos a\~nos, en promedio ha presentado un crecimiento del $35\%.$
+\item $80\%$ de la energ\'ia utilizada mundialmente est\'a basada en combustibles f\'osiles.
+\item Dentro de las pr\'oximas dos d\'ecadas la demanda mundial de combustibles f\'osiles exceder\'a su producci\'on anual.
+\item Seg\'un proyecciones del consejo mundial de energ\'ia para el a\~no $2100$ la energ\'ia mundial a partir de fuentes como gas, carb\'on y centrales nucleares aportar\'a menos del $15\%$ del total del consumo mundial, mientras que la energ\'ia solar t\'ermica y fotovoltaica suplir\'an cerca del $70\%.$
+\item Bastar\'ia con una cent\'esima parte del \'area des\'ertica terrestre para suplir la creciente demanda energ\'etica mundial, utilizando \'unicamente la potencia solar disponible.
+\item El costo del transporte de la ``electricidad solar'' es eficiente a grandes distancias si se utilizan las redes el\'ectricas apropiadas, i.e. corriente directa de alto voltaje, de esta manera las p\'erdidas en la potencia ser\'ian del 10\%.
+\item A largo plazo, las plantas de potencia t\'ermica solar tienen la capacidad de reemplazar completamente a las plantas de potencia convencional. Pueden integrarse a la infraestructura energ\'etica existente y, con uno de los procesos que mostraremos, generar electricidad al momento de su demanda.
+\item La electricidad entregada por las plantas de potencia t\'ermica solar es ideal para la demanda de electricidad en pa\'ises con un buen nivel de asoleamiento. Por ejemplo, dado el uso de sistemas de aire acondicionado, el consumo de electricidad y la radiaci\'on solar tienen su punto de mayor intensidad simult\'aneamente durante el d\'ia.
+\item El ``almacenamiento t\'ermico'' permite a las plantas de potencia t\'ermica solar generar electricidad incluso cuando el sol se ha ocultado. Por lo tanto, representan una contribuci\'on decisiva a la estabilidad de la red el\'ectrica.
+\end{itemize}
+\subsection{Sistemas de concentraci\'on solar}
+\paragraph{} 
+En las plantas de potencia basadas en sistemas de canales reflectores parab\'olicos con almacenamiento t\'ermico, la radiaci\'on solar que incide en la superficie de estos espejos es enfocada mediante una configuraci\'on parab\'olica hacia un tubo concentrador que se localiza a todo lo largo del eje focal de los espejos parab\'olicos colectores, que pueden tener varios cientos de metros de largo si es necesario y conveniente. La absorci\'on de esta radiaci\'on mediante un fluido de trabajo, usualmente aceite, permite su posterior transferencia y conversi\'on energ\'etica en una planta generadora de vapor que ser\'a utilizada para mover un sistema de turbinas que finalmente generan la potencia demandada por la comunidad o sistema en cuesti\'on, figura \ref{paraboliesp}. Adem\'as el sistema complementario de almacenamiento t\'ermico dota al sistema completo de autonom\'ia energ\'etica durante los periodos en que se carece de radiaci\'on solar.
+\subparagraph{}
+Un par de aspectos tecnol\'ogicos recientes que han revolucionado este tipo de plantas de potencia son los tubos concentradores al vac\'io y la integraci\'on de almacenamiento t\'ermico. Estos avances tecnol\'ogicos permiten el aumento de la eficiencia total del proceso de conversi\'on de energ\'ia, en particular reduciendo las p\'erdidas de energ\'ia por conducci\'on y convecci\'on dentro de los tubos concentradores, y la generaci\'on de electricidad a\'un despu\'es de que el sol se ha ocultado, dotando de estabilidad a la red el\'ectrica en general.
+\paragraph{}
+El dise\~no de campos de recolecci\'on para las plantas de potencia solar se componen de varias l\'ineas de canales de espejos parab\'olicos con dimensiones de hasta $6m$ de altura y varios cientos metros de largo de ser necesario. A pesar de su gran tama\~no estos dispositivos \'opticos se alinean con precisi\'on milim\'etrica. Las l\'ineas de espejo corren en direcci\'on norte-sur y se rastrea al sol de este a oeste durante el d\'ia para maximizar la recolecci\'on de la radiaci\'on disponible.
+\subparagraph{}
+Los componentes de los colectores consisten de m\'odulos de espejos c\'oncavos fabricados con placas de vidrio blanco cubierto de plata con un \'area espec\'ifica cada uno, que depende de la dimensi\'on total del sistema. Dada la precisi\'on del terminado de los modulos de espejo, cerca del $98\%$ de la radiaci\'on que \'estos reciben se refleja hacia el tubo de absorci\'on localizado en el eje focal de los colectores parab\'olicos. La tuber\'ia de absorci\'on contienen un fluido de trabajo que aumenta su temperatura hasta los $400^\circ C$ gracias a la luz solar concentrada, adem\'as dado que los tubos concentradores se fabrican al vac\'io, se evitan las p\'erdidas considerablemente y aumentan su eficiencia hasta un $95\%$.
+\subparagraph{}
+La tuber\'ia de absorci\'on o sistema receptor, consiste de dos tubos conc\'entricos; un tubo met\'alico que contiene al fluido de trabajo rodeado de otro tubo de vidrio de un di\'ametro mayor. Entre los dos tubos se produce un ``vac\'io'' que aisla el tubo met\'alico, evitando as\'i las p\'erdidas por conducci\'on y convecci\'on, es decir que el sistema permite la radiaci\'on solar y evita los dem\'as procesos posibles.
+\paragraph{Descripci\'on t\'ecnica del proceso.}
+Los componentes de una planta de potencia con almacenamiento t\'ermico son:
+\begin{itemize}
+\item Campo solar con un circuito de transferencia de energ\'ia.
+\item Sistema de almacenamiento.
+\item Planta de potencia: turbina, generador y sistema de refrigeraci\'on.
+\end{itemize}
+\paragraph{}
+Por las ma\~nanas los colectores comienzan a seguir al sol. Los espejos parab\'olicos concentran la radiaci\'on solar a los tubos de absorci\'on dentro de los cuales circula un fluido, aceite sint\'etico resistente, que transmite la energ\'ia t\'ermica recolectada hacia  ``intercambiadores de calor'' en donde se genera vapor que a su vez activa una turbina conectada a un generador que produce electricidad.
+\paragraph{}
+Durante el d\'ia, si la radiaci\'on del sol es suficientemente intensa, el campo solar suple la energ\'ia suficiente para generar electricidad requerida y, simult\'aneamente, alimenta el sistema de almacenamiento t\'ermico.
+\subparagraph{}
+El sistema de almacenamiento contiene sal l\'iquida, y consiste de dos tanques a diferentes temperaturas, $280^\circ C$ y $380^\circ C.$\\
+Cuando el sistema de almacenamiento est\'a siendo alimentado, sal a menor temperatura se bombea al tanque de mayor temperatura mediante un ``intercambiador de calor'' desde el aceite sint\'etico a la sal.
+\paragraph{}
+Durante la tarde o cuando el cielo se nubla un poco, el campo solar y el sistema de almacenamiento suplen la energ\'ia requerida para mantener la turbina en funcionamiento. Para esto la sal contenida en el recipiente de mayor temperatura se bombea ahora al contenedor de menor temperatura, regresando de esta manera su energ\'ia t\'ermica al aceite sint\'etico del circuito.
+\paragraph{}
+La operaci\'on durante la noche se realiza mediante la energ\'ia suplida por el sistema de almacenamiento t\'ermico \'unicamente, si este ha sido dimensionado correctamente. Existen actualemnte dise\~nos con una autonom\'ia de hasta $24h.$ Los sistemas de operaci\'on h\'ibrida, combusti\'on de gas o biomasa, ofrecen otra soluci\'on al problema de la falta de radiaci\'on solar continua.
+\subparagraph{}
+La eficiencia m\'axima de cualquier sistema termodin\'amico est\'a dada por el principio de Carnot, que nos indica que la eficiencia $\eta$ de un ciclo termodin\'amico reversible operando entre dos fuentes queda determinada por las temperaturas de las fuentes $\theta_1,$ $\theta_2$ y es independiente del fluido de trabajo que se utilice.
+$$\eta(\theta_1,\theta_2)=1-\frac{T_1}{T_2},$$
+donde $T_1$ y $T_2$ son las temperaturas absolutas de las fuentes. En nuestro caso las temperaturas de operaci\'on son las del aceite sint\'etico del circuito y la del sistema de refrigeraci\'on en el ``intercambiador de calor'' aceite-vapor. Y en el sistema de almacenamiento t\'ermico, las temperaturas de los recipientes de la sal l\'iquida.
+\paragraph{}
+\begin{figure}[t!]
+\centering
+\includegraphics[scale=1.4]{parabolicesp.jpg}
+\caption{Sistema parab\'olico de recolecci\'on solar.}
+\label{paraboliesp}
+\end{figure}
+
+\begin{figure}[t!]
+\flashmovie[width=12cm,heigth=10cm]{parabfield.swf}
+\caption{Ciclo completo de un sistema de generaci\'on de potencia solar con almacenamiento t\'ermico. De click en la serie de n\'umeros para mostrar las diferentes etapas del proceso y ubique el puntero sobre cada componente para ver su etiqueta.}
+\label{anima}
+\end{figure}
+En la animaci\'on \ref{anima} se muestra el funcionamiento de cada uno de los procesos y componentes que involucra la recolecci\'on de radiaci\'on solar y su posterior proceso de conversi\'on a electricidad para consumo general. Tambi\'en se muestra el funcionamiento y sincronizaci\'on del sistema de almacenamiento t\'ermico que dota al sistema completo de la robustez necesaria para entregar a cierta comunidad una red el\'ectrica confiable.
+
+\appendix
+\section{Ap\'endice}
+\begin{quote}
+On sait, d'ailleurs, que tout syst\`eme d'\'equations aux d\'eriv\'ees partielles peut se ramener \`a un syst\`eme d'\'equations aux diff\'erentielles totales, en regardant au besoin certaines de d\'eriv\'ees partielles des fonctions inconnues comme de nouvelles variables d\'ependantes. \'Elie Cartan.
+\end{quote}
+\subsection{Elementos operacionales.}
+Introduciremos algunos elementos necesarios para proceder en el an\'alisis, consideraremos una part\'icula que se mueve a lo largo de una trayectoria curva $C,$ a trav\'es del espacio. Un vector de posici\'on para cada punto en el espacio $\vec r=x\hat i +y\hat j+z\hat k,$ y un elemento de arco $d\vec r$ entre los puntos $P$ y $Q$ como se muestra en la figura \ref{element}.
+\begin{figure}[ht]\label{element}
+\centering
+\begin{picture}(200,200)
+\put(110,5){\vector(-1,3){32}}
+\put(110,5){\vector(0,1){107}}
+\put(78,101){\vector(3,1){33}}
+\qbezier(25,0)(5,100)(150,120){C}
+\put(107,52){$\vec r+d\vec r$}
+\put(75,52){$\vec r$}
+\put(80,112){$d\vec r$}
+\put(107,0){0}
+\put(60,105){$P$}
+\put(105,118){$Q$}
+\end{picture}
+\caption{Peque\~na secci\'on de la curva $C$ representada por el elemento de arco $d\vec r$.}
+\end{figure}
+Sea el operador vectorial diferencial $\vec \nabla,$
+\begin{equation}
+\vec \nabla =\hat{i}\frac{\partial}{\partial x}+\hat{j}\frac{\partial}{\partial y}+\hat{k}\frac{\partial}{\partial z},
+\end{equation}
+en simbolismo formal, que tiene la ventaja de que nos permite generalizar a $n$ dimensiones
+\begin{equation}
+\vec \nabla = \sum_{i=1}^nD_1\cdot \hat e_i,
+\end{equation}
+donde $D_1$ es un operador diferencial de primera derivada y $\hat e_i$ es un vector unitario en la direcci\'on de alguno de los ejes coordenados.
+\subparagraph{}
+Definimos $\mathbf{R}^3,$ como el conjunto de tuplas ordenadas $(x,y,z)$ con $x,y,z$ n\'umeros reales. Llamamos a $\vec v$ \emph{vector} de $\mathbf{R}^3,$ a una tupla ordenada $(x,y,z).$ El \emph{espacio tangente} a $\mathbf{R}^3,$ es el conjunto de tuplas $(p,v),$ tales que tanto $p$ como $v$ pertenecen a $\mathbf{R}^3$ y se denota como $\mathbf{R}^3_p.$ Si definimos un par de operaciones con los elementos del espacio tangente
+$$(p,\vec v)+(p,\vec w)=(p,\vec v+\vec w),$$
+$$\vec a \cdot (p,\vec v)=(p,av),$$
+entonces el espacio tangente, $\mathbf{R}^3_p,$ es un espacio vectorial.\\
+De esta manera, $\vec A$ es un \emph{campo vectorial} en $\mathbf{R}^3,$ definido como una funci\'on que asocia a cada punto o tupla $p,$ de $\mathbf{R}^3,$ un vector que pertenece al espacio tangente.\\
+Sea $\vec A =(A_x,A_y,A_z)$ un campo vectorial definido en $\mathbf{R}^3,$ ahora utilizamos el operador $\vec \nabla$ y enunciamos la definici\'on de Sommerfeld \cite{AS2} del \emph{rotacional} de un campo vectorial $\vec A$ como
+\begin{equation}
+\vec \nabla \times \vec A = \hat{i}\left(\frac{\partial A_z}{\partial y}-\frac{\partial A_y}{\partial z}\right)+\hat{j}\left(\frac{\partial A_x}{\partial z}-\frac{\partial A_z}{\partial x}\right)+\hat{k}\left(\frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y}\right).
+\end{equation}
+\subparagraph{}
+Tambi\'en podemos definir al rotacional en t\'erminos integrales. Sea una l\'inea orientada $a,$ escogida arbitrariamente, que pasa por un punto $P;$ ahora en el plano que contiene a $P$ y es normal a $a$ dibujemos una curva cerrada $C$ alrededor de $P,$ denotemos el \'area encerrada por $\Delta \sigma.$ Sea $\vec A_r$ la componente de $\vec A$ en la direcci\'on del elemento de arco $d\vec r$ tomado en el sentido de la regla de la mano derecha respecto al eje $a,$ expresaremos $\vec A_r \cdot d\vec r,$ por simplicidad como $A_rdr.$ Ahora consideremos la integral de l\'inea $\oint A_r dr,$ la \emph{circulaci\'on} seg\'un Lord Kelvin. El l\'imite del cociente de la circulaci\'on al \'area $\Delta \sigma$ es
+\begin{equation}
+\hat{a} \cdot (\vec \nabla \times \vec A) = [\vec \nabla \times \vec A]_a = \lim_{\Delta \sigma \rightarrow 0}\frac{1}{\Delta \sigma}\oint A_r dr
+\end{equation}
+La definici\'on integral le da significado geom\'etrico al operador rotacional definido formalmente con medios anal\'iticos. La ventaja de las definiciones geom\'etricas es que mantienen su validez en sistemas de coordenadas generales y esto permite una transici\'on simple entre cualquier sistema de coordenadas curvil\'ineas \cite{AS2}.
+\paragraph{Generalizaci\'on de rotacional.}
+Para ilustrar otra definici\'on del rotacional, que m\'as adelante nos permitir\'a generalizar al teorema de Stokes para $n$ dimensiones, sea $\mathbf{R}$ el campo de n\'umeros reales $a,b,c,\dots$ y sea $\mathbf{L}$ un subespacio vectorial definido en $\mathbf{R}^n$ con elementos $\alpha,\beta,\dots,$ con estos elementos podemos construir para cada $p=0,1,2,\dots,n$ un nuevo subespacio vectorial
+$$\bigwedge ^p \mathbf{L}$$
+sobre $\mathbf{R},$ llamado el espacio de $p-vectores$ en $\mathbf{L}.$ Definimos
+$$\bigwedge{^0} \mathbf{L}= \mathbf{L}, \qquad \bigwedge{^1} \mathbf{L} = \mathbf{L.}$$
+Ahora $\bigwedge{^2} \mathbf{L}$ consiste de todas las sumas
+$$\sum a_i\left(\alpha_i \wedge \beta_i\right)$$
+sujetas a las condiciones
+\begin{align*}
+(a_1\alpha_1+a_2\alpha_2) \wedge \beta -a_1(\alpha_1 \wedge \beta ) -a_2(\alpha_2 \wedge \beta) = 0,\\
+\alpha \wedge (b_1\beta_1 + b_2\beta_2) - b_1(\alpha \wedge \beta_1) - b_2(\alpha \wedge \beta_2) = 0,\\
+\alpha \wedge \alpha = 0,\\
+\alpha \wedge \beta + \beta \wedge \alpha =0.
+\end{align*}
+Aqu\'i $\alpha,\beta,\dots$ son vectores en $\mathbf{L}$ y $a,b,\dots$ son n\'umeros reales; $\alpha \wedge \beta$ es el \emph{producto exterior} de los vectores $\alpha$ y $\beta.$
+\subparagraph{}
+Los subespacios $\bigwedge{^p} \mathbf{L}$ poseen una operaci\'on llamada \emph{multiplicaci\'on exterior,} $\wedge.$ Multiplicamos un $p-vector$ $\mu$ por un $q-vector$ $nu$ para obtener un $(p+q)-vector$ $(\mu \wedge \nu)$
+\begin{equation*}
+\wedge : \left(\bigwedge{^p} \mathbf{L}\right) \times \left(\bigwedge{^q} \mathbf{L}\right) \rightarrow \bigwedge{^{p+q}}\mathbf{L}.
+\end{equation*}
+Por lo tanto tenemos para todos los $p-$ y $q-$vectores:
+$$(\alpha_1\wedge\cdots\wedge\alpha_p)\wedge(\beta_1\wedge\cdots\wedge\beta_q)=\alpha_1\wedge\cdots\wedge\alpha_p\wedge\beta_1\wedge\cdots\wedge\beta_q.$$
+Las propiedades b\'asicas del producto exterior son
+\begin{align*}
+\lambda \wedge \mu \quad \text{es distributivo,}\\
+\lambda \wedge (\mu \wedge \nu)=(\lambda \wedge \mu) \wedge \nu, \quad \text{ley asociativa,}\\
+\lambda \wedge \mu=(-1)^{pq}\mu \wedge \lambda.
+\end{align*}
+La tercera propiedad establece que dos vectores cualquiera de grado impar son anticonmutativos, de otra manera los vectores son conmutativos.
+\subparagraph{}
+Como ejemplo tomemos para $\mathbf{L}$ el espacio lineal basado en las diferenciales $dx,dy,dz,\cdots$ y omitimos el signo $\wedge$ entre los $dx$'s. As\'i $dxdy$ denota $dx\wedge dy.$ Entonces el producto
+$$(Adx+Bdy+Cdz)\wedge(Edx+Fdy+Gdz)=(BG-CF)dydz+(CE-AG)dzdx+(AF-BE)dxdy,$$
+que es precisamente el producto cruz de dos vectores ordinarios \cite{HF}.
+\subparagraph{}
+Podemos establecer una operaci\'on $d$ que manda a cada forma diferencial, $p-forma,$ $\omega,$ a una $\left(p+1\right)-forma,$ $d\omega.$ Para $\mathbf{L}^3$ tenemos, para una $0-forma$ $f=f(x,y,z),$ 
+\begin{equation}
+df = \frac{\partial{f}}{\partial{x}}dx + \frac{\partial{f}}{\partial{y}}dy + \frac{\partial{f}}{\partial{z}}dz
+\end{equation}
+para una $1-forma,$ $\omega = Pdx+Qdy+Rdz,$
+\begin{equation}
+d\omega = \left(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\right)dydz+\left(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\right)dzdx+\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dxdy,
+\end{equation}
+de esta manera el operador $d$ expresa al operador gradiente $\vec \nabla f,$ al operador rotacional $\vec \nabla \times \vec F,$ y al operador divergencia $\vec \nabla \cdot \vec F.$ As\'i identificamos a una $2-forma,$ $d\omega,$ con un campo vectorial polar en $\mathbf{R}^3.$
+\subsection{Equivalencia del principio de Kelvin y Carath\'eodory}
+\paragraph{}
+Aqu\'i derivaremos el principio de Carath\'eodory a partir del principio de Kelvin.
+\subparagraph{}
+Es suficiente mostrar que se viola el principio de Kelvin cuando se viola el principio de Carath\'eodory. Asumamos que un sistema t\'ermicamente uniforme ha cambiado isot\'ermicamente desde un estado $(1)$ hasta un estado $(2)$ absorbiendo una cantidad positiva de calor $Q.$ Dejemos que la energ\'ia interna de los dos estados sea $U_1$ y $U_2$ y sea $A$ la cantidad de trabajo recibida, la primera ley de la termodin\'amica establece que
+\begin{equation}\label{viola1}
+Q=U_2-U_1-A.
+\end{equation}
+Despu\'es hagamos que el sistema cambie desde el estado $(2)$ de regreso al estado $(1)$ adiab\'aticamente. Esto es posible si el principio de Carath\'eodory no es verdadero. Si el trabajo recibido durante el proceso adiab\'atico es $A^{\prime},$ la primera ley establece que
+\begin{equation}\label{viola2}
+0=U_1-U_2-A^{\prime}.
+\end{equation}
+De \eqref{viola1} y \eqref{viola2}
+\begin{equation}
+Q=-(A+A^{\prime}).
+\end{equation}
+Por lo tanto en el ciclo $(1)\rightarrow (2)\rightarrow (1),$ el sistema absorbe calor, $Q,$ del ambiente y realiza una equivalente cantidad de trabajo $-(A+A^{\prime}).$ Esto es una violaci\'on al principio de Kelvin.
+\subparagraph{}
+La validez del principio de Clausius o Kelvin significa que existe una cantidad de estado, $S,$ y si $T$ es la temperatura absoluta, $dQ/T=dS.$ Para un proceso adiab\'atico, $dQ=0,$ $dS=0$ y como $dS$ es una diferencial total de $S,$ significa que $S=a(\text{constante}).$ Esto es, existe un conjunto de superficies en el espacio de las variables de estado, $(x,y,z).$ Si el estado inicial es $(x_0,y_0,z_0),$ este reside en la superficie definida por $S(x_0,y_0,z_0)=a.$ Por lo tanto todos los cambios adiab\'aticos reversibles que inician en $(x_0,y_0,z_0)$ deben residir en esta superficie y cualquier punto fuera de esta superficie no puede alcanzarse mediante un cambio adiab\'atico reversible. As\'i en cualquier vecindad de un cierto estado $(x_0,y_0,z_0)$ siempre existen estados tales que \'estos no pueden alcanzarse mediante un cambio adiab\'atico. Esto significa que el principio de Carath\'eodory es v\'alido.
+\subparagraph{}
+El principio de Carath\'eodory adem\'as incluye procesos adiab\'aticos irreversibles. Partiendo del principio de Clausius o Kelvin (Thomson) se puede probar que la entrop\'ia, $S,$ aumenta en un proceso adiab\'atico irreversible mediante la desigualdad de Clausius. Por lo tanto, para un estado inicial $(x_0,y_0,z_0),$ los estados que tienen un valor menor de entrop\'ia y entonces residen en un lado de la superficie $S(x,y,z)=S(x_0,y_0,z_0)$ no pueden alcanzarse mediante alg\'un proceso adiab\'atico irreversible. Por consiguiente, podemos afirmar que para cualquier estado existe un estado arbitrariamente cercano que no puede alcanzarse mediante un proceso adiab\'atico reversible o irreversible \cite{KR}.
+\subparagraph{}
+El principio de Carath\'eodory afirma que la equivalencia o accesibilidad adiab\'atica no es posible en los sistemas termodin\'amicos f\'isicos, sino solamente en los sistemas mec\'anicos idealizados \cite{mt}. Este principio es la inducci\'on l\'ogica basada en la observaci\'on f\'isica de la inaccesibilidad de ciertos estados a partir de alguno en particular \cite{MB}.
+
+\subsection{Digresi\'on sobre geometr\'ia subriemanniana}
+El primer teorema en geometr\'ia subriemaniana se debe Carath\'eodory y se relaciona con la termodin\'amica de Carnot. Algunos expertos se refieren a la geometr\'ia subriemaniana como geometr\'ia Carnot-Carath\'eodory. Una geometr\'ia subriemanniana es una variedad dotada con una distribuci\'on y un producto interno de fibras en la distribuci\'on. Distribuci\'on aqu\'i significa una familia de $k-planos,$ esto es un sub-haz lineal del haz tangente de la variedad. Se refiere a la distribuci\'on como el espacio horizontal, y a los objetos tangentes a \'el como \emph{horizontales.} El teorema de Carath\'eodory concierne a distribuciones de corango uno. Una distribuci\'on de corango uno se define localmente mediante una ecuaci\'on Pfaffiana en particular, $\theta=0,$ donde $\theta$ es una \emph{1-forma} no nula. Una distribuci\'on de corango uno se llama \emph{integrable} si a trav\'es de cada punto pasa una hipersuperficie que es tangente en todas partes de la distribuci\'on. La \emph{integrabilidad} es equivalente a la existencia de factores integrantes locales para $\theta,$ esto es, a la existencia de funciones localmente definidas $T$ y $S$ tales que $\theta=TdS.$ En este caso, cualquier trayectoria horizontal que pasa por un punto $A,$ yace dentro de la hipersuperficie $\{S=S(A)\}.$ Como consecuencia, pares de puntos $A, B,$ que yacen en diferentes hipersuperficies no pueden conectarse mediante una trayectoria horizontal. El teorema de Carath\'eodory es lo contrario a este enunciado \cite{RM}.
+\begin{teo}
+Sea $Q$ una variedad conectada y dotada con una distribuci\'on de corango uno. Si en ella existen dos puntos que no pueden conectarse mediante una trayectoria horizontal, entonces la distribuci\'on es integrable.
+\end{teo}
+Carath\'eodory desarroll\'o este teorema a instancias del f\'isico Max Born a fin de derivar la segunda ley de la termodin\'amica y la existencia de la funci\'on de entrop\'ia $S.$ A partir del trabajo de Carnot, Joule y otros ya se sab\'ia que existen estados termodin\'amicos $A, B,$ que no pueden conectarse uno a otro mediante procesos adiab\'aticos, esto es procesos lentos en los cuales no se intercambia calor. Ahora traduzcamos ``proceso adiab\'atico'' por ``curva horizontal''. As\'i la restricci\'on horizontal fue definida por Carath\'eodory como una ecuaci\'on Pfaffiana, $\theta=0.$ La integral de $\theta$ bajo una curva se interpreta como el cambio neto de calor experimentado por el proceso que representa la curva. El teorema de Carath\'eodory, combinado con el trabajo de Carnot, Joule y otros implica la existencia de factores integrantes, tal que $\theta=TdS.$ La funci\'on $S$ es la entrop\'ia y $T$ es la temperatura.
+
+
+
+
+\subsection{Relaciones de Maxwell}
+\paragraph{}
+El hecho de que los potenciales termodin\'amicos tengan diferenciales totales, permite derivar una serie \'util de relaciones entre las variables de estado. El an\'alisis formal esta basado en la igualdad de las derivadas parciales mixtas de las variables de estado en las expresiones que definen las funciones de estado.
+\subparagraph{}
+Una herramienta que permite revisar r\'apidamente los potenciales y sus variables, que llevan a las relaciones de Maxwell es el \emph{rect\'angulo termodin\'amico}, se aplica en particular para sistemas simples con una cantidad de part\'iculas constante. Las variables $V, T, p, S,$ que son las \'unicas posibles al considerar un n\'umero constante de part\'iculas forman los v\'ertices del rect\'angulo. Los bordes denotan los potenciales en funci\'on de las correspondientes variables en los v\'ertices. Con esta representaci\'on es f\'acil leer las derivadas parciales. La derivada de un potencial con respecto a una variable (v\'ertice) est\'a dada por la variable del v\'ertice diagonalmente opuesto, las flechas en la diagonal determinan el signo. Por ejemplo, $\partial F / \partial V = -p, \partial G / \partial p = V.$ Las derivadas de las variables a lo largo de un borde del rect\'angulo, a variable constante en el v\'ertice diagonalmente opuesto, son iguales a la derivada correspondiente a lo largo del otro lado, el signo lo determinan las flechas diagonales, 
+$$\left(\frac{\partial V}{\partial S}\right)_p =  \left(\frac{\partial T}{\partial p}\right)_S$$
+\begin{figure}[H]
+\begin{displaymath}
+\centering
+\xymatrix
+{
+V \ar@{-}[r]^F 	\ar@{-}[d]_U &       T  \ar@{-}[d]^G   \\
+S \ar[ur]       \ar@{-}[r]_H &       p  \ar[ul]    \\
+}
+\end{displaymath}
+\caption{Tri\'angulo termodin\'amico}
+\end{figure}
+
+
+
+\subsection{Pfaff}
+Para ilustrar la idea contenida en las ecuaciones Pfaffianas, a la luz de la geometr\'ia diferencial, recuperamos del libro de Schouten y Koulk \cite{JS} una imagen metaf\'orica y algunas definiciones preliminares pertinentes:
+
+\paragraph{Transformaciones afines.} Consideremos un espacio \emph{n}-dimensional con coordenadas $x^\kappa$, sujeto a las transformaciones del \emph{grupo af\'in}:
+\begin{equation}
+x^{\kappa'}=a^{\kappa'}+A_{\kappa}^{\kappa'}x^{\kappa}; \quad \Delta \stackrel{def}{=}Det(A_{\kappa}^{\kappa'}) \ne 0 \quad (\kappa=1,\dots ,n; \kappa'=1,\dots,n') \label{transf}
+\end{equation}
+con coeficientes constantes $a^{\kappa'},A_{\kappa}^{\kappa'}$. Dado que $\Delta \ne 0$, existe una transformaci\'on inversa
+\begin{equation}
+x^{\kappa}=a^{\kappa}+A_{\kappa'}^{\kappa}x^{\kappa'}; \quad Det(A_{\kappa'}^{\kappa}) = \Delta^{-1} \quad (\kappa'=1',\dots,n').
+\end{equation}
+Todo sistema coordenado $x^{\kappa'}$ que puede formarse desde $x^{\kappa}$ aplicando \eqref{transf} es llamado un \emph{sistema de coordenadas permitido}.
+Un espacio equipado con todos estos sistemas de coordenadas permitidos recibe el nombre de \emph{espacio af\'in}, $E_n$.
+
+\paragraph{Geometr\'ia.}
+Todos los puntos cuyas coordenadas son soluciones de un sistema de $n-p$ ecuaciones lineales, linealmente independientes, en cualquier sistema de coordenadas permitido, forman el \emph{espacio nulo} del sistema. Siempre es posible escoger las coordenadas de tal forma que $n-p$ de estas coordenadas se anulen en el espacio nulo. Todas las transformaciones del grupo af\'in que dejan invariantes estas $n-p$ coordenadas, forman el grupo af\'in en las otras coordenadas $p$. Por lo tanto el espacio nulo es un $E_p$. A tal $E_p$ se le llama \emph{variedad lineal} en $E_n$, o un $E_p$ en $E_n$. Llamamos a un $E_0$ un \emph{punto}, a un $E_1$ una \emph{l\'inea recta}, a un $E_2$ un \emph{plano} y a un $E_{n-1}$ un \emph{hiperplano}.
+
+\paragraph{Cantidades.}
+Una \emph{cantidad} en $E_n$ es una correspondencia entre los sistemas de coordenadas permitidos y los conjuntos ordenados de $N$ n\'umeros sujetos a las condiciones siguientes:
+\begin{itemize}
+\item a cada sistema de coordenadas corresponde un, y s\'olo un, conjunto ordenado de n\'umeros $N$;
+\item si $\Phi_{\Lambda} (\Lambda = 1, \dots ,N),$ y $\Phi_{\Lambda^{'}} (\Lambda^{'} = 1^{'}, \dots, N^{'})$ corresponden a $(\kappa)$ y $(\kappa^{'})$ respectivamente, los $\Phi_{\Lambda^{'}}$ son funciones de los $\Phi_{\Lambda}$ y los $A_{\kappa}^{\kappa^{'}},$ lineales en $\Phi_{\Lambda}$ y algebraicamente homog\'eneos en $A_{\kappa}^{\kappa^{'}}.$
+\end{itemize}
+Se llama \emph{componentes} a los $\Phi_{\Lambda}$ con respecto al sistema coordenado$(\kappa)$. Las cantidades se distinguen por la forma de transformaci\'on de sus componentes. Las cantidades m\'as importantes en $E_n$ son:
+
+\begin{itemize}
+\item Un \emph{escalar} es una cantidad con s\'olo una componente, la cual es invariante con la transformaci\'on.
+\item Un \emph{vector contravariante} es una cantidad con $n$ componentes $\nu^{\kappa}$ y la ley de transformaci\'on
+\begin{equation}
+\nu^{\kappa^{'}}=A_{\kappa}^{\kappa^{'}}\nu^{\kappa}
+\end{equation}
+\item Un vector \emph{covariante} es una cantidad con $n$ componentes $\omega_{\lambda}$ y la ley de transformaci\'on
+\begin{equation}
+\omega_{\lambda^{'}}=A_{\lambda^{'}}^{\lambda}\omega_{\lambda}
+\end{equation}
+Un vector $\omega_{\lambda}$ se representa por dos hiperplanos\footnote{:: significa ``proporcional a''},
+$$u_{\lambda}x^{\lambda}=1, \qquad \nu_{\lambda}x^{\lambda}=1, \qquad u_{\lambda}::\nu_{\lambda},$$
+$$\frac{1}{\omega_{\lambda}}=\frac{1}{u_{\lambda}}-\frac{1}{\nu_{\lambda}}$$
+\end{itemize}
+Un vector se representa por dos puntos, $x^{\kappa}$ y $y^{\kappa}=x^{\kappa}+\nu^{\kappa}$, fijos dentro de la transformaci\'on y con un sentido de $x^{\kappa}$ a $y^{\kappa}$.
+$p$ vectores contravariantes, linealmente independientes, determinan un $\vec{E}_p$, y las direcciones de todos los vectores contravariantes, linealmente dependientes de \'estos $p$ est\'an contenidas en este $\vec{E}_p$. Tal sistema de vectores contravariantes se llama \emph{dominio contravariante} y el $\vec{E}_p$ su \emph{soporte}.
+
+\paragraph{Im\'agenes.}
+\begin{quote}
+En tiempos pasados hab\'ia un esclavo, empacando hojas valiosas para un rey. Pero las empac\'o desordenadamente y las hojas se da\~naron, el rey mand\'o cortar la cabeza del esclavo. Muchos otros esclavos vinieron y corrieron la misma suerte. Finalmente vino uno m\'as inteligente que sus predecesores, empac\'o las hojas delicadamente en capas, y resultaron en una forma que complaci\'o al rey. Aquel esclavo no s\'olo salv\'o su propia vida, sino que fue la primer persona en resolver un problema de Pfaff.
+\end{quote}
+
+Ahora tomemos estas mismas hojas pero muy peque\~nas y muy finas, ``facetas'' infinitesimales digamos, y empaqu\'emoslas tan cerca que haya una ``faceta'' en cada punto del espacio ocupado. Entonces podr\'an ser arregladas de tal manera que formen un sistema de $\infty^1$ superficies en el espacio. \'Este es un empaque eficiente. Pero si el empaque es desordenado, aunque continuo, no es posible construir tales superficies. Ese modo de empaque es condenable si es que tratamos con ``hojas'' valiosas. Las ecuaciones Pfaffianas nos dan la formulaci\'on matem\'atica exacta para manejar todo tipo de empaques, adem\'as se da de una sola vez para cualquier espacio \emph{n}-dimensional. 
+
+\paragraph{}
+Una ecuaci\'on diferencial Pfaffiana 
+
+\begin{equation}
+w_\lambda d \xi^\lambda = 0 \qquad (\lambda=1,2,\dots,n) \label{Pfaff}
+\end{equation}
+
+representa un $E_{n-1}$-campo en un $X_n$, esto es, una $(n-1)$-direcci\'on en cada punto, donde $X_n$ es una \emph{variedad geom\'etrica n-dimensional}. Si escribimos
+
+\begin{equation}
+W_{\mu\lambda} \stackrel{def}{=} \partial_{\mu}w_{\lambda} - \partial_{\lambda}w_{\mu},
+\end{equation}
+
+puede suceder que
+
+\begin{equation}
+W_{\mu\lambda}w_{\nu}+W_{\lambda\nu}w_{\mu}+W_{\nu\mu}w_{\lambda}=0.
+\end{equation}
+en cuyo caso la ecuaci\'on \eqref{Pfaff} se dice completamente integrable o completa, y sus $E_{n-1}$ son tangentes a un sistema de $\infty^1$ $X_{n-1}$ en $X_n$. Si \eqref{Pfaff} no es total, podemos pedir los $X_m$ en $X_n$ tales que la tangente $E_m$ en cada punto reside en la $E_{n-1}$ del campo en este punto.\\
+Al problema de la determinaci\'on de todos los $X_m$ ``envueltos'' lo llamamos el \emph{problema simple de Pfaff}.
+\paragraph{}
+Si consideramos una ecuaci\'on de Pfaff
+\begin{equation}\label{curvaint}
+a^1(x)dx_1 + \dots + a^n(x)dx_n = 0,
+\end{equation}
+en la cual los coeficientes $a^1, \dots, a^n$ son funciones $C^\infty$ con valores reales dentro de un conjunto $\Omega$ de $\mathbf{R}^n$ y no se anulan simult\'aneamente en alg\'un punto $x=(x_1,\dots,x_n)$ de $\Omega$. Una \emph{curva integral} de \eqref{curvaint} es cualquier soluci\'on $x=x(t)$ de la ecuaci\'on diferencial
+$$a^1(x)\frac{dx_1}{dt} + \dots + a^n(x)\frac{dx_n}{dt} = 0,$$
+y una \emph{trayectoria} de \eqref{curvaint} es una curva $C^\infty$ suave, cada tramo $C^\infty$ de una curva integral de \eqref{curvaint}.
+\paragraph{}
+Una curva integral de \eqref{curvaint} es cualquier superficie $(n-1)-$dimensional que envuelve el campo de elementos de superficie definidos por los coeficientes a $a=(a^1, \dots, a^n).$ Cuando $n=2$ los conceptos de superficie y curva integral coinciden, en este caso \eqref{curvaint} es una ecuaci\'on diferencial ordinaria, lo cual implica que a trav\'es de cada punto pasa una sola curva integral de \eqref{curvaint}. Cuando $n>2$ existe una cantidad infinita de curvas integrales de \eqref{curvaint} que pasan a trav\'es de cada punto, sin embargo puede ser que no exista ninguna superficie integral, dado que un campo arbitrario de elementos de superficie no necesariamente poseen una envolvente.
+\paragraph{}
+La ecuaci\'on \eqref{curvaint} es completamente integrable en $\Omega$ si existe una funci\'on $\lambda$ tal que al multiplicarla a \eqref{curvaint} la convierta en la diferencial de alguna funci\'on $\phi$ con $\vec \nabla \phi\neq0$ en $\Omega,$ entonces la ecuaci\'on toma la forma
+$$d\phi(x)=0.$$
+Si \eqref{curvaint} es completamente integrable en $\Omega,$ entonces cualquier miembro de la familia de \emph{superficies uni-param\'etricas}
+\begin{equation}\label{unipara}
+\phi(x)=C, \qquad x\in\Omega,
+\end{equation}
+es una superficie integral de \eqref{curvaint}. De manera inversa, si todo miembro de una familia uni-param\'etrica de superficies, tales como los dados por \eqref{unipara}, es una superficie integral de \eqref{curvaint}, entonces la ecuaci\'on completamente integrable en $\Omega.$ Si \eqref{curvaint} es completamente integrable en $\Omega$ entonces cualquier curva integral de \eqref{curvaint}, y por ende cualquier trayectoria, debe permanecer en la misma superficie de nivel de $\phi$. De esta observaci\'on se sigue que, si \eqref{curvaint} es completamente integrable en $\Omega,$ entonces todo punto $P\in\Omega$ tiene la propiedad de que en toda vecindad de $P$ existen puntos que no pueden conectarse con $P$ mediante trayectorias de \eqref{curvaint} contenidas en $\Omega.$ El inverso de la \'ultima observaci\'on es el teorema de Carath\'eodory.
+\begin{teo}
+Supongamos que en toda vecindad de todo punto $P\in\Omega$ existen puntos que no pueden conectarse con $P$ mediante trayectorias de \eqref{curvaint} contenidas en $\Omega$. Entonces \eqref{curvaint} es completamente integrable en $\Omega$.
+\end{teo}
+Si traducimos el teorema al lenguaje de la termodin\'amica, una consecuencia inmediata es la existencia de entrop\'ia.
+\begin{teo}
+Arbitrariamente cerca de cualquier estado inicial $J_0$ de un sistema f\'isico, existen estados que no son accesibles desde $J_0$ a lo largo de trayectorias adiab\'aticas.
+\end{teo}
+
+\paragraph{}
+Un sistema de $n-p$ ecuaciones de Pfaff linealmente independientes representa un $E_p$-campo en $X_n$. Aqu\'i tenemos dos problemas. El problema \emph{interior} que requiere la determinaci\'on de $X_m$$(m \le p)$ envueltos por los $E_p$ del campo para el valor \emph{m\'aximo} de $m$. El problema \emph{exterior} requiere la determinaci\'on, para el valor \emph{m\'inimo} de $m$, de las envolventes $X_m$$(m \ge p)$, los cuales son los $X_m$ cuya tangente $E_m$ en cada punto contiene la $E_p$ del campo. En esta forma el problema exterior es equivalente al problema de la soluci\'on de un sistema de $p$ ecuaciones diferenciales parciales lineales homog\'eneas linealmente independientes de primer orden con una variable desconocida.\\
+Una ecuaci\'on de Pfaff es del tipo:
+\begin{equation}\label{pfaffeq}
+P \left(x,y,z\right) \frac{dx}{ds} + Q \left(x,y,z\right) \frac{dy}{ds} + R \left(x,y,z\right) \frac{dz}{ds} = 0
+\end{equation}
+y existe una conexi\'on entre una ecuaci\'on Pfaffiana y el sistema de ecuaciones diferenciales de la siguiente forma:
+\begin{equation}
+\frac{dx}{P \left(x,y,z\right)} = \frac{dy}{Q \left(x,y,z\right)} = \frac{dz}{R \left(x,y,z\right)}.
+\end{equation}
+Por ejemplo la ecuaci\'on \eqref{pfaffeq} es ``exactamente integrable'' cuando se cumplen las siguientes condiciones
+\begin{align}
+\frac{\partial P \left(x,y,z\right)}{\partial y} - \frac{\partial Q \left(x,y,z\right)}{\partial x} = 0, \nonumber \\
+\frac{\partial Q \left(x,y,z\right)}{\partial z} - \frac{\partial R \left(x,y,z\right)}{\partial y} = 0, \nonumber \\
+\frac{\partial R \left(x,y,z\right)}{\partial x} - \frac{\partial P \left(x,y,z\right)}{\partial z} = 0
+\end{align}
+y su integral general determina la familia de superficies en el espacio $\mathbf{R}^3$
+$$V\left(x,y,z\right) = constante,$$
+las  cuales son ortogonales a las l\'ineas del campo vectorial
+\begin{equation}\label{vecfi}
+\vec{N} =  \left(P \left(x,y,z\right),Q \left(x,y,z\right),R \left(x,y,z\right)\right).
+\end{equation}
+En el caso m\'as general
+\begin{align}
+P \left(x,y,z\right)\left(\frac{\partial Q \left(x,y,z\right)}{\partial z} - \frac{\partial R \left(x,y,z\right)}{\partial y}\right) +\nonumber \\
+Q \left(x,y,z\right)\left(\frac{\partial R \left(x,y,z\right)}{\partial x} - \frac{\partial P \left(x,y,z\right)}{\partial z}\right) +\nonumber \\
+R \left(x,y,z\right)\left(\frac{\partial R \left(x,y,z\right)}{\partial y} - \frac{\partial Q \left(x,y,z\right)}{\partial x}\right) = 0
+\end{align}
+la ecuaci\'on \eqref{pfaffeq}
+\begin{equation}
+\mu \left( P\left(x,y,z\right)dx + Q\left(x,y,z\right)dy + R\left(x,y,z\right)dz \right) = dU\left(x,y,z\right)
+\end{equation}
+tambi\'en es integrable mediante un ``multiplicador o denominador integrante'' $\mu$ que determina una familia de superficies $U\left(x,y,z\right) = constante$ que pasan por cada punto del espacio y son ortogonales al campo vectorial \eqref{vecfi}.\\
+El campo vectorial \eqref{vecfi} en el espacio $\mathbf{R}^3$ con las condiciones
+\begin{equation}
+\left( A \cdot \nabla \times A \right) = 0
+\end{equation}
+se denomina \emph{holon\'omico.}
+Las aplicaciones f\'isicas cl\'asicas se restringen a los casos donde la dimensi\'on Pfaffiana es menor o igual a 2, tales son los casos en los que se tiene un dominio de \emph{integrabilidad \'unica}.
+
+\begin{teo}
+Si $D_{i,j}f$ y $D_{j,i}f$ son continuas en un conjunto abierto que contiene $a$, entonces
+$$D_{i,j}f(a)=D_{j,i}f(a).$$
+\end{teo}
+El mapa $D_{i,j}f$ es una \emph{derivada parcial mixta de segundo orden.} 
+
+\subsection{Ecuaciones diferenciales totales en tres variables}\label{exem}
+\paragraph{}
+Presentamos el ``m\'etodo de integraci\'on'' para ecuaciones diferenciales de tres variables expuesto por Forsyth \cite{For} y Page \cite{PA}. Dada una ecuaci\'on en tres variables, 
+\begin{equation}\label{3var}
+F(x,y,z,c)=0,
+\end{equation}
+podemos encontrar diferenciando
+$$\frac{\partial{F}}{\partial{x}}dx + \frac{\partial{F}}{\partial{y}}dy + \frac{\partial{F}}{\partial{z}}dz = 0,$$
+donde $c$ se ha eliminado por el hecho de $F=0$. Este resultado lo podemos expresar como una \emph{ecuaci\'on diferencial total:}
+\begin{equation}\label{pfafflong}
+P(x,y,z)dx+Q(x,y,z)dy+R(x,y,z)dz=0.
+\end{equation}
+Si se resuelve \eqref{3var} en t\'erminos de $c$ de la forma
+\begin{equation}\label{condition1}
+\Omega(x,y,z)=c,
+\end{equation}
+y la diferenciamos,
+\begin{equation}\label{exact}
+d\Omega=\frac{\partial{\Omega}}{\partial{x}}dx + \frac{\partial{\Omega}}{\partial{y}}dy + \frac{\partial{\Omega}}{\partial{z}}dz = 0,
+\end{equation}
+Llamamos \emph{diferencial exacta} a la ecuaci\'on \eqref{exact} y debe ser equivalente a \eqref{pfafflong}, dado que $\Omega=c$ es equivalente a $F=0$. As\'i, dada una ecuaci\'on de la forma \eqref{pfafflong}, es posible reducirla a una forma exacta \eqref{exact} si y s\'olo si se cumplen ciertas condiciones. Esto es, debe existir una funci\'on $\mu(x,y,z)$ tal que,
+\begin{equation}\label{factor}
+\frac{\partial{\Omega}}{\partial{x}}=\mu(x,y,z)P,\qquad\frac{\partial{\Omega}}{\partial{y}}=\mu(x,y,z)Q,\qquad\frac{\partial{\Omega}}{\partial{z}}=\mu(x,y,z)R;
+\end{equation} 
+y como se deben cumplir las siguientes igualdades, 
+\begin{equation*}
+\frac{\partial^2{\Omega}}{\partial{y}\partial{x}}=\frac{\partial^2{\Omega}}{\partial{x}\partial{y}}, \qquad \frac{\partial^2{\Omega}}{\partial{x}\partial{z}}=\frac{\partial^2{\Omega}}{\partial{z}\partial{x}},\qquad \frac{\partial^2{\Omega}}{\partial{y}\partial{z}}=\frac{\partial^2{\Omega}}{\partial{z}\partial{y}},
+\end{equation*}
+en t\'erminos del factor $\mu$,
+\begin{equation*}
+\frac{\partial}{\partial{y}}(\mu P)=\frac{\partial}{\partial{x}}(\mu Q), \qquad \frac{\partial}{\partial{z}}(\mu P)=\frac{\partial}{\partial{x}}(\mu R), \qquad \frac{\partial}{\partial{z}}(\mu Q)=\frac{\partial}{\partial{y}}(\mu R),
+\end{equation*}
+podemos obtener de \eqref{factor}, 
+\begin{align}
+\mu \left(\frac{\partial{P}}{\partial{y}}-\frac{\partial{Q}}{\partial{x}}\right)=Q\frac{\partial{\mu}}{\partial{x}}-P\frac{\partial{\mu}}{\partial{y}},\nonumber \\
+\mu \left(\frac{\partial{Q}}{\partial{z}}-\frac{\partial{R}}{\partial{y}}\right)=R\frac{\partial{\mu}}{\partial{y}}-Q\frac{\partial{\mu}}{\partial{z}},\nonumber \\
+\mu \left(\frac{\partial{R}}{\partial{x}}-\frac{\partial{P}}{\partial{z}}\right)=P\frac{\partial{\mu}}{\partial{z}}-R\frac{\partial{\mu}}{\partial{x}},\nonumber
+\end{align}
+si ahora multiplicamos estas ecuaciones por $R,P,Q$ respectivamente y luego las sumamos, encontraremos como \emph{primera condici\'on}, que \eqref{pfafflong} deba tener una integral general de la forma \eqref{condition1}, calculando,
+\begin{equation}\label{condizione}
+P\left(\frac{\partial{Q}}{\partial{z}}-\frac{\partial{R}}{\partial{y}}\right)+
+Q\left(\frac{\partial{R}}{\partial{x}}-\frac{\partial{P}}{\partial{z}}\right)+
+R\left(\frac{\partial{P}}{\partial{y}}-\frac{\partial{Q}}{\partial{x}}\right)=0.
+\end{equation}
+\subparagraph{}
+En t\'erminos geom\'etricos, \eqref{condizione} nos define el plano tangente a \eqref{3var}, su vector normal es el campo $\vec F = (P,Q,R),$ multiplicado por $d\vec r=(dx,dy,dz),$ que si las consideramos como diferencias finitas, esto es $(x-x_0,y-y_0,z-z_0)$ nos define precisamente la ecuaci\'on ``normal'' del plano tangente en un punto $P_0(x_0,y_0,z_0).$
+\subparagraph{}
+Expresado en el lenguaje del an\'alisis vectorial, \eqref{condizione} es equivalente a las condiciones de integrabilidad expresadas en una forma mucho m\'as elegante por Sommerfeld como $\vec F_0 \cdot \vec \nabla \times \vec F_0 = 0.$
+\paragraph{}
+As\'i al cumplirse estas condiciones, una ecuaci\'on del tipo \eqref{pfafflong} puede obtenerse a partir de una ecuaci\'on del tipo\eqref{condition1}. \'Estas condiciones se satisfacen si las variables en \eqref{pfafflong} pueden separarse de tal manera que $P,Q$ y $R$ contengan \'unicamente las variables $x,y$ y $z$ respectivamente; en tal caso la integral general de \eqref{pfafflong} estar\'a dada en la forma
+$$\int P(x)dx+ \int Q(y)dy+ \int R(z)dz=constante.$$
+\paragraph{}
+En ocasiones la ecuaci\'on \eqref{pfafflong} puede convertirse en una ecuaci\'on exacta mediante un factor integrante.
+\paragraph{} 
+En el caso de que las variables en \eqref{pfafflong} no puedan separarse por inspecci\'on directa y tampoco sea posible encontrar un factor integrante adecuado, el m\'etodo para integrar una ecuaci\'on del tipo \eqref{pfafflong} es como sigue:\\
+Como la condici\'on \eqref{condizione} se satisface, existe la integral general de \eqref{pfafflong} de la forma \eqref{condition1}, que al ser diferenciada totalmente, conduce a una ecuaci\'on equivalente a \eqref{pfafflong}. As\'i, considerando a una de las variables en \eqref{condition1}, $x$ digamos, temporalmente constante; entonces la ecuaci\'on resultante al diferenciar totalmente a \eqref{condition1} tendr\'a la forma
+\begin{equation}\label{pfaffshort1}
+Qdy+Rdz=0
+\end{equation}
+Ahora la integral general de la ecuaci\'on diferencial ordinaria en dos variables \eqref{pfaffshort1} incluir\'a la integral general de \eqref{pfafflong}, si en lugar de introducir una constante de integraci\'on arbitraria, introducimos una funci\'on de $x$ arbitraria. Para determinar la \emph{forma} de esta funci\'on de $x$, es necesario diferenciar la integral general de \eqref{pfaffshort1}, considerando $x$ tambi\'en como variable y luego comparar la ecuaci\'on direrencial total resultante con \eqref{pfafflong}. Esto nos conduce a una segunda ecuaci\'on diferencial ordinaria a partir de la cual es posible determinar la funci\'on arbitraria en $x$.\\
+La opci\'on de la variable a considerar como constante depende de la facilidad de integraci\'on de \eqref{pfaffshort1}, en ocasiones ser\'a m\'as f\'acil integrar alguna de las siguientes ecuaciones
+$$Pdx+Rdz=0 \qquad Pdx+Qdy=0$$
+que resultan de considerar a $y,z$ respectivamente como constantes, que integrar \eqref{pfaffshort1}.
+\paragraph{}
+Introduciremos algunos ejemplos para ver la parte operativa de lo arriba mencionado, para tal efecto, integraremos las ecuaciones propuestas despu\'es de verificar que las condiciones \eqref{condizione} se satisfacen para cada ecuaci\'on dada:
+\paragraph{Ejemplo 1}
+\begin{equation}\label{ex1}
+xzdx+zydy=(x^2+y^2)dz
+\end{equation}
+Primero verificamos las condiciones \eqref{condizione},
+\begin{align*}
+&\frac{\partial P}{\partial y} = 0, &\frac{\partial P}{\partial z} &= x,\\
+&\frac{\partial Q}{\partial x} = 0, &\frac{\partial Q}{\partial z} &= y,\\
+&\frac{\partial R}{\partial x} = -2x, &\frac{\partial R}{\partial y} &= -2y,
+\end{align*}
+luego multiplicando cada diferencia de t\'erminos por su correspondiente coeficiente de acuerdo a \eqref{condizione} tenemos
+$$xz(y+2y)+zy(-2x-x)+(0)(x^2+y^2)=0,$$
+as\'i, las condiciones se satisfacen. Ahora suponemos $z=constante$, integramos \eqref{ex1}, el t\'ermino correspondiente a $dz$ se anula e introducimos una funci\'on arbitraria de $z$
+$$xdx+ydy=0$$
+\begin{equation}\label{arbitrary}
+\frac{1}{2}x^2+\frac{1}{2}y^2=\phi (z)
+\end{equation}
+diferenciamos totalmente esta ecuaci\'on
+$$xdx+ydy=\frac{d\phi (z)}{dz}dz$$
+que al compararla con \eqref{ex1} nos determina la igualdad
+$$\frac{x^2+y^2}{z}=\frac{d\phi(z)}{dz}$$
+a partir de \eqref{arbitrary} tenemos
+$$\frac{2\phi}{z}=\frac{d\phi}{dz}$$
+la cual puede separarse y resolverse como ecuaci\'on diferencial ordinaria en dos variables
+$$\int \frac{d\phi}{\phi} = 2 \int \frac{dz}{z}$$
+integr\'andola
+$$\ln \phi(z) = 2 \ln z + C_1 \Rightarrow \phi(z) = C_2z^2$$
+finalmente, sustituyendo en \eqref{arbitrary}
+$$\frac{1}{2}x^2+\frac{1}{2}y^2 = C_2z^2$$
+nos da la \emph{forma} de la soluci\'on general
+$$\frac{x^2+y^2}{z^2} = C$$
+\begin{maximacmd}
+   plot3d([x,y,sqrt((x^2+y^2)/10)],[x,-50,50],[y,-50,50],
+    [plot_format, gnuplot],
+    [run_viewer,true],
+    [gnuplot_preamble,"set terminal png; set output 'grafico1.png' "],
+    [gnuplot_pm3d, true]);
+\end{maximacmd}
+
+\begin{figure}
+   \IfFileExists{grafico1.png}{\includegraphics[scale=0.50]{grafico1.png}}{}
+\caption{Ejemplo de superficie adiab\'atica, $\sigma(x,y,z)=c,$ soluci\'on de la Pfaffiana $dQ\equiv0.$}
+\end{figure}
+
+
+
+\subparagraph{}
+Podemos ver que operativamente las condiciones \eqref{condizione} pueden ser expresadas en t\'erminos vectoriales como
+\begin{equation}\label{curl}
+\vec F \cdot \vec \nabla \times \vec F = 0,
+\end{equation}
+de donde tenemos que $\vec \nabla \times \vec F = \vec 0$ es una condici\'on suficiente, mas no necesaria para encontrar una \emph{forma integral} del tipo \eqref{condition1}. Podr\'iamos vernos tentados a aplicar una identidad vectorial tipo
+$$\vec a \cdot \vec b \times \vec c = \vec b \cdot \vec c \times \vec a$$
+sin embargo, $\vec \nabla$ es un operador diferencial,
+$$\vec F \cdot \vec \nabla \times \vec F = \vec \nabla \cdot \vec F \times \vec F + \vec F \cdot \vec \nabla \times \vec F,$$
+as\'i que no puede ser tratado formalmente como un vector, por lo tanto la relaci\'on \eqref{curl} no es trivial.
+\paragraph{Ejemplo 2}
+\begin{equation}\label{ex2}
+(x-3y-z)dx+(2y-3x)dy+(z-x)dz=0
+\end{equation}
+checamos que se cumplan las condiciones \eqref{condizione}
+\begin{align*}
+\frac{\partial P}{\partial y} = -3, & \qquad \frac{\partial P}{\partial z} = -1,\\
+\frac{\partial Q}{\partial x} = -3, & \qquad \frac{\partial Q}{\partial z} = 0,\\
+\frac{\partial R}{\partial x} = -1, & \qquad \frac{\partial R}{\partial y} = 0,
+\end{align*}
+$$(x-3y-z)(0)+(2y-3x)(-1+1)+(z-x)(-3+3)=0,$$
+tomamos $x=constante$, entonces integramos
+\begin{align}
+(2y-3x)dy+(z-x)dz=0, \nonumber \\
+y^2-3xy+\frac{1}{2}z^2-xz=\phi(x), \nonumber
+\end{align}
+diferenciamos totalmente
+$$(2ydy-3xdy)-(3ydx-zdx)+(z-x)dz=\frac{d\phi}{dx}dx,$$
+comparamos con la ecuaci\'on original \eqref{ex2} y encontramos finalmente la forma integral
+\begin{align}
+\frac{d\phi}{dx}=-x,\qquad \Rightarrow \phi(x)=-\frac{1}{2}x^2, \nonumber \\
+x^2+y^2-6xy+z^2-2xz=C. \nonumber \\ 
+\end{align}
+
+
+\paragraph{Ejemplo 3}
+\begin{equation}\label{ex3}
+ay^2z^2dx+bx^2z^2dy+cx^2y^2dz=0
+\end{equation}
+checamos que se cumplan las condiciones \eqref{condizione}
+\begin{align*}
+\frac{\partial P}{\partial y} = 2ayz^2, \qquad \frac{\partial P}{\partial z} = 2ay^2z,\\
+\frac{\partial Q}{\partial x} = 2bxz^2, \qquad \frac{\partial Q}{\partial z} = 2bx^2z,\\
+\frac{\partial R}{\partial x} = 2cxy^2, \qquad \frac{\partial R}{\partial y} = 2cx^2y,
+\end{align*}
+escogemos un factor integrante 
+\begin{equation*}
+\mu=\left(\frac{1}{x^2y^2z^2}\right)
+\end{equation*}
+y lo multiplicamos a la ecuaci\'on \eqref{ex3}, as\'i tenemos la ecuaci\'on equivalente integrable
+$$a\int \frac{dx}{x^2}+b\int \frac{dy}{y^2}+c\int \frac{dz}{z^2}=0$$
+integrando esta ecuaci\'on obtenemos finalmente la forma integral
+$$\frac{a}{x}+\frac{b}{y}+\frac{d}{z}=C$$
+\begin{maximacmd}
+   plot3d([x,y,(1/(1-(2/x)-(3/y)))],[x,-5,5],[y,-5,5],
+    [plot_format, gnuplot],
+    [run_viewer,true],
+    [gnuplot_preamble,"set terminal png; set output 'grafico3.png' "],
+    [gnuplot_pm3d, true]);
+\end{maximacmd}
+\begin{figure}
+   \IfFileExists{grafico3.png}{\includegraphics[scale=0.50]{grafico3.png}}{}
+\caption{Solamente los puntos que pertenecen a la superficie son adiab\'aticamente accesibles; algunos puntos cr\'iticos.}
+\end{figure}
+
+
+\paragraph{Ejemplo 4}
+\begin{equation}\label{ex4}
+(y+a)^2dx+zdy-(y+a)dz=0
+\end{equation}
+checamos que se cumplan las condiciones \eqref{condizione}
+\begin{align*}
+\frac{\partial P}{\partial y} = 2(y+a), & \qquad \frac{\partial P}{\partial z} = 0,\\
+\frac{\partial Q}{\partial x} = 0, & \qquad \frac{\partial Q}{\partial z} = 1,\\
+\frac{\partial R}{\partial x} = 0, & \qquad \frac{\partial R}{\partial y} = -1,
+\end{align*}
+$$-(y+a)^2(2)+z(0)+(y+a)(2(y+a))=0,$$
+tomamos $y=constante$, entonces integramos
+\begin{equation*}
+dx-\frac{1}{y+a}dz = 0,\\
+x-\frac{z}{y+a} = \phi(y)\label{ejem4},
+\end{equation*}
+diferenciamos totalmente y reducimos el factor com\'un
+\begin{align*}
+dx+\frac{z}{(y+a)^2}dy-\frac{1}{y+a}dz=\frac{d\phi}{dy}dy,\\
+(y+a)^2dx+zdy-(y+a)dz=(y+a)^2\frac{d\phi}{dy}dy,\\
+\end{align*}
+comparamos con la ecuaci\'on original \eqref{ex4} y encontramos finalmente una soluci\'on general y una gr\'afica de una soluci\'on particular
+
+\begin{align*}
+(y+a)^2\frac{d\phi}{dy}dy&=0,\\
+\frac{d\phi}{dy}=0, \quad&\Rightarrow \quad \phi(y)=C,
+\end{align*}
+comparamos la \'ultima ecuaci\'on con \eqref{ejem4}
+\begin{equation}
+x=C+\frac{z}{y+a}.
+\end{equation}
+\begin{maximacmd}
+   plot3d([x,y,((x-1)*(y-5))],[x,-20,20],[y,-20,20],
+    [plot_format, gnuplot],
+    [run_viewer,true],
+    [gnuplot_preamble,"set terminal png; set output 'grafico4.png' "],
+    [gnuplot_pm3d, true]);
+\end{maximacmd}
+\begin{figure}
+   \IfFileExists{grafico4.png}{\includegraphics[scale=0.50]{grafico4.png}}{}
+\caption{Representaci\'on de una superficie adiab\'atica como soluci\'on de una ecuaci\'on Pfaffiana de tres variables independientes.}
+\end{figure}
+
+
+\paragraph{Ejemplo 5}
+\begin{equation}\label{ex5}
+(y^2+yz)dx+(xz+z^2)dy+(y^2-xy)dz=0
+\end{equation}
+checamos que se cumplan las condiciones \eqref{condizione}
+\begin{align*}
+&\frac{\partial P}{\partial y} = 2y+z,   &\frac{\partial P}{\partial z} &= y,\\
+&\frac{\partial Q}{\partial x} = z,   &\frac{\partial Q}{\partial z} &= x+2z,\\
+&\frac{\partial R}{\partial x} = -y,   &\frac{\partial R}{\partial y} &= -x+2y,
+\end{align*}
+$$(y^2+yz)(x+2z+x-2y)+(xz+z^2)(-y-y)+(y^2-xy)(2y+z-z)=0,$$
+tomamos $z=constante$, entonces separamos variables e integramos mediante fracciones parciales
+\begin{align*}
+\int \frac{dx}{x+z} +& \int \frac{zdy}{y(y+z)}dz = 0,\\
+&\frac{y(x+z)}{y+z} = \phi(z),
+\end{align*}
+diferenciamos totalmente, agrupamos t\'erminos y reducimos el factor com\'un
+\begin{align*}
+&\frac{y}{y+z}dx + \frac{x}{y+z}dy - \frac{xy}{(y+z)^2}dy\\
+&+\frac{z}{y+z}dy - \frac{yz}{(y+z)^2}dy - \frac{xy}{(y+z)^2}dz\\
+&+\frac{y}{y+z}dz - \frac{yz}{(y+z)^2}dz = \frac{d\phi}{dz}dz,
+\end{align*}
+comparamos con la ecuaci\'on original \eqref{ex5}, encontramos finalmente una soluci\'on general y una gr\'afica de una soluci\'on particular
+\begin{align*}
+(y+z)^2&\frac{d\phi}{dz}dz=0,\\
+\frac{d\phi}{dz}=0, \quad&\Rightarrow \quad \phi(z)=C,\\
+y(x+z)&=C(y+z)
+\end{align*}
+\begin{maximacmd}
+   plot3d([x,y,y*(5-x)/(y-5)],[x,-20,20],[y,-20,20],
+    [plot_format, gnuplot],
+    [run_viewer,true],
+    [gnuplot_preamble,"set terminal png; set output 'grafico5.png' "],
+    [gnuplot_pm3d, true]);
+\end{maximacmd}
+\begin{figure}
+   \IfFileExists{grafico5.png}{\includegraphics[scale=0.50]{grafico5.png}}{}
+\caption{Superficie adiab\'atica, con comportamiento particular sobre una l\'inea determinada por una ecuaci\'on Pfaffiana.}
+\end{figure}
+
+\paragraph{Ejemplo 6}
+\begin{equation}\label{ex6}
+(y+z)dx+dy+dz=0
+\end{equation}
+checamos que se cumplan las condiciones \eqref{condizione}
+\begin{align*}	
+\frac{\partial P}{\partial y} = 1, & \qquad \frac{\partial P}{\partial z} = 1,\\
+\frac{\partial Q}{\partial x} = 0, & \qquad \frac{\partial Q}{\partial z} = 0,\\
+\frac{\partial R}{\partial x} = 0, & \qquad \frac{\partial R}{\partial y} = 0,
+\end{align*}
+$$(y+z)(0)+(-1)+(1)=0,$$
+tomamos $x=constante$, entonces integramos
+\begin{align*}
+dy+dz = 0,\\
+y+z = \phi(x),
+\end{align*}
+diferenciamos totalmente,
+\begin{align*}
+dy + dz = \frac{d\phi}{dx}dx,
+\end{align*}
+comparamos con la ecuaci\'on original \eqref{ex6}, encontramos finalmente una soluci\'on general y una gr\'afica de una soluci\'on particular
+
+\begin{align*}
+-\frac{d\phi}{dx} &= y+z,\\
+\frac{d\phi}{\phi} &= -dx,\\
+\ln \phi = -x+C \quad &\Rightarrow \quad \phi(x)=C\exp -x,\\
+(\exp x)&(y+z)=C.
+\end{align*}
+\begin{maximacmd}
+   plot3d([x,y,-y+(1/exp(x))],[x,-5,5],[y,-5,5],
+    [plot_format, gnuplot],
+    [run_viewer,true],
+    [gnuplot_preamble,"set terminal png; set output 'grafico6.png' "],
+    [gnuplot_pm3d, true]);
+\end{maximacmd}
+\begin{figure}
+   \IfFileExists{grafico6.png}{\includegraphics[scale=0.50]{grafico6.png}}{}
+\caption{Superficie adiab\'atica c\'oncava.}
+\end{figure}
+
+
+\paragraph{Ejemplo 7}
+\begin{equation}\label{ex7}
+yzdx=xzdy+y^2dz
+\end{equation}
+checamos que se cumplan las condiciones \eqref{condizione}
+\begin{align*}
+\frac{\partial P}{\partial y} = z, & \qquad \frac{\partial P}{\partial z} = y,\\
+\frac{\partial Q}{\partial x} = -z, & \qquad \frac{\partial Q}{\partial z} = -x,\\
+\frac{\partial R}{\partial x} = 0, & \qquad \frac{\partial R}{\partial y} = -2y,
+\end{align*}
+$$(yz)(-x+2y)-(xz)(-y)-y^2(2z)=0,$$
+tomamos $x=constante$, entonces integramos
+\begin{align}\label{ex7bis}
+xzdy+y^2dz = 0,\nonumber\\
+\frac{\ln z}{x}-\frac{1}{y} = \phi(x),
+\end{align}
+diferenciamos totalmente y reducimos t\'erminos,
+\begin{align*}
+\frac{d\phi}{dx}+\frac{1}{x}\phi(x) =0,
+\end{align*}
+esta es una ecuaci\'on diferencial lineal ordinaria que acepta un factor integrante 
+$$\mu(x)=\exp\int\frac{1}{x}dx=x,$$
+as\'i resolvemos para $\phi(x)$ y finalmente completamos la soluci\'on al igualar este resultado con \eqref{ex7bis}
+\begin{align*}
+\phi(x) = \frac{C}{x},\\
+\frac{x}{y}-\ln z = C.\\
+\end{align*}
+\begin{maximacmd}
+   plot3d([x,y,exp((x/y)-1)],[x,-0.02,0.02],[y,0.015,.2],
+    [plot_format, gnuplot],
+    [run_viewer,true],
+    [gnuplot_preamble,"set terminal png; set output 'grafico7.png' "],
+    [gnuplot_pm3d, true]);
+\end{maximacmd}
+\begin{figure}
+   \IfFileExists{grafico7.png}{\includegraphics[scale=0.50]{grafico7.png}}{}
+\caption{Superficie adiab\'atica con comportamiento particular.}
+\end{figure}
+
+
+\paragraph{Ejemplo 8}
+\begin{equation}\label{ex8}
+(2x^2+2xy+2xz^2+1)+dy+2zdz=0
+\end{equation}
+checamos que se cumplan las condiciones \eqref{condizione}
+\begin{align*}
+\frac{\partial P}{\partial y} = 2x, & \qquad \frac{\partial P}{\partial z} = 4xz,\\
+\frac{\partial Q}{\partial x} = 0, & \qquad \frac{\partial Q}{\partial z} = 0,\\
+\frac{\partial R}{\partial x} = 0, & \qquad \frac{\partial R}{\partial y} = 0,
+\end{align*}
+$$-4xz+2z(2x)=0,$$
+tomamos $y=constante$, entonces tenemos
+\begin{align}\label{ex8bis}
+(2x^2+2xy+2xz^2+1)dx+2zdz=0,
+\end{align}
+que al multiplicarla por el factor integrante $\exp(x^2),$ se convierte en una ecuaci\'on diferencial exacta del tipo\footnote{consideramos $y$ constante}
+$$M(x,z)dx+N(x,z)dz=0$$
+Integramos $N(x,z)$ respecto a $z$ y encontramos una ecuaci\'on en dos variables con una funci\'on arbitraria de $x,$
+\begin{equation}\label{integr}
+f(x,z)=z^2\exp(x^2) + \phi(x),
+\end{equation}
+diferenciamos parcialmente \eqref{integr} respecto a $x$, comparamos con \eqref{ex8bis} y reducimos t\'erminos semejantes, as\'i tenemos
+$$\frac{d\phi(x)}{dx}=\exp(x^2)(2x^2+2xy+1),$$
+que integramos, primero por partes y por sustituci\'on despu\'es, e introducimos una funci\'on arbitraria de $y$ en lugar de una constante de integraci\'on para sustituir este resultado en nuestra funci\'on \eqref{integr}
+\begin{align}\label{fin}
+\phi(x)=x\exp(x^2)+y\exp(x^2)+\phi(y),\nonumber\\
+f(x,z)=\exp(x^2)(x+y+z^2)+\phi(y),
+\end{align}
+ahora nos resta diferenciar totalmente \eqref{fin} y compararla con la ecuaci\'on original \eqref{ex8} para determinar el valor de $\phi(y)$. Al comparar el resultado de diferenciar totalmente \eqref{fin} con \eqref{ex8} obtenemos
+$$\frac{d\phi(y)}{dy}=0$$
+por lo tanto la forma de integral de la ecuaci\'on original \eqref{ex8} es
+$$\exp(x^2)(x+y+z^2)=C$$
+\begin{maximacmd}
+   plot3d([x,y,sqrt(1/exp(x^2)-x-y)],[x,-2,2],[y,-2,2],
+    [plot_format, gnuplot],
+    [run_viewer,true],
+    [gnuplot_preamble,"set terminal png; set output 'grafico8.png' "],
+    [gnuplot_pm3d, true]);
+\end{maximacmd}
+\begin{figure}
+   \IfFileExists{grafico8.png}{\includegraphics[scale=0.50]{grafico8.png}}{}
+\caption{Superficie adiab\'atica.}
+\end{figure}
+
+\begin{maximacmd}
+load(draw);
+draw3d(key="Rama positiva", color = blue,
+	explicit(x+sqrt(6*x*y-y^2),x,-10,10,y,-10,10),
+       yv_grid = 20, color   = red, key="Rama negativa",
+	explicit(x-sqrt(6*x*y-y^2),x,-10,10,y,-10,10),
+	file_name= "grafico9",
+	terminal = 'png);
+\end{maximacmd}
+\begin{figure}
+   \IfFileExists{grafico9.png}{\includegraphics[scale=0.50]{grafico9.png}}{}
+\caption{Superficies adiab\'aticas: dos posibles soluciones a ecuaci\'on cuadr\'atica de una Pfaffiana en tres variables.}
+\end{figure}
+
+\subsection{Definiciones}
+\begin{defi}
+Llamamos a un conjunto de valores $\{x^1, x^2, \dots, x^n\}$ un \emph{punto}. Las variables $x^1, x^2, \dots, x^n$ son sus \emph{coordenadas}. La totalidad de los puntos que corresponden a todos los valores de las coordenadas dentro de ciertos rangos constituyen un \emph{espacio n-dimensional}, $E_n$. 
+Otras etiquetas tales como \emph{hiperespacio, variedad} tambi\'en se utilizan para evitar confusiones con el com\'un uso del t\'ermino ``espacio''. $E_{n-1}$ es una \emph{hipersuperficie}.
+\end{defi}
+
+\begin{defi}
+Una \emph{curva} se define como la totalidad de puntos dados por las ecuaciones
+\begin{equation}
+x^r=f^r(u) \qquad (r=1,2,\dots,n)
+\end{equation}
+donde $u$ es un par\'ametro y $f^r$ son \emph{n-funciones.}
+\end{defi}
+
+\begin{defi}
+Una \emph{funci\'on} $f$ es el conjunto de tres cosas:
+\begin{itemize}
+\item un conjunto $X$ llamado el \emph{dominio} de $f$,
+\item un conjunto $Y$ llamado el \emph{rango} de $f$,
+\item una regla que asigna a cada elemento de $X$ un elemento correspondiente en $Y$
+\end{itemize}
+$$f:X \rightarrow Y$$
+\end{defi}
+\paragraph{}
+Un principio b\'asico en f\'isica nos dice que un sistema se comporta de la misma manera, sin importar las coordenadas que utilicemos para describirlo. Sin embargo, ning\'un sistema coordenado puede ser utilizado en todas partes al mismo tiempo, en esta arbitrariedad en la elecci\'on del sistema de coordenadas reside la \emph{teor\'ia de variedades}. La teor\'ia de curvas en el espacio euclidiano nos permite entender m\'as f\'acilmente el papel que juegan los grupos de transformaciones en geometr\'ia y, en particular, el hecho fundamental de que los mismos conceptos geom\'etricos son invariantes diferenciales de ciertos grupos \cite{AE}. Las variedades son la generalizaci\'on de nuestras ideas acerca de curvas y superficies hacia objetos dimensionales arbitrarios. Una \emph{curva} y una \emph{superficie} se consideran \emph{localmente} homeom\'orficas a $R$ y $\mathbf{R}^2$, respectivamente. Una variedad en general es un espacio topol\'ogico homeom\'orfico a $\mathbf{R}^m$ \emph{localmente}; puede ser diferente a $\mathbf{R}^m$ \emph{globalmente}. El homeomorfismo local nos permite dotar a cada punto en una variedad, de un conjunto de $m$ n\'umeros llamados  coordenadas locales. Si la variedad es no homeom\'orfica a $\mathbf{R}^m$ \emph{globalmente}, es necesario introducir algunas coordenadas locales. As\'i que es posible que un punto tenga dos o m\'as coordenadas. Es necesario que la transici\'on de una coordenada a otra sea \emph{suave.} Tal como la topolog\'ia se basa en el concepto de \emph{continuidad}, as\'i la teor\'ia de variedades se basa en el concepto de \emph{suavidad} \cite{NA}.
+\paragraph{}
+Existe una variedad que describe el comportamiento local de curvas no parametrizadas, \emph{haz de contacto}\footnote{Contact bundle}, de la misma forma que el \emph{haz tangente} curvas parametrizadas. Existe tambi\'en un haz de contacto, an\'alogo al haz cotangente que representa la direcci\'on de los gradientes locales de funciones sin tomar en cuenta su intensidad. Existen muchos otros haces de contacto que representan el C\'alculo de los mapeos \emph{n-dimensionales.}
+\begin{defi}
+Un subconjunto de $\mathbf{R}^n$ se llama \emph{convexo} si contiene a cualquier segmento que una un par de puntos.
+\end{defi}
+\begin{defi}
+\emph{Espacio de estados con estructura convexa}, significa un espacio de estados $\Gamma$, el cual es un subconjunto convexo de un espacio lineal, e.g. $\emph{R}^n$. Esto es, si $X$ y $Y$ son dos puntos cualquiera en $\Gamma$ y $0 \leq t \leq 1$, entonces el punto $tX+(1-t)Y$ est\'a bien definido en $\Gamma$. Una \emph{funci\'on c\'oncava}, $S$, en $\Gamma$ satisface la desigualdad
+$$S(tX+(1-t)Y)\geq tS(X)+(1-t)S(Y).$$
+\end{defi}
+\begin{defi}
+Sea $X$ un subconjunto de $\mathbf{R}^n$, sea $x$ un punto de $X,$ y $r$ un n\'umero real positivo. Definiremos el \emph{entorno} de $x$ en $X$ de radio $r$ como el conjunto de todos los puntos de $X$ cuya distancia a $x$ es menor que $r$.
+\end{defi}
+\begin{defi}
+Sea $X$ cualquier conjunto y $\Upsilon=\{U_i \in I\}$ represente cierta colecci\'on de subconjuntos de $X$. El par $(X,\Upsilon)$ es un \emph{espacio topol\'ogico} si $\Upsilon$ satisface los siguientes requerimientos.
+\begin{itemize}
+\item $\emptyset, X \in \Upsilon$.
+\item Si $J$ es cualquier subcolecci\'on (posiblemente infinita) de $I$, la familia $\{U_j \mid j \in J\}$ satisface $\bigcup_{j \in J}U_j \in \Upsilon$.
+\item Si $K$ es cualquier subcolecci\'on finita de $I$, la familia $\{U_k \mid k \in K\}$ satisface $\bigcap_{k \in K}U_k \in \Upsilon$.
+\end{itemize}
+\end{defi}
+$X$ es un espacio topol\'ogico. Las $U_i$ son conjuntos abiertos y se dice que $\Upsilon$ dota a $X$ de una \emph{topolog\'ia}.
+\begin{defi}
+Una \emph{m\'etrica} $d:X \times X \rightarrow R$ es un mapa que satisface las siguientes condiciones:
+\begin{itemize}
+\item $d(x,y)=d(y,x)$
+\item $d(x,y) \geq 0$ donde la igualdad se cumple si y s\'olo si $x=y$.
+\item $d(x,y) + d(y,z) \geq d(x,z)$
+\end{itemize}
+para cualquier $x, y, z, \in X$. Si $X$ est\'a equipado con una m\'etrica $d$, $X$ se construye como un espacio topol\'ogico cuyos conjuntos abiertos est\'an dados por ``discos abiertos'',
+$$U_{\varepsilon}(x)=\{y \in X \mid d(x,y) < \varepsilon\}$$ 
+y todas sus posibles uniones. La topolog\'ia $\Upsilon$ as\'i definida, se denomina \emph{topolog\'ia m\'etrica} determinada por $d$. Al espacio topol\'ogico $(X,\Upsilon)$ se le llama \emph{espacio m\'etrico}.
+\end{defi}
+\begin{defi}
+Sea $X$ un subconjunto de $\mathbf{R}^n$. Un subconjunto $U$ de $X$ se denomina un \emph{conjunto abierto} de $X$ si para cada punto $x$ de $U$ existe alg\'un entorno de $x$ en $X$ contenido en $U$.
+\end{defi}
+
+Todos los \emph{entornos} son \emph{conjuntos abiertos}.
+
+\begin{defi}
+Sean $X_1$ y $X_2$ espacios topol\'ogicos. Un mapa $f:X_1 \rightarrow X_2$ es un \emph{homeomorfismo} si es continuo y tiene inversa $f^{-1}:X_2 \rightarrow X_1$ la cual tambi\'en es continua. Si existe un homeomorfismo entre $X_1$ y $X_2$, se dice que $X_1$ es \emph{homeom\'orfico} a $X_2$ y viceversa.
+\end{defi}
+
+\begin{defi}
+Sea $X$ un subconjunto de $\mathbf{R}^n$. Una colecci\'on $C$ de subconjuntos de $\mathbf{R}^n$ se llama un \emph{recubrimiento} de $X$ si la uni\'on de los conjuntos de $C$ contiene a $X$; o sea, si cada punto de $X$ pertenece al menos a uno de los conjuntos de $C$. Un recubrimiento $C$ de $X$ se denomina finito si el n\'umero de conjuntos de $C$ es finito. Un recubrimiento $C$ de $X$ se dice que contiene a un recubrimiento $D$ de $X$ si cada conjunto de $D$ es tambi\'en un conjunto de $C$. Un recubrimiento de $X$ se llama \emph{recubrimiento abierto} si cada conjunto del recubrimiento es un conjunto abierto de $X$. Finalmente, el espacio $X$ se denomina \emph{compacto} si cada recubrimiento abierto de $X$ contiene un recubrimiento finito de $X$; esto equivale a decir que de cualquier colecci\'on infinita de conjuntos de $X$ cuya reuni\'on es $X$ podemos seleccionar una subcolecci\'on finita cuya reuni\'on tambi\'en es $X$.
+Dicho de otra forma, un subespacio $X$ de $\mathbf{R}^n$ es \emph{compacto}, si y s\'olo si, para toda colecci\'on de conjuntos abiertos en $X$ cuya union es $X$, existe una sub-colecci\'on finita cuya union es igual a $X$.
+\end{defi}
+
+\begin{teo}
+Un conjunto compacto no vac\'io $X$ de n\'umeros reales tiene un m\'aximo y un m\'inimo; dicho de otra forma, existen dos n\'umeros $m$ y $M$ en $X$ tales que $m$ es el menor de $X$ y $M$ el mayor de $X$.
+\end{teo}
+
+\begin{teo}
+Si $X$ es un subconjunto de $\mathbf{R}^m$, cerrado, acotado y no vac\'io, y si $f:X \longmapsto R$ es una funci\'on continua (mapa) definida en $X$ con valores reales, la imagen $fX$ tiene un m\'aximo y un m\'inimo $m$. 
+\end{teo}
+
+\begin{defi}
+Una separaci\'on de un espacio $X$ es un par $A,B$ de subconjuntos no vac\'ios de $X$ tales que $A \cup B = X,$ $A \cap B = \emptyset,$ y ambos $A$ y $B$ son abiertos en $X$. Un espacio sin separaci\'on se llama \emph{conexo}.
+\end{defi}
+
+\begin{teo}
+Un espacio $X$ es \emph{conexo} si, y s\'olo si, cada par de puntos de $X$ est\'a contenido en alg\'un subconjunto conexo de $X$.
+\end{teo}
+
+Un subconjunto de $\mathbf{R}^n$ se llama \emph{convexo} si contiene a cualquier segmento que una un par de puntos. Puesto que los segmentos son convexos, el teorema implica:
+
+\begin{cor}
+Cada conjunto convexo es conexo.
+\end{cor}
+
+\begin{defi}
+Sean $X$ y $Y$ dos conjuntos. Un mapeo es una regla por la cual asignamos $y \in Y$ para cada $x \in X$.
+$$f:X \rightarrow Y$$
+\begin{itemize}
+\item Un mapa es \emph{uno-a-uno} si $x \neq x^{'}$ implica que $f(x) \neq f(x^{'})$
+\item Un mapa es \emph{sobre} si para cada $y \in Y$ existe al menos un elemento $x \in X$ tal que $f(x)=y$.
+\item Un mapa es \emph{biyectivo} si es ambos, uno-a-uno y sobre.
+\end{itemize}
+\end{defi}
+
+\begin{defi}
+Un {mapa convexo} es tal que se cumple, $D^2f(x)>0.$
+\end{defi}
+
+\paragraph{}
+El concepto de relaci\'on de equivalencia es fundamental para toda la teor\'ia matem\'atica de la termodin\'amica a l\'a Carath\'eodory; se define a partir del principio de comparaci\'on o hip\'otesis, que relaciona clases de estados termodin\'amicos.
+
+\begin{defi}
+Una \emph{relaci\'on de equivalencia} es reflexiva, i.e., $X \prec X$, y transitiva, i.e., $X \prec Y$ y $Y \prec Z$ implica que $X \prec Z$. Esto define una relaci\'on de \emph{pre}orden porque $X\prec Z$ y $Z\prec X$ no implica que $X = Z$.
+\end{defi}
+Una relaci\'on de equivalencia afirma que para cualquiera dos estados, $X$ y $Y$, que pertenecen a la misma clase, se puede llegar adiab\'aticamente desde $X$ hasta $Y$:
+\begin{equation*}
+X \prec Y,
+\end{equation*}
+o desde $Y$ hasta $X$, esto es, $Y\prec X$.
+
+Lo anterior no es siempre posible. El requisito clave para que una relaci\'on de equivalencia se cumpla es que si $X\prec Y$ y $Z\prec Y$, entonces se cumple que $X\prec Z$ o $Z\prec X$.
+Si ambas relaciones se cumplen, $X\prec Y$ y $Y\prec X$, entonces $X$ y $Y$ son adiab\'aticamente equivalentes, y se expresa como\cite{mt}:
+
+\begin{equation*}
+X \stackrel{A}{\sim} Y.
+\end{equation*}
+
+\subsection{Lenguaje de formas}
+Sea $\alpha=A_1dx^1+\dots+A_ndx^n$ una forma diferencial lineal en $\mathbf{R}^n$, donde $A_i$ son todas las funciones en $\mathbf{R}^n$. Si tomamos un punto $\mathbf{P}$, entonces el valor de $\alpha$ en $\mathbf{P}$ lo podemos pensar como el vector columna $(A_1(P),\dots,A_n(P))$. Si tal vector es diferente del vector cero, su \emph{espacio nulo} es el espacio $(n-1)$-dimensional de todos los 
+\begin{equation*}
+\mathbf{X}=
+\begin{pmatrix}X^1 \\ \vdots \\ X^n 
+\end{pmatrix}
+\end{equation*}
+tales que $A_1(\mathbf{P})X^1+\dots+A_n(\mathbf{P})X^n=0$.
+Sea $\gamma=x(t)$ una curva diferenciable a pedazos. Entonces $$\int_{\gamma}\alpha=\int[A_1(x(t))\dot{x}^1(t)+\dots+A_n(x(t))\dot{x}^n(t)]dt.$$
+En particular, si para cada $t$ el vector tangente
+\begin{equation*}
+\dot{x}(t)=
+\begin{pmatrix}\dot{x}(t)^1 \\ \vdots \\ \dot{x}(t)^n 
+\end{pmatrix}
+\end{equation*}
+cae en el espacio nulo de $(A_1(x(t)),\dots,A_n(x(t)))$, entonces la integral $$\int_{\gamma}\alpha=0.$$
+Una curva $\gamma$ es llamada \emph{curva nula}\footnote{null curve} de $\alpha$ si $\gamma$ es diferenciable, continua y adem\'as en cada $t$ para los que $\dot{x}(t)$ est\'a definido, $\dot{x}(t)$ cae en el espacio nulo de $(A_1(x(t)),\dots,A_n(x(t)))$. Para tener una idea geom\'etrica del teorema de Carath\'eodory que demostraremos m\'as adelante, consideremos el problema geom\'etrico de unir puntos en el espacio mediante curvas nulas \cite{cm}. Iniciemos en un punto $\mathbf{P}$ y para una funci\'on $f$ definamos $\alpha=df$. Entonces si $\gamma$ es una curva nula que une a los puntos $\mathbf{P}$ y $\mathbf{Q}$, se cumple que $$\int_{\gamma}\alpha=f(\mathbf{Q})-f(\mathbf{P})=0.$$Entonces debemos tener $f(\mathbf{P})=f(\mathbf{Q})$. Si $df\neq0$, el conjunto $f(\mathbf{P})=\kappa$ es una superficie \emph{(n-1)-dimensional} que pasa por $\mathbf{P}$, y con la condici\'on de que $\mathbf{Q}$ se encuentre en esta superficie. En particular, habr\'a puntos arbitrariamente cercanos a $\mathbf{P}$ que no podr\'an unirse a $\mathbf{P}$ por la acci\'on de curvas nulas. Lo mismo es cierto si $\alpha=gdf$ donde $g$ es alguna funci\'on diferente de cero y $df\neq0$. Esto se debe a que $\gamma$ es una curva nula de $\alpha$ si, y s\'olo si, es una curva nula para $g_{-1}\alpha=df$. Las condiciones para que $\gamma$ sea una curva nula son las mismas; $\mathbf{Q}$ debe residir en la superficie $(n-1)$-dimensional $f=f(\mathbf{P})$ para que sea posible unir $\mathbf{P}$ a $\mathbf{Q}$ mediante una curva nula de $\alpha$. En t\'erminos de producto exterior si $\alpha=gdf$ entonces $d\alpha=dg\wedge df$ as\'i que $$\alpha \wedge d\alpha=gdf\wedge dg \wedge df = 0.$$
+Si consideramos la \emph{forma} $\alpha=dz+xdy$, definida en $\mathbf{R}^3$, tenemos $d\alpha=dx \wedge dy$ as\'i que $$\alpha \wedge d\alpha = dx \wedge dy \wedge dz$$ nunca es cero. Llamamos a $\alpha$ \emph{1-forma.}
+Podemos enunciar el teorema de Carath\'eodory utilizando este lenguaje.
+\begin{teo}
+Sea $\alpha$ una forma diferencial lineal con la propiedad de que para cualquier punto $\mathbf{P}$ existen puntos $\mathbf{Q}$ arbitrariamente cercanos a $\mathbf{P}$, que no pueden unirse a $\mathbf{P}$ con una curva nula de $\alpha$. Entonces, existen funciones locales, $f$ y $g$ tales que $$\alpha=fdg.$$ 
+\end{teo}
+\begin{defi}
+Todo conjunto ordenado de $n$ valores, reales o complejos, de $n$ variables $\xi^{\kappa}$, es un \emph{punto aritm\'etico} y la totalidad de \'estos puntos es una \emph{variedad aritm\'etica}, $\mathfrak{U_n}$. Las $\xi^{\kappa}$ son las componentes del punto aritm\'etico. Si $\xi_0^{\kappa}$ son n\'umeros arbitrarios y $\chi^{\kappa}$$n$ n\'umeros positivos arbitrarios, el conjunto de todos los puntos aritm\'eticos que satisfacen las desigualdades
+\begin{equation}\label{poly}
+|\xi^{\kappa} - \xi_0^{\kappa}|<\chi^{\kappa}
+\end{equation}
+se llama \emph{policilindro}\footnote{Polycilinder} en $\mathfrak{U_n}$. Todo policilindro dado por \eqref{poly} es un \emph{entorno} del punto $\xi^{\kappa}_0$, as\'i el entorno de un punto es $\mathfrak{N}(\xi^{\kappa}_0)$, todo policilindro es una \emph{regi\'on} si cumple con dos condiciones:
+\begin{itemize}
+\item El conjunto es abierto, i.e., cada punto del conjunto pertenece al menos a un policilindro que consiste en puntos de la regi\'on \'unicamente.
+\item Por cada dos puntos de la regi\'on existe una cadena finita de policilindros cada uno consistente de solamente puntos de la regi\'on, tales que el primer punto reside en el primero y el segundo punto reside en el segundo policilindro; y policilindros consecutivos tienen al menos un punto en com\'un.
+\end{itemize}
+En una \emph{variedad geom\'etrica n-dimensional} pueden realizarse cambios de coordenadas y elegir un sistema adecuado, de este modo la noci\'on de policilindro no es \'util porque no se tiene un sistema de coordenadas preferido. En tal caso se usa el concepto de \emph{celda}, definida como un conjunto de puntos dados por $$|\xi^{\kappa}|<1$$
+en algun sistema coordenado permitido.
+\end{defi}
+
+
+
+
+\subsection{Digresi\'on sobre topolog\'ia de Cartan}
+\paragraph{}
+La \emph{evoluci\'on topol\'ogica continua} se define en t\'erminos de la \emph{f\'ormula de Cartan} para la \emph{diferencial de Lie}, la cual, al actuar sobre la diferencial exterior de una \emph{1-forma} de acci\'on,  $A=A_{mu} dx^{mu},$ es, en abstracto, equivalente a la primera ley de la termodin\'amica.\cite{CMF}
+
+\begin{align}
+\text{Acci\'on topol\'ogica}	 &	      \qquad A=A_{mu} dx^{mu} \nonumber \\ 
+\text{F\'ormula Cartan} &	      \qquad	L_{V_4}A=i\left(V_4\right)dA+d\left(i\left(V_4\right)A\right) \nonumber \\
+\text{Primera ley de la termodin\'amica}    &    \qquad W+dU=Q \nonumber \\
+\text{\emph{1-forma} inexacta del calor}    &    \qquad L_{V_4}A=Q \nonumber \\
+\text{\emph{1-forma} inexacta del trabajo}  &    \qquad W=i\left(V_4\right)dA \nonumber \\
+\text{Energ\'ia interna}		    &    \qquad U=i\left(V_4\right)A \nonumber
+\end{align}
+\subparagraph{}
+Los m\'etodos de \'Elie Cartan establecen la base topol\'ogica de la termodin\'amica en t\'erminos de la \emph{teor\'ia de cohomolog\'ia}. Estos m\'etodos se pueden utilizar para definir matem\'aticamente algunas propiedades termodin\'amicas en t\'erminos de conceptos topol\'ogicos sin la necesidad de restricciones estad\'isticas o m\'etricas. Mas a\'un, \'estos m\'etodos aplican a sistemas termodin\'amicos \emph{fuera del equilibrio} y procesos \emph{irreversibles} sin el uso de las restricciones antes mencionadas.
+\begin{thebibliography}{70}
+\bibitem{AE} Alekseevskij D; Geometry I Basic ideas and concepts of differential geometry, Springer-Verlag, 1991, p.25
+\bibitem{AR} Arfken G; Mathematical methods for physicists, academic press, 1966, p.73
+\bibitem{cm} Bamberg P; A course in mathematics for students of physics 2, Cambridge, 1990, p. 669
+\bibitem{bh} Belgiorno F; Black Hole Thermodynamics in Carath\'eodory's Approach, 2005
+\bibitem{CG} Belgiorno F; Homogeneity as a bridge between Carath\'eodory and Gibbs, 2008
+\bibitem{MB} Born M; Natural philosophy of cause and chance; Clarendon press, Oxford, 1949, p.31-70, 143-154 
+\bibitem{BU} Buchdahl A, The concepts of classical thermodynamics; Cambridge University Press, 1966, p. 52-65
+\bibitem{adg} Burke W; Applied differential geometry;
+\bibitem{CC} Carath\'eodory C; Untersuchungen uber die Grundlagen der Thermodynamik, Math. Ann., 67 (1909), pp. 355-386.
+\bibitem{ECB} Cartan E; Les syst\`emes diff\'erentiels est\'erieurs et leurs applications g\'eom\'etriques, Hermann, Paris VI, 1971
+\bibitem{EC1} Cartan E; L'integration des syst\`emes d'\'equations aux diff\'erentielles totales.
+\bibitem{EC} Cartan E; Sur certain expressions diff\'erentielles et le probl\`eme de Pfaff, annales scientifiques de l'\'E.N.S. 3e s\'erie, tome 16,(1899), p.239-332
+\bibitem{CK} Chandrasekhar S; An introduction to the study of stellar structure; Dover, 1938, p.1-37
+\bibitem{CT} Chinn W, Steenrod N; First concepts of topology, Yale, 1966, p.45
+\bibitem{CE} Coddington E; Theory of ordinary differential equations, Mc-Graw Hill, New Delhi, 1955
+\bibitem{l2} Conseil Mondial de l'\'Energie; Survey of Energy Sources, 2007
+\bibitem{MC} do Carmo M; Riemannian Geometry, Birkh\"{a}user, 1992, p.15
+\bibitem{MCD} do Carmo M; Differential Geometry of Curves and Surfaces, Prentice-Hall, New Jersey, 1976
+\bibitem{VD} Dryuma V; On geometrical properties of the spaces defined by the Pfaff equations, Moldova 
+\bibitem{EA} Ehrenfest A; Physikalische Zeitschrift XXII, 1921, p. 218, 249, 282
+\bibitem{HF} Flanders H; Differential Forms with Applications to the Physical Sciences, Dover, 1989
+\bibitem{For} Forsyth A; A treatise on differential equations, Macmillan and Co., 1888, p.249-263.
+\bibitem{MG} Georgiadou M; Constantin Carath\'eodory: mathematics and politics in turbulent times, 2004
+\bibitem{tr} Greiner W; Thermodynamics and statistical mechanics, Springer-Verlag, 1995
+\bibitem{HI} Hildebrand F; Advanced Calculus for Applications, New Jersey, 1962, p.284-286.
+\bibitem{RK} Kiehn R; Cartan's topological structure, University of Houston.
+\bibitem{CMF} Kiehn R; Thermodynamics and quantum cosmology continuous topological evolution of topologically coherent defects, university of Houston
+\bibitem{KR} Kubo R; Thermodynamics an advanced course with problems and solutions, North Holland publishing co., 1968, p.63, 77, 78, 92, 115
+\bibitem{LC} Levi-Civita T; The absolute diffetential calculus, Blackie $\&$ son limited, London and Glasgow, 1927
+\bibitem{LY} Lieb H, Yngvason J; A fresh look at entropy and the second law of thermodynamics; The Erwin Schr\"{o}dinger International Institute for Mathematical Physics, 2000 
+\bibitem{mt} Lieb H, Yngvason J; The physics and mathematics of the second law of thermodynamics, Physics Reports 310, 1999
+\bibitem{PM} Matthews P; Vector Calculus, Springer, 2001
+\bibitem{RM} Montgomery R; A Tour of Subriemannian Geometries, Their Geodesics and Applications, AMS, p.10
+\bibitem{PA} Morris Page J; Ordinary differential equations, with introduction to Lie theory, Macmillan and Co., 1897, p. 132-139.
+\bibitem{NA} Nakahara M; Geometry, Topology and Physics, IOP, 1990
+\bibitem{PW} Pauli W; Pauli lectures on physics: Volume 3. Thermodynamics and the Kinetic Theory of Gases; MIT Press, 1973
+\bibitem{LP} Pogliani L; Constantin Carath\'eodory and the axiomatic thermodynamics, Journal of mathematical chemistry vol. 28, 2000
+\bibitem{gtd} Quevedo H; The geometry of thermodynamics, 2007
+\bibitem{gt} Rajeev S; The Geometry of Thermodynamics, 2007
+\bibitem{tg} Salamon P; Thermodynamic Geometry, San Diego State University, 2007
+\bibitem{JS} Schouten J; Pfaff's problem and it's generalizations, Oxford, 1949
+\bibitem{AS2} Sommerfeld A, Mechanics of deformable bodies; academic press, 1950, p. 9-26 
+\bibitem{AS} Sommerfeld A, Thermodynamics and statistical mechanics; academic press, 1956
+\bibitem{SM} Spivak M; Calculus on Manifolds, Addison-Wesley, 1965 p.26, 86-95
+\bibitem{tc} Synge J; Tensor calculus, university of Toronto press, 1949, p.3 
+\bibitem{UJ} Uffink J; Irreversibility and the second law of thermodynamics, Institute for History and Foundations of Science, Netherlands, 2001
+\bibitem{ZE} Zachamanoglou E; Caratheodory's theorem on the second law of thermodynamics, SIAM J. Appl. Math. v.25, 1973, p. 592-596
+\bibitem{l1} http://www.solarmillennium.de
+\bibitem{l3} http://www.worldenergy.org
+\bibitem{l4} http://www.xist.org/default1.aspx
+\end{thebibliography}
+
+\end{document}
+
+Un comitant diferencial de un sistema de cantidades en $X_n$, es una cantidad cuyas componentes, para cualquier elecci\'on de coordenadas, puede derivarse desde las componentes de estas cantidades por los mismos procesos algebraicos y diferenciales. Ejemplos de comitants diferenciales son el rotacional y la divergencia, el teorema de Stokes, la derivada de Lie, campos invariantes e integrales invariantes.
+
+
+\footnote{footnote text}
+\emph{text}
+\begin{flushright}
+\begin{quote}
+\begin{tabular}{|r|l|c|}
+\begin{enumerate}
+\item
+\begin{itemize}
+\item 
+\begin{description}
+\item[]
+\iiiint
+\begin{equation} \label{clever}
+\begin{equation} \tag{dumb}
+\eqref{clever}
+\mathbb{R}
+\mathbf{X}
+$\vec{a} \qquad
+ \vec{AB} \qquad
+ \overrightarrow{AB}$
+\frac{\partial^2f}
+{\partial x^2}
+\begin{bmatrix}
+\usepackage[pdftex]{color,graphicx}
+\includegraphics[key=value, . . . ]{file}
+		width       scale graphic to the specified width
+
+		height       scale graphic to the specified height
+
+		angle       rotate graphic counterclockwise
+
+		scale       scale graphic
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.08]{gibener}\caption{Concepci\'on del marco de referencia distinto.}
+\end{figure}
+\textsc
+\texttt
+\textbf
+\textsf
+\boldmath{$\Finv$}
+\usepackage{rotating}
+\begin{sideways}
+\end{sideways}  
+\begin{turn}{65}
+\end{turn}  
+\begin{rotate}{50}Franciscotex 
+\end{rotate}  
+\turnbox{43}{Franciscotex}
+\xymatrix{
+p_1,V_1 \ar@/_/[ddr]_3 	\ar@[dr]^1	&	\bar{p}_1,\bar{V}_1	\\
+p_2,V_2  \ar[ur]^2 \ar[r]_p	&	\bar{p}_2,\bar{V}_2	\\
+         }
+
+
+
+
+
+
+
+The shortest route between two truths in the real domain passes through the complex domain. Hadamard
+
+ya usado One geometry cannot be more true than another; it can only be more convenient. Poincar\`e\\
+
+We think in generalities, but we live in details. Alfred North Whitehead
+
+“Think you're escaping and run into yourself. Longest way round is the shortest way home.”
+
+“No pen, no ink, no table, no room, no time, no quiet, no inclination.”
+James Joyce
+
+Classical thermodynamics is the only physical theory of universal content. Albert Einstein
+
+yausado The strength of mathematics multiplies, like the giant Antaeus, when it makes contact with reality, the ground upon which it was grown. Constantin Carath\'eodory
+
+Twenty years from now you will be more disappointed by the things you didn't do than by the ones you did do. So throw off the bowlines, sail away from the safe harbour, catch the trade winds in your sails. Explore. Dream. Discover. Mark Twain
+
+Le maximum de l'entropie correspond \`a un \'etat d'equilibre stable. Poincar\'e
+
+Nous devons donc conclure que les deux principes de l'augmentation de l'entropie et de la moindre action (entendu au ses hamiltonien)sont inconciliables.Poincar\'e.
+
+Ciceron, ne c'est Poincar\'e.
+
+All is geometry. Einstein
+
+...we serve the chief end of natural science the enlargement of our stock of knowledge. Planck.
+Geometry tells mass how to move, and mass tells geometry how to curve. Wheeler.
+
+Among all the mathematical disciplines the theory of differential equations is the most important... It furnishes the explanation of all those elementary manifestations of nature which involve time... Sophus Lie
+
+``Nobody made a greater mistake than he who did nothing because he could only do a little''.Edmund Burke
+
+
+
+
+
+
+
+Un comitant diferencial
+
+$$a \cdot b \times c = c \cdot a \times b = b \cdot c \times a$$
+$$Z \cdot \nabla \times Z = \nabla \cdot Z \times Z = 0$$
+
+Supongamos ahora que tenemos dos funciones continuas y diferenciables
+$$Q(x,y,z)=a, \qquad U(x,y,z)=b,$$
+donde $a,b$ son constantes, ahora diferenciamos,
+\begin{equation}\label{sis}
+\frac{\partial{Q}}{\partial{x}}dx + \frac{\partial{Q}}{\partial{y}}dy + \frac{\partial{Q}}{\partial{z}}dz = 0, \qquad
+\frac{\partial{U}}{\partial{x}}dx + \frac{\partial{U}}{\partial{y}}dy + \frac{\partial{U}}{\partial{z}}dz = 0
+\end{equation}
+
+todavia faltan un MONTON de pasos!! 
+en t\'erminos de \eqref{PDE} podemos escribir estas ecuaciones como
+$$X\frac{\partial{Q}}{\partial{x}} + Y\frac{\partial{Q}}{\partial{y}} + Z\frac{\partial{Q}}{\partial{z}} = 0,$$
+$$X\frac{\partial{U}}{\partial{x}} + Y\frac{\partial{U}}{\partial{y}} + Z\frac{\partial{U}}{\partial{z}} = 0$$
+
+$dQ=0$  en cualquier vecindad de cualquier estado, existen otros estados que no pueden alcanzarse desde \'el mediante un proceso adiab\'atico \cite{mt}.
+
+
+linea 38
+incluir sexto problema  de Hilbert
+linea 57
+aquivoy definir curl en terminos de Flanders diff forms
+
+linea 85
+\subparagraph{}
+Tangent bundle
+\subparagraph{}
+Cotangent bundle
+
+linea 133
+el espacio entero:podemos generalizar a n cualquiera?
+
+linea 195
+Este par de definiciones nos permitir\'an ligar m\'as adelante los enfoques axiom\'atico y geom\'etrico de la termodin\'amica.
+
+linea 428
+definir wedge!!!
+
+linea 432
+$\alpha$ no es \'unica.
+linea 439
+vecindad: puedo reemplazarvecindad con la definicion topologica de entorno? 
+Polycilinder!! Pfaff's problem and applications p.29
+
+linea 884
+It also will be demonstrated that the first law of thermodynamics is a topological statement of cohomology
+the production of defects in a physical system, and the change of phase from solid to liquid, are exhibitions of topological evolution
+the concepts of isolated, closed and open sets form the basis of the theory of thermodynamics. It is therefore apparent that thermodynamics is a study of topological properties of matter.
+the action of the Lie differential on a 0-form (scalar function) is the same as the directional derivative of ordinary calculus,Continuous Topological Evolution,R.M.Kiehn
+The fundamental equation of evolution is given by Cartan’s Magic Formula
+The correspondence between Cartan’s magic Formula and the First Law of Thermodynamics is to be taken literally
+A process is irreversible in the thermodynamic sense iff the 1-form of heat, Q, does not admit an integrating factor.
+linea 907
+\bibitem{mit} Tisza L; Generalized thermodynamics, M.I.T. Press, 1966.
+\bibitem{RB} Richard L. Bishop and Samuel I. Goldberg Tensor Analysis on Manifolds Macmillan 1968; Dover, New York
+
+Carath
+Absolute temperature. To determine the constant, we write the difference of two fixed temperatures, for example, the melting of the ice and the evaporation of water under prescribed pressure before.
+
+Entropie. the entropy of normalized coordinates depends only on x, it remains at each quasistatic adiabatic processes constant.
+And every state change of a simple system in which the entropy remains constant, according to our previous arguments is reversible.
+Any change in state in which the value of the entropy varies, it is irreversible.
+
+10. Energie, entropie, temperatur
+Man sieht, daß man durch reversible Prozesse die absolute Temperatur nur bis aur eine additive Konstante un die innere Energie nur bis auf eine lineare Funktion der Entropie bestimmen kann.
+One sees that by reversible processes, the absolute temperature only up to an additive constant and the internal energy only up to a linear function of the entropy can be determined.
+
+due to the not negligible internal friction all processes are always irreversible.
+
+
+Max Born
+I thought that they deviated too much from the ordinary methods of physics; I discussed the problem with my mathematical friend ,Caratheodory. p.38 natural phil... 
+
+
+condiciones de integrabilidad Sommerfeld
+$F_0\cdot\vec\nabla\times\vec F_0=0$
+
+Birkhoff, Rota:
+Every continuous function has an integral, whereas many continuous functions are not differentiable.
+
+Tisza
+The major disciplines of theoretical phys are expressed in terms of rigorous math structures, even if the application to empirical situations is only approximate. A conspicuos exception is Clausius-Kelvin thermodyn, in which legitimate math methods are hidden behind such devices as the Carnot cycle. Carath and Born were particularly concerned with this shortcoming. As a result of these efforts thermodyn appears as an instance of diff geo. In particular the entropy is obtained by integrating Pfaffian differential forms and appears eventually as a surface in a thermodynamic phase space.
+The logical math structure of the CK theory was clarified in the axiomatic investigation of Carath.
+
+
+
+
+27 sept
+
+
+
+Ahora demostraremos las condiciones de integrabilidad $\vec T \cdot \vec \nabla \times \vec T = 0$ para un vector en un subespacio vectorial de $\mathbf{R}^3$ propuestas por Arnold Sommerfeld \cite{AS}.
+\subparagraph{}
+Definimos un campo vectorial $\vec T=(\alpha,\beta,\gamma)$ y un vector $d\vec r = (dx,dy,dz),$ operamos sobre ellos $dT = \vec T \cdot d\vec r,$ por lo tanto, dada la definici\'on \eqref{trediff} tenemos
+\begin{equation}\label{comp}
+\alpha = \frac{\partial T}{\partial x}, \quad \beta = \frac{\partial T}{\partial y}, \quad \gamma = \frac{\partial T}{\partial z}.
+\end{equation}
+Primero calculamos el rotacional de $\vec T$
+\begin{equation}
+\vec \nabla \times \vec T=\hat{i}\left(\frac{\partial \gamma}{\partial y}-\frac{\partial \beta}{\partial z}\right)+\hat{j} \left(\frac{\partial \alpha}{\partial z}-\frac{\partial \gamma}{\partial x}\right)+\hat{k}\left(\frac{\partial \beta}{\partial x}-\frac{\partial \alpha}{\partial y}\right),
+\end{equation}
+ahora le aplicamos el producto escalar indicado y obtenemos
+\begin{equation}\label{ncurl}
+\vec T \cdot \vec \nabla \times \vec T = \alpha\left(\frac{\partial \gamma}{\partial y}-\frac{\partial \beta}{\partial z}\right)+\beta\left(\frac{\partial \alpha}{\partial z}-\frac{\partial \gamma}{\partial x}\right)+\gamma\left(\frac{\partial \beta}{\partial x}-\frac{\partial \alpha}{\partial y}\right).
+\end{equation}
+Si comparamos \eqref{trediff} con \eqref{comp} y aplicamos \eqref{ncurlcond} a \eqref{ncurl} obtenemos
+\begin{equation}
+\frac{\partial T}{\partial x}\frac{\partial^2T}{\partial y \partial z}-\frac{\partial T}{\partial x}\frac{\partial^2T}{\partial z \partial y}+\frac{\partial T}{\partial y}\frac{\partial^2T}{\partial z \partial x}-\frac{\partial T}{\partial y}\frac{\partial^2T}{\partial x \partial z}+\frac{\partial T}{\partial z}\frac{\partial^2T}{\partial x \partial y}-\frac{\partial T}{\partial z}\frac{\partial^2T}{\partial y \partial x}=0
+\end{equation}
+dada la igualdad de las diferenciales parciales mixtas \eqref{mixed}.
+\begin{figure}[h!]
+\includemovie[label=anima,
+  text={\Large\bf Click para iniciar animaci\'on\hspace*{400pt}}
+]{550pt}{400pt}{parabfield.swf}
+\caption{Ciclo completo de un sistema de generaci\'on de potencia solar con almacenamiento t\'ermico.}
+\end{figure}
+\usepackage{movie15}
+\usepackage{geometry}
+\geometry{verbose,letterpaper}
+
+ \movieref[controls,mouse]{anima}{animaci\'on}
